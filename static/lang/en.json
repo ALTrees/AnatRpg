@@ -1,4 +1,21 @@
 {
+"ANAT": {
+  "Skill": {
+    "Com": "Combat",
+    "Cov": "Covert",
+    "Cra": "Crafting",
+    "Def": "Defence",
+    "Eru": "Erudition",
+    "For": "Force",
+    "Inf": "Influence",
+    "Ins": "Insight",
+    "Med": "Medicine",
+    "Mov": "Movement",
+    "Nat": "Nature",
+    "Spi": "Spirituality",
+    "Tac": "Tactics"
+  }
+},
 "ACTOR.TypeCharacter": "Player Character",
 "ACTOR.TypeCharacterPl": "Player Characters",
 "ACTOR.TypeNpc": "Non-Player Character",
