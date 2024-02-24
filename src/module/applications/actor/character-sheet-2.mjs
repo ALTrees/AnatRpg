@@ -96,8 +96,8 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/dnd5e/templates/actors/limited-sheet-2.hbs";
-    return "systems/dnd5e/templates/actors/character-sheet-2.hbs";
+    if ( !game.user.isGM && this.actor.limited ) return "systems/anatrpg/templates/actors/limited-sheet-2.hbs";
+    return "systems/anatrpg/templates/actors/character-sheet-2.hbs";
   }
 
   /* -------------------------------------------- */
@@ -150,7 +150,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       item.dataset.tooltip = label;
       item.setAttribute("aria-label", label);
       if ( icon ) item.innerHTML = `<i class="${icon}"></i>`;
-      else if ( svg ) item.innerHTML = `<dnd5e-icon src="systems/dnd5e/icons/svg/${svg}.svg"></dnd5e-icon>`;
+      else if ( svg ) item.innerHTML = `<dnd5e-icon src="systems/anatrpg/icons/svg/${svg}.svg"></dnd5e-icon>`;
       return item;
     }));
     html[0].insertAdjacentElement("afterbegin", nav);
@@ -1244,7 +1244,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
         uses, level,
         title: game.i18n.format(`DND5E.SpellSlotsN.${plurals.select(level)}`, { n: level }),
         subtitle: game.i18n.localize("DND5E.AbbreviationLR"),
-        img: `systems/dnd5e/icons/spell-tiers/${id}.webp`
+        img: `systems/anatrpg/icons/spell-tiers/${id}.webp`
       };
     }
 

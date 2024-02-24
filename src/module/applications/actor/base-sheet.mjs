@@ -98,8 +98,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/dnd5e/templates/actors/limited-sheet.hbs";
-    return `systems/dnd5e/templates/actors/${this.actor.type}-sheet.hbs`;
+    if ( !game.user.isGM && this.actor.limited ) return "systems/anatrpg/templates/actors/limited-sheet.hbs";
+    return `systems/anatrpg/templates/actors/${this.actor.type}-sheet.hbs`;
   }
 
   /* -------------------------------------------- */
@@ -842,7 +842,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     }, {
       classes: ["dialog", "dnd5e", "polymorph"],
       width: 900,
-      template: "systems/dnd5e/templates/apps/polymorph-prompt.hbs"
+      template: "systems/anatrpg/templates/apps/polymorph-prompt.hbs"
     }).render(true);
   }
 

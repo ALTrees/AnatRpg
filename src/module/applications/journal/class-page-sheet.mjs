@@ -22,7 +22,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
 
   /** @inheritdoc */
   get template() {
-    return `systems/dnd5e/templates/journal/page-class-${this.isEditable ? "edit" : "view"}.hbs`;
+    return `systems/anatrpg/templates/journal/page-class-${this.isEditable ? "edit" : "view"}.hbs`;
   }
 
   /* -------------------------------------------- */

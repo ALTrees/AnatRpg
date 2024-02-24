@@ -6,7 +6,7 @@ export default class AdvancementConfirmationDialog extends Dialog {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/dnd5e/templates/advancement/advancement-confirmation-dialog.hbs",
+      template: "systems/anatrpg/templates/advancement/advancement-confirmation-dialog.hbs",
       jQuery: false
     });
   }

@@ -9,7 +9,7 @@ export default class ActorMovementConfig extends BaseConfigSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e"],
-      template: "systems/dnd5e/templates/apps/movement-config.hbs",
+      template: "systems/anatrpg/templates/apps/movement-config.hbs",
       width: 300,
       height: "auto",
       sheetConfig: false,

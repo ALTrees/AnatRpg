@@ -20,7 +20,7 @@ export default class ActorArmorConfig extends BaseConfigSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e", "actor-armor-config"],
-      template: "systems/dnd5e/templates/apps/actor-armor.hbs",
+      template: "systems/anatrpg/templates/apps/actor-armor.hbs",
       width: 320,
       height: "auto",
       sheetConfig: false

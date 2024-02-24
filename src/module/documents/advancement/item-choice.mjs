@@ -16,7 +16,7 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
         configuration: ItemChoiceConfigurationData
       },
       order: 50,
-      icon: "systems/dnd5e/icons/svg/item-choice.svg",
+      icon: "systems/anatrpg/icons/svg/item-choice.svg",
       title: game.i18n.localize("DND5E.AdvancementItemChoiceTitle"),
       hint: game.i18n.localize("DND5E.AdvancementItemChoiceHint"),
       multiLevel: true,

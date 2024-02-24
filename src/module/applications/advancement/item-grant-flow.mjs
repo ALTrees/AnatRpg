@@ -8,7 +8,7 @@ export default class ItemGrantFlow extends AdvancementFlow {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/dnd5e/templates/advancement/item-grant-flow.hbs"
+      template: "systems/anatrpg/templates/advancement/item-grant-flow.hbs"
     });
   }
 

@@ -77,7 +77,7 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @inheritdoc */
   get template() {
-    return `systems/dnd5e/templates/items/${this.item.type}.hbs`;
+    return `systems/anatrpg/templates/items/${this.item.type}.hbs`;
   }
 
   /* -------------------------------------------- */

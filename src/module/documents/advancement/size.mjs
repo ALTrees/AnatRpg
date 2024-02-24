@@ -16,7 +16,7 @@ export default class SizeAdvancement extends Advancement {
         value: SizeValueData
       },
       order: 25,
-      icon: "systems/dnd5e/icons/svg/size.svg",
+      icon: "systems/anatrpg/icons/svg/size.svg",
       title: game.i18n.localize("DND5E.AdvancementSizeTitle"),
       hint: game.i18n.localize("DND5E.AdvancementSizeHint"),
       apps: {

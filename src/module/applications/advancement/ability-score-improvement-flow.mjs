@@ -25,7 +25,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       dragDrop: [{ dropSelector: "form" }],
-      template: "systems/dnd5e/templates/advancement/ability-score-improvement-flow.hbs"
+      template: "systems/anatrpg/templates/advancement/ability-score-improvement-flow.hbs"
     });
   }
 

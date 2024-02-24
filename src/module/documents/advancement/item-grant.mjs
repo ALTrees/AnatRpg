@@ -16,7 +16,7 @@ export default class ItemGrantAdvancement extends Advancement {
         configuration: ItemGrantConfigurationData
       },
       order: 40,
-      icon: "systems/dnd5e/icons/svg/item-grant.svg",
+      icon: "systems/anatrpg/icons/svg/item-grant.svg",
       title: game.i18n.localize("DND5E.AdvancementItemGrantTitle"),
       hint: game.i18n.localize("DND5E.AdvancementItemGrantHint"),
       apps: {

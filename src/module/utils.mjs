@@ -193,41 +193,41 @@ export const validators = {
 export async function preloadHandlebarsTemplates() {
   const partials = [
     // Shared Partials
-    "systems/dnd5e/templates/shared/active-effects.hbs",
-    "systems/dnd5e/templates/shared/inventory.hbs",
-    "systems/dnd5e/templates/shared/inventory2.hbs",
-    "systems/dnd5e/templates/shared/active-effects2.hbs",
-    "systems/dnd5e/templates/apps/parts/trait-list.hbs",
+    "systems/anatrpg/templates/shared/active-effects.hbs",
+    "systems/anatrpg/templates/shared/inventory.hbs",
+    "systems/anatrpg/templates/shared/inventory2.hbs",
+    "systems/anatrpg/templates/shared/active-effects2.hbs",
+    "systems/anatrpg/templates/apps/parts/trait-list.hbs",
 
     // Actor Sheet Partials
-    "systems/dnd5e/templates/actors/parts/actor-traits.hbs",
-    "systems/dnd5e/templates/actors/parts/actor-inventory.hbs",
-    "systems/dnd5e/templates/actors/parts/actor-features.hbs",
-    "systems/dnd5e/templates/actors/parts/actor-spellbook.hbs",
-    "systems/dnd5e/templates/actors/parts/actor-warnings.hbs",
-    "systems/dnd5e/templates/actors/tabs/character-details.hbs",
-    "systems/dnd5e/templates/actors/tabs/character-features.hbs",
-    "systems/dnd5e/templates/actors/tabs/character-spells.hbs",
-    "systems/dnd5e/templates/actors/tabs/character-biography.hbs",
+    "systems/anatrpg/templates/actors/parts/actor-traits.hbs",
+    "systems/anatrpg/templates/actors/parts/actor-inventory.hbs",
+    "systems/anatrpg/templates/actors/parts/actor-features.hbs",
+    "systems/anatrpg/templates/actors/parts/actor-spellbook.hbs",
+    "systems/anatrpg/templates/actors/parts/actor-warnings.hbs",
+    "systems/anatrpg/templates/actors/tabs/character-details.hbs",
+    "systems/anatrpg/templates/actors/tabs/character-features.hbs",
+    "systems/anatrpg/templates/actors/tabs/character-spells.hbs",
+    "systems/anatrpg/templates/actors/tabs/character-biography.hbs",
 
     // Item Sheet Partials
-    "systems/dnd5e/templates/items/parts/item-action.hbs",
-    "systems/dnd5e/templates/items/parts/item-activation.hbs",
-    "systems/dnd5e/templates/items/parts/item-advancement.hbs",
-    "systems/dnd5e/templates/items/parts/item-description.hbs",
-    "systems/dnd5e/templates/items/parts/item-mountable.hbs",
-    "systems/dnd5e/templates/items/parts/item-spellcasting.hbs",
-    "systems/dnd5e/templates/items/parts/item-source.hbs",
-    "systems/dnd5e/templates/items/parts/item-summary.hbs",
-    "systems/dnd5e/templates/items/parts/item-tooltip.hbs",
+    "systems/anatrpg/templates/items/parts/item-action.hbs",
+    "systems/anatrpg/templates/items/parts/item-activation.hbs",
+    "systems/anatrpg/templates/items/parts/item-advancement.hbs",
+    "systems/anatrpg/templates/items/parts/item-description.hbs",
+    "systems/anatrpg/templates/items/parts/item-mountable.hbs",
+    "systems/anatrpg/templates/items/parts/item-spellcasting.hbs",
+    "systems/anatrpg/templates/items/parts/item-source.hbs",
+    "systems/anatrpg/templates/items/parts/item-summary.hbs",
+    "systems/anatrpg/templates/items/parts/item-tooltip.hbs",
 
     // Journal Partials
-    "systems/dnd5e/templates/journal/parts/journal-table.hbs",
+    "systems/anatrpg/templates/journal/parts/journal-table.hbs",
 
     // Advancement Partials
-    "systems/dnd5e/templates/advancement/parts/advancement-ability-score-control.hbs",
-    "systems/dnd5e/templates/advancement/parts/advancement-controls.hbs",
-    "systems/dnd5e/templates/advancement/parts/advancement-spell-config.hbs"
+    "systems/anatrpg/templates/advancement/parts/advancement-ability-score-control.hbs",
+    "systems/anatrpg/templates/advancement/parts/advancement-controls.hbs",
+    "systems/anatrpg/templates/advancement/parts/advancement-spell-config.hbs"
   ];
 
   const paths = {};

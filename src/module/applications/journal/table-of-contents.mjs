@@ -6,7 +6,7 @@ export default class TableOfContentsCompendium extends Compendium {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["table-of-contents"],
-      template: "systems/dnd5e/templates/journal/table-of-contents.hbs",
+      template: "systems/anatrpg/templates/journal/table-of-contents.hbs",
       width: 800,
       height: 950,
       resizable: true,

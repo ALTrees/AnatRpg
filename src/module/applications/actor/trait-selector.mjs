@@ -35,7 +35,7 @@ export default class TraitSelector extends BaseConfigSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "trait-selector",
       classes: ["dnd5e", "trait-selector", "subconfig"],
-      template: "systems/dnd5e/templates/apps/trait-selector.hbs",
+      template: "systems/anatrpg/templates/apps/trait-selector.hbs",
       width: 320,
       height: "auto",
       sheetConfig: false,

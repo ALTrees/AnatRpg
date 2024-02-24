@@ -109,7 +109,7 @@ export class ModuleArt {
     const configs = [{
       id: game.system.id,
       label: game.system.title,
-      mapping: "systems/dnd5e/json/fa-token-mapping.json",
+      mapping: "systems/anatrpg/json/fa-token-mapping.json",
       priority: settings.dnd5e?.priority ?? CONST.SORT_INTEGER_DENSITY,
       credit: `
         <em>
@@ -154,7 +154,7 @@ export class ModuleArtConfig extends FormApplication {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: game.i18n.localize("DND5E.ModuleArtConfigL"),
       id: "module-art-config",
-      template: "systems/dnd5e/templates/apps/module-art-config.hbs",
+      template: "systems/anatrpg/templates/apps/module-art-config.hbs",
       popOut: true,
       width: 600,
       height: "auto"

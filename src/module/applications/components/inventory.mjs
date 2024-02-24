@@ -421,7 +421,7 @@ export default class InventoryElement extends HTMLElement {
     } else {
       const enrichment = {secrets: this.document.isOwner};
       const chatData = item.system.getCardData ? item.system.getCardData(enrichment) : item.getChatData(enrichment);
-      const summary = $(await renderTemplate("systems/dnd5e/templates/items/parts/item-summary.hbs", await chatData));
+      const summary = $(await renderTemplate("systems/anatrpg/templates/items/parts/item-summary.hbs", await chatData));
       $(li).append(summary.hide());
       summary.slideDown(200);
       this._app._expanded.add(item.id);

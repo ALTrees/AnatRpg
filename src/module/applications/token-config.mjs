@@ -20,7 +20,7 @@ export default class TokenConfig5e extends TokenConfig {
    * Template used to render the dynamic ring tab.
    * @type {string}
    */
-  static dynamicRingTemplate = "systems/dnd5e/templates/apps/parts/dynamic-ring.hbs";
+  static dynamicRingTemplate = "systems/anatrpg/templates/apps/parts/dynamic-ring.hbs";
 
   /* -------------------------------------------- */
 

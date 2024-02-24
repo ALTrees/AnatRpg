@@ -1313,7 +1313,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       isTool: this.type === "tool",
       hasAbilityCheck: this.hasAbilityCheck
     };
-    const html = await renderTemplate("systems/dnd5e/templates/chat/item-card.hbs", templateData);
+    const html = await renderTemplate("systems/anatrpg/templates/chat/item-card.hbs", templateData);
 
     // Create the ChatMessage data object
     const chatData = {
@@ -2573,7 +2573,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const name = data.name || game.i18n.format("DOCUMENT.New", { type: label });
     let type = data.type || CONFIG[this.documentName]?.defaultType;
     if ( !types.includes(type) ) type = types[0];
-    const content = await renderTemplate("systems/dnd5e/templates/apps/document-create.hbs", {
+    const content = await renderTemplate("systems/anatrpg/templates/apps/document-create.hbs", {
       folders, name, type,
       folder: data.folder,
       hasFolders: folders.length > 0,

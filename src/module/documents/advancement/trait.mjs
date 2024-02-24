@@ -20,7 +20,7 @@ export default class TraitAdvancement extends Advancement {
         value: TraitValueData
       },
       order: 30,
-      icon: "systems/dnd5e/icons/svg/trait.svg",
+      icon: "systems/anatrpg/icons/svg/trait.svg",
       title: game.i18n.localize("DND5E.AdvancementTraitTitle"),
       hint: game.i18n.localize("DND5E.AdvancementTraitHint"),
       apps: {

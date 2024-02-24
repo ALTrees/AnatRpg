@@ -57,7 +57,7 @@ export default class AbilityUseDialog extends Dialog {
     this._getAbilityUseWarnings(data);
 
     // Render the ability usage template
-    const html = await renderTemplate("systems/dnd5e/templates/apps/ability-use.hbs", data);
+    const html = await renderTemplate("systems/anatrpg/templates/apps/ability-use.hbs", data);
 
     // Create the Dialog and return data as a Promise
     const isSpell = item.type === "spell";

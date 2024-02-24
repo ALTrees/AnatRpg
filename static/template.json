@@ -4,7 +4,8 @@
       "character",
       "npc",
       "vehicle",
-      "group"
+      "group",
+      "loot"
     ],
     "htmlFields": [
       "details.biography.value",

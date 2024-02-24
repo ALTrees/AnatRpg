@@ -8,7 +8,7 @@ export default class HitPointsConfig extends AdvancementConfig {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/dnd5e/templates/advancement/hit-points-config.hbs"
+      template: "systems/anatrpg/templates/advancement/hit-points-config.hbs"
     });
   }
 

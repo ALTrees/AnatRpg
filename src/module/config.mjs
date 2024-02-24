@@ -1211,7 +1211,7 @@ ANAT.itemProperties = {
   concentration: {
     label: "DND5E.Item.Property.Concentration",
     abbreviation: "DND5E.ConcentrationAbbr",
-    icon: "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/concentrating.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
     isTag: true
   },
@@ -1240,7 +1240,7 @@ ANAT.itemProperties = {
   },
   mgc: {
     label: "DND5E.Item.Property.Magical",
-    icon: "systems/dnd5e/icons/svg/properties/magical.svg",
+    icon: "systems/anatrpg/icons/svg/properties/magical.svg",
     isPhysical: true
   },
   rch: {
@@ -1255,7 +1255,7 @@ ANAT.itemProperties = {
   ritual: {
     label: "DND5E.Item.Property.Ritual",
     abbreviation: "DND5E.RitualAbbr",
-    icon: "systems/dnd5e/icons/svg/items/spell.svg",
+    icon: "systems/anatrpg/icons/svg/items/spell.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA",
     isTag: true
   },
@@ -1467,70 +1467,70 @@ preLocalize("physicalDamageTypes", { sort: true });
 ANAT.damageTypes = {
   acid: {
     label: "DND5E.DamageAcid",
-    icon: "systems/dnd5e/icons/svg/damage/acid.svg",
+    icon: "systems/anatrpg/icons/svg/damage/acid.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.IQhbKRPe1vCPdh8v"
   },
   bludgeoning: {
     label: "DND5E.DamageBludgeoning",
-    icon: "systems/dnd5e/icons/svg/damage/bludgeoning.svg",
+    icon: "systems/anatrpg/icons/svg/damage/bludgeoning.svg",
     isPhysical: true,
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.39LFrlef94JIYO8m"
   },
   cold: {
     label: "DND5E.DamageCold",
-    icon: "systems/dnd5e/icons/svg/damage/cold.svg",
+    icon: "systems/anatrpg/icons/svg/damage/cold.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4xsFUooHDEdfhw6g"
   },
   fire: {
     label: "DND5E.DamageFire",
-    icon: "systems/dnd5e/icons/svg/damage/fire.svg",
+    icon: "systems/anatrpg/icons/svg/damage/fire.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.f1S66aQJi4PmOng6"
   },
   force: {
     label: "DND5E.DamageForce",
-    icon: "systems/dnd5e/icons/svg/damage/force.svg",
+    icon: "systems/anatrpg/icons/svg/damage/force.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eFTWzngD8dKWQuUR"
   },
   lightning: {
     label: "DND5E.DamageLightning",
-    icon: "systems/dnd5e/icons/svg/damage/lightning.svg",
+    icon: "systems/anatrpg/icons/svg/damage/lightning.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9SaxFJ9bM3SutaMC"
   },
   necrotic: {
     label: "DND5E.DamageNecrotic",
-    icon: "systems/dnd5e/icons/svg/damage/acid.svg",
+    icon: "systems/anatrpg/icons/svg/damage/acid.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.klOVUV5G1U7iaKoG"
   },
   piercing: {
     label: "DND5E.DamagePiercing",
-    icon: "systems/dnd5e/icons/svg/damage/piercing.svg",
+    icon: "systems/anatrpg/icons/svg/damage/piercing.svg",
     isPhysical: true,
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.95agSnEGTdAmKhyC"
   },
   poison: {
     label: "DND5E.DamagePoison",
-    icon: "systems/dnd5e/icons/svg/statuses/poisoned.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/poisoned.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.k5wOYXdWPzcWwds1"
   },
   psychic: {
     label: "DND5E.DamagePsychic",
-    icon: "systems/dnd5e/icons/svg/damage/psychic.svg",
+    icon: "systems/anatrpg/icons/svg/damage/psychic.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.YIKbDv4zYqbE5teJ"
   },
   radiant: {
     label: "DND5E.DamageRadiant",
-    icon: "systems/dnd5e/icons/svg/damage/radiant.svg",
+    icon: "systems/anatrpg/icons/svg/damage/radiant.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5tcK9buXWDOw8yHH"
   },
   slashing: {
     label: "DND5E.DamageSlashing",
-    icon: "systems/dnd5e/icons/svg/damage/slashing.svg",
+    icon: "systems/anatrpg/icons/svg/damage/slashing.svg",
     isPhysical: true,
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.sz2XKQ5lgsdPEJOa"
   },
   thunder: {
     label: "DND5E.DamageThunder",
-    icon: "systems/dnd5e/icons/svg/damage/thunder.svg",
+    icon: "systems/anatrpg/icons/svg/damage/thunder.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iqsmMHk7FSpiNkQy"
   }
 };
@@ -1548,11 +1548,11 @@ preLocalize("damageTypes", { keys: ["label"], sort: true });
 ANAT.healingTypes = {
   healing: {
     label: "DND5E.Healing",
-    icon: "systems/dnd5e/icons/svg/damage/healing.svg"
+    icon: "systems/anatrpg/icons/svg/damage/healing.svg"
   },
   temphp: {
     label: "DND5E.HealingTemp",
-    icon: "systems/dnd5e/icons/svg/damage/temphp.svg"
+    icon: "systems/anatrpg/icons/svg/damage/temphp.svg"
   }
 };
 patchConfig("healingTypes", "label", { since: "DnD5e 3.0", until: "DnD5e 3.2" });
@@ -1646,15 +1646,15 @@ ANAT.encumbrance = {
   effects: {
     encumbered: {
       name: "EFFECT.DND5E.StatusEncumbered",
-      icon: "systems/dnd5e/icons/svg/statuses/encumbered.svg"
+      icon: "systems/anatrpg/icons/svg/statuses/encumbered.svg"
     },
     heavilyEncumbered: {
       name: "EFFECT.DND5E.StatusHeavilyEncumbered",
-      icon: "systems/dnd5e/icons/svg/statuses/heavily-encumbered.svg"
+      icon: "systems/anatrpg/icons/svg/statuses/heavily-encumbered.svg"
     },
     exceedingCarryingCapacity: {
       name: "EFFECT.DND5E.StatusExceedingCarryingCapacity",
-      icon: "systems/dnd5e/icons/svg/statuses/exceeding-carrying-capacity.svg"
+      icon: "systems/anatrpg/icons/svg/statuses/exceeding-carrying-capacity.svg"
     }
   },
   threshold: {
@@ -2067,13 +2067,13 @@ ANAT.spellTags = {
   concentration: {
     label: "DND5E.Concentration",
     abbr: "DND5E.ConcentrationAbbr",
-    icon: "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/concentrating.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH"
   },
   ritual: {
     label: "DND5E.Ritual",
     abbr: "DND5E.RitualAbbr",
-    icon: "systems/dnd5e/icons/svg/items/spell.svg",
+    icon: "systems/anatrpg/icons/svg/items/spell.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA"
   }
 };
@@ -2098,49 +2098,49 @@ preLocalize("spellTags", { keys: ["label", "abbr"] });
 ANAT.spellSchools = {
   abj: {
     label: "DND5E.SchoolAbj",
-    icon: "systems/dnd5e/icons/svg/schools/abjuration.svg",
+    icon: "systems/anatrpg/icons/svg/schools/abjuration.svg",
     fullKey: "abjuration",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.849AYEWw9FHD6JNz"
   },
   con: {
     label: "DND5E.SchoolCon",
-    icon: "systems/dnd5e/icons/svg/schools/conjuration.svg",
+    icon: "systems/anatrpg/icons/svg/schools/conjuration.svg",
     fullKey: "conjuration",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TWyKMhZJZGqQ6uls"
   },
   div: {
     label: "DND5E.SchoolDiv",
-    icon: "systems/dnd5e/icons/svg/schools/divination.svg",
+    icon: "systems/anatrpg/icons/svg/schools/divination.svg",
     fullKey: "divination",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HoD2MwzmVbMqj9se"
   },
   enc: {
     label: "DND5E.SchoolEnc",
-    icon: "systems/dnd5e/icons/svg/schools/enchantment.svg",
+    icon: "systems/anatrpg/icons/svg/schools/enchantment.svg",
     fullKey: "enchantment",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.SehPXk24ySBVOwCZ"
   },
   evo: {
     label: "DND5E.SchoolEvo",
-    icon: "systems/dnd5e/icons/svg/schools/evocation.svg",
+    icon: "systems/anatrpg/icons/svg/schools/evocation.svg",
     fullKey: "evocation",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kGp1RNuxL2SELLRC"
   },
   ill: {
     label: "DND5E.SchoolIll",
-    icon: "systems/dnd5e/icons/svg/schools/illusion.svg",
+    icon: "systems/anatrpg/icons/svg/schools/illusion.svg",
     fullKey: "illusion",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.smEk7kvVyslFozrB"
   },
   nec: {
     label: "DND5E.SchoolNec",
-    icon: "systems/dnd5e/icons/svg/schools/necromancy.svg",
+    icon: "systems/anatrpg/icons/svg/schools/necromancy.svg",
     fullKey: "necromancy",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.W0eyiV1FBmngb6Qh"
   },
   trs: {
     label: "DND5E.SchoolTrs",
-    icon: "systems/dnd5e/icons/svg/schools/transmutation.svg",
+    icon: "systems/anatrpg/icons/svg/schools/transmutation.svg",
     fullKey: "transmutation",
     reference: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.IYWewSailtmv6qEb"
   }
@@ -2398,18 +2398,18 @@ ANAT.consumableResources = [
 ANAT.conditionTypes = {
   blinded: {
     label: "DND5E.ConBlinded",
-    icon: "systems/dnd5e/icons/svg/statuses/blinded.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/blinded.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.0b8N4FymGGfbZGpJ",
     special: "BLIND"
   },
   charmed: {
     label: "DND5E.ConCharmed",
-    icon: "systems/dnd5e/icons/svg/statuses/charmed.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/charmed.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.zZaEBrKkr66OWJvD"
   },
   deafened: {
     label: "DND5E.ConDeafened",
-    icon: "systems/dnd5e/icons/svg/statuses/deafened.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/deafened.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.6G8JSjhn701cBITY"
   },
   diseased: {
@@ -2418,66 +2418,66 @@ ANAT.conditionTypes = {
   },
   exhaustion: {
     label: "DND5E.ConExhaustion",
-    icon: "systems/dnd5e/icons/svg/statuses/exhaustion.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/exhaustion.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cspWveykstnu3Zcv",
     levels: 6
   },
   frightened: {
     label: "DND5E.ConFrightened",
-    icon: "systems/dnd5e/icons/svg/statuses/frightened.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/frightened.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.oreoyaFKnvZCrgij"
   },
   grappled: {
     label: "DND5E.ConGrappled",
-    icon: "systems/dnd5e/icons/svg/statuses/grappled.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/grappled.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.gYDAhd02ryUmtwZn"
   },
   incapacitated: {
     label: "DND5E.ConIncapacitated",
-    icon: "systems/dnd5e/icons/svg/statuses/incapacitated.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/incapacitated.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.TpkZgLfxCmSndmpb"
   },
   invisible: {
     label: "DND5E.ConInvisible",
-    icon: "systems/dnd5e/icons/svg/statuses/invisible.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/invisible.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.3UU5GCTVeRDbZy9u"
   },
   paralyzed: {
     label: "DND5E.ConParalyzed",
-    icon: "systems/dnd5e/icons/svg/statuses/paralyzed.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/paralyzed.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.xnSV5hLJIMaTABXP",
     statuses: ["incapacitated"]
   },
   petrified: {
     label: "DND5E.ConPetrified",
-    icon: "systems/dnd5e/icons/svg/statuses/petrified.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/petrified.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.xaNDaW6NwQTgHSmi",
     statuses: ["incapacitated"]
   },
   poisoned: {
     label: "DND5E.ConPoisoned",
-    icon: "systems/dnd5e/icons/svg/statuses/poisoned.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/poisoned.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.lq3TRI6ZlED8ABMx"
   },
   prone: {
     label: "DND5E.ConProne",
-    icon: "systems/dnd5e/icons/svg/statuses/prone.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/prone.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.y0TkcdyoZlOTmAFT"
   },
   restrained: {
     label: "DND5E.ConRestrained",
-    icon: "systems/dnd5e/icons/svg/statuses/restrained.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/restrained.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc"
   },
   stunned: {
     label: "DND5E.ConStunned",
-    icon: "systems/dnd5e/icons/svg/statuses/stunned.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/stunned.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.ZyZMUwA2rboh4ObS",
     statuses: ["incapacitated"]
   },
   unconscious: {
     label: "DND5E.ConUnconscious",
-    icon: "systems/dnd5e/icons/svg/statuses/unconscious.svg",
+    icon: "systems/anatrpg/icons/svg/statuses/unconscious.svg",
     reference: "Compendium.dnd5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.UWw13ISmMxDzmwbd",
     statuses: ["incapacitated", "prone"]
   }
@@ -2509,7 +2509,7 @@ ANAT.conditionEffects = {
  */
 ANAT.statusEffects = {
   bleeding: {
-    icon: "systems/dnd5e/icons/svg/statuses/bleeding.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/bleeding.svg"
   },
   burrowing: {
     name: "EFFECT.DND5E.StatusBurrowing",
@@ -2517,18 +2517,18 @@ ANAT.statusEffects = {
   },
   concentrating: {
     name: "EFFECT.DND5E.StatusConcentrating",
-    icon: "systems/dnd5e/icons/svg/statuses/concentrating.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/concentrating.svg"
   },
   cursed: {
     name: "EFFECT.DND5E.StatusCursed",
     icon: "icons/svg/sun.svg"
   },
   dead: {
-    icon: "systems/dnd5e/icons/svg/statuses/dead.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/dead.svg"
   },
   dodging: {
     name: "EFFECT.DND5E.StatusDodging",
-    icon: "systems/dnd5e/icons/svg/statuses/dodging.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/dodging.svg"
   },
   flying: {
     name: "EFFECT.DND5E.StatusFlying",
@@ -2540,10 +2540,10 @@ ANAT.statusEffects = {
   },
   marked: {
     name: "EFFECT.DND5E.StatusMarked",
-    icon: "systems/dnd5e/icons/svg/statuses/marked.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/marked.svg"
   },
   silence: {
-    icon: "systems/dnd5e/icons/svg/statuses/silenced.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/silenced.svg"
   },
   sleeping: {
     name: "EFFECT.DND5E.StatusSleeping",
@@ -2551,7 +2551,7 @@ ANAT.statusEffects = {
   },
   surprised: {
     name: "EFFECT.DND5E.StatusSurprised",
-    icon: "systems/dnd5e/icons/svg/statuses/surprised.svg"
+    icon: "systems/anatrpg/icons/svg/statuses/surprised.svg"
   },
   transformed: {
     name: "EFFECT.DND5E.StatusTransformed",
@@ -2693,7 +2693,7 @@ ANAT.traits = {
       title: "DND5E.ClassSaves",
       localization: "DND5E.TraitSavesPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-saves.svg",
+    icon: "systems/anatrpg/icons/svg/trait-saves.svg",
     actorKeyPath: "system.abilities",
     configKey: "abilities",
     labelKeyPath: "label"
@@ -2703,7 +2703,7 @@ ANAT.traits = {
       title: "DND5E.Skills",
       localization: "DND5E.TraitSkillsPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-skills.svg",
+    icon: "systems/anatrpg/icons/svg/trait-skills.svg",
     actorKeyPath: "system.skills",
     labelKeyPath: "label",
     expertise: true
@@ -2713,14 +2713,14 @@ ANAT.traits = {
       title: "DND5E.Languages",
       localization: "DND5E.TraitLanguagesPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-languages.svg"
+    icon: "systems/anatrpg/icons/svg/trait-languages.svg"
   },
   armor: {
     labels: {
       title: "DND5E.TraitArmorProf",
       localization: "DND5E.TraitArmorPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-armor-proficiencies.svg",
+    icon: "systems/anatrpg/icons/svg/trait-armor-proficiencies.svg",
     actorKeyPath: "system.traits.armorProf",
     configKey: "armorProficiencies",
     subtypes: { keyPath: "armor.type", ids: ["armorIds", "shieldIds"] }
@@ -2730,7 +2730,7 @@ ANAT.traits = {
       title: "DND5E.TraitWeaponProf",
       localization: "DND5E.TraitWeaponPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-weapon-proficiencies.svg",
+    icon: "systems/anatrpg/icons/svg/trait-weapon-proficiencies.svg",
     actorKeyPath: "system.traits.weaponProf",
     configKey: "weaponProficiencies",
     subtypes: { keyPath: "weaponType", ids: ["weaponIds"] }
@@ -2740,7 +2740,7 @@ ANAT.traits = {
       title: "DND5E.TraitToolProf",
       localization: "DND5E.TraitToolPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-tool-proficiencies.svg",
+    icon: "systems/anatrpg/icons/svg/trait-tool-proficiencies.svg",
     actorKeyPath: "system.tools",
     configKey: "toolProficiencies",
     subtypes: { keyPath: "toolType", ids: ["toolIds"] },
@@ -2753,7 +2753,7 @@ ANAT.traits = {
       title: "DND5E.DamImm",
       localization: "DND5E.TraitDIPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-damage-immunities.svg",
+    icon: "systems/anatrpg/icons/svg/trait-damage-immunities.svg",
     configKey: "damageTypes"
   },
   dr: {
@@ -2761,7 +2761,7 @@ ANAT.traits = {
       title: "DND5E.DamRes",
       localization: "DND5E.TraitDRPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-damage-resistances.svg",
+    icon: "systems/anatrpg/icons/svg/trait-damage-resistances.svg",
     configKey: "damageTypes"
   },
   dv: {
@@ -2769,7 +2769,7 @@ ANAT.traits = {
       title: "DND5E.DamVuln",
       localization: "DND5E.TraitDVPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-damage-vulnerabilities.svg",
+    icon: "systems/anatrpg/icons/svg/trait-damage-vulnerabilities.svg",
     configKey: "damageTypes"
   },
   ci: {
@@ -2777,7 +2777,7 @@ ANAT.traits = {
       title: "DND5E.ConImm",
       localization: "DND5E.TraitCIPlural"
     },
-    icon: "systems/dnd5e/icons/svg/trait-condition-immunities.svg",
+    icon: "systems/anatrpg/icons/svg/trait-condition-immunities.svg",
     configKey: "conditionTypes"
   }
 };
@@ -2982,18 +2982,18 @@ ANAT.advancementTypes = {
  */
 ANAT.defaultArtwork = {
   Item: {
-    background: "systems/dnd5e/icons/svg/items/background.svg",
-    class: "systems/dnd5e/icons/svg/items/class.svg",
-    consumable: "systems/dnd5e/icons/svg/items/consumable.svg",
-    container: "systems/dnd5e/icons/svg/items/container.svg",
-    equipment: "systems/dnd5e/icons/svg/items/equipment.svg",
-    feat: "systems/dnd5e/icons/svg/items/feature.svg",
-    loot: "systems/dnd5e/icons/svg/items/loot.svg",
-    race: "systems/dnd5e/icons/svg/items/race.svg",
-    spell: "systems/dnd5e/icons/svg/items/spell.svg",
-    subclass: "systems/dnd5e/icons/svg/items/subclass.svg",
-    tool: "systems/dnd5e/icons/svg/items/tool.svg",
-    weapon: "systems/dnd5e/icons/svg/items/weapon.svg"
+    background: "systems/anatrpg/icons/svg/items/background.svg",
+    class: "systems/anatrpg/icons/svg/items/class.svg",
+    consumable: "systems/anatrpg/icons/svg/items/consumable.svg",
+    container: "systems/anatrpg/icons/svg/items/container.svg",
+    equipment: "systems/anatrpg/icons/svg/items/equipment.svg",
+    feat: "systems/anatrpg/icons/svg/items/feature.svg",
+    loot: "systems/anatrpg/icons/svg/items/loot.svg",
+    race: "systems/anatrpg/icons/svg/items/race.svg",
+    spell: "systems/anatrpg/icons/svg/items/spell.svg",
+    subclass: "systems/anatrpg/icons/svg/items/subclass.svg",
+    tool: "systems/anatrpg/icons/svg/items/tool.svg",
+    weapon: "systems/anatrpg/icons/svg/items/weapon.svg"
   }
 };
 
@@ -3233,7 +3233,7 @@ ANAT.tokenRings = {
     RING_GRADIENT: "DND5E.TokenRings.Effects.RingGradient",
     BKG_WAVE: "DND5E.TokenRings.Effects.BackgroundWave"
   },
-  spriteSheet: "systems/dnd5e/tokens/composite/token-rings.json",
+  spriteSheet: "systems/anatrpg/tokens/composite/token-rings.json",
   shaderClass: null
 };
 preLocalize("tokenRings.effects");

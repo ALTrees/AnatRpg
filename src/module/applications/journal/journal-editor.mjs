@@ -11,7 +11,7 @@ export default class JournalEditor extends DocumentSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["journal-editor"],
-      template: "systems/dnd5e/templates/journal/journal-editor.hbs",
+      template: "systems/anatrpg/templates/journal/journal-editor.hbs",
       width: 550,
       height: 640,
       textKeyPath: null,

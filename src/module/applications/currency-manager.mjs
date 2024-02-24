@@ -12,7 +12,7 @@ export default class CurrencyManager extends DialogMixin(FormApplication) {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e2", "currency-manager", "dialog"],
       tabs: [{navSelector: "nav", contentSelector: ".sheet-content", initial: "transfer"}],
-      template: "systems/dnd5e/templates/apps/currency-manager.hbs",
+      template: "systems/anatrpg/templates/apps/currency-manager.hbs",
       title: "DND5E.CurrencyManager.Title",
       width: 350,
       height: "auto"

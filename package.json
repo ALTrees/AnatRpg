@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "vite build && npm run build:css",
+    "build": "vite build && npm run build:css && npm run build:db",
     "build:clean": "node ./utils/packs.mjs package clean",
     "build:code": "rollup src/anatrpg.mjs -f es -o dnd5e-compiled.mjs -p node-resolve -m --sourcemapFile dnd5e.mjs",
     "build:css": "lessc src/less/anatrpg.less dist/styles/anatrpg.css",

@@ -10,7 +10,7 @@ export default class ScaleValueConfig extends AdvancementConfig {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e", "advancement", "scale-value", "two-column"],
-      template: "systems/dnd5e/templates/advancement/scale-value-config.hbs",
+      template: "systems/anatrpg/templates/advancement/scale-value-config.hbs",
       width: 540
     });
   }

@@ -9,7 +9,7 @@ export default class ActorSensesConfig extends BaseConfigSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e"],
-      template: "systems/dnd5e/templates/apps/senses-config.hbs",
+      template: "systems/anatrpg/templates/apps/senses-config.hbs",
       width: 300,
       height: "auto",
       keyPath: "system.attributes.senses"

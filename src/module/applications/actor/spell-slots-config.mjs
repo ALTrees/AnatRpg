@@ -5,7 +5,7 @@ export default class ActorSpellSlotsConfig extends DialogMixin(DocumentSheet) {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e2", "dialog"],
-      template: "systems/dnd5e/templates/apps/spell-slots-config.hbs",
+      template: "systems/anatrpg/templates/apps/spell-slots-config.hbs",
       width: 450,
       height: "auto",
       sheetConfig: false,

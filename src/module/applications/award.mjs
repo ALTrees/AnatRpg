@@ -10,7 +10,7 @@ export default class Award extends DialogMixin(FormApplication) {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e2", "award", "dialog"],
-      template: "systems/dnd5e/templates/apps/award.hbs",
+      template: "systems/anatrpg/templates/apps/award.hbs",
       title: "DND5E.Award.Title",
       width: 350,
       height: "auto",
@@ -80,7 +80,7 @@ export default class Award extends DialogMixin(FormApplication) {
    */
   static prepareDestinations(destinations, savedDestinations) {
     const icons = {
-      container: '<dnd5e-icon class="fa-fw" src="systems/dnd5e/icons/svg/backpack.svg"></dnd5e-icon>',
+      container: '<dnd5e-icon class="fa-fw" src="systems/anatrpg/icons/svg/backpack.svg"></dnd5e-icon>',
       group: '<i class="fa-solid fa-people-group"></i>',
       vehicle: '<i class="fa-solid fa-sailboat"></i>'
     };

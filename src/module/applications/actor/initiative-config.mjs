@@ -9,7 +9,7 @@ export default class ActorInitiativeConfig extends BaseConfigSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dnd5e"],
-      template: "systems/dnd5e/templates/apps/initiative-config.hbs",
+      template: "systems/anatrpg/templates/apps/initiative-config.hbs",
       width: 360,
       height: "auto"
     });

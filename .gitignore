@@ -2,8 +2,6 @@
 dnd5e.css
 dnd5e-compiled*
 dnd5e.lock
-static/packs/*
-!static/packs/_source/
 dist/
 
 # IDE

@@ -372,7 +372,7 @@ export class ItemDataModel extends SystemDataModel {
    * The handlebars template for rendering item tooltips.
    * @type {string}
    */
-  static ITEM_TOOLTIP_TEMPLATE = "systems/dnd5e/templates/items/parts/item-tooltip.hbs";
+  static ITEM_TOOLTIP_TEMPLATE = "systems/anatrpg/templates/items/parts/item-tooltip.hbs";
 
   /* -------------------------------------------- */
   /*  Helpers                                     */

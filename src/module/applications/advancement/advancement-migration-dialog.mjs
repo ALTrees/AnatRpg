@@ -29,7 +29,7 @@ export default class AdvancementMigrationDialog extends Dialog {
       const dialog = new this({
         title: `${game.i18n.localize("DND5E.AdvancementMigrationTitle")}: ${item.name}`,
         content: await renderTemplate(
-          "systems/dnd5e/templates/advancement/advancement-migration-dialog.hbs",
+          "systems/anatrpg/templates/advancement/advancement-migration-dialog.hbs",
           { item, advancements: advancementContext }
         ),
         buttons: {
