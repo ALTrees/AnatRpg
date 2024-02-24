@@ -295,7 +295,7 @@ export default class ActiveEffect5e extends ActiveEffect {
    */
   _prepareExhaustionLevel() {
     const config = CONFIG.ANAT.conditionTypes.exhaustion;
-    let level = this.getFlag("dnd5e", "exhaustionLevel");
+    let level = this.getFlag("anatrpg", "exhaustionLevel");
     if ( !Number.isFinite(level) ) level = 1;
     this.icon = this.constructor._getExhaustionImage(level);
     this.name = `${game.i18n.localize("DND5E.Exhaustion")} ${level}`;

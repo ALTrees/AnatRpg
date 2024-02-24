@@ -1,5 +1,5 @@
 {
-  "id": "anatrpg2",
+  "id": "anatrpg",
   "title": "Te'Anat RPG",
   "description": "A system for playing Te'Anat RPG",
   "version": "3.0.3",
@@ -208,15 +208,15 @@
     },
     {
       "type": "setup",
-      "url": "systems/dnd5e/ui/official/dnd5e-repo.jpg",
-      "thumbnail": "systems/dnd5e/ui/official/dnd5e-thumbnail.jpg"
+      "url": "systems/anatrpg/ui/official/anatrpg-repo.jpg",
+      "thumbnail": "systems/anatrpg/ui/official/anatrpg-thumbnail.jpg"
     }
   ],
   "socket": true,
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
-  "background": "systems/dnd5e/ui/official/dnd5e-background.webp",
+  "background": "systems/anatrpg/ui/official/anatrpg-background.webp",
   "flags": {
     "needsMigrationVersion": "3.0.3",
     "compatibleMigrationVersion": "0.8",

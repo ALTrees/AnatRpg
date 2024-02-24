@@ -1593,7 +1593,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Factor in extra critical damage dice from the Barbarian's "Brutal Critical"
     if ( this.system.actionType === "mwak" ) {
-      rollConfig.criticalBonusDice = this.actor.getFlag("dnd5e", "meleeCriticalDamageDice") ?? 0;
+      rollConfig.criticalBonusDice = this.actor.getFlag("anatrpg", "meleeCriticalDamageDice") ?? 0;
     }
 
     // Factor in extra weapon-specific critical damage
@@ -1895,7 +1895,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       if ( !( isTargetted || game.user.isGM || actor.isOwner ) ) return;
 
       // Get the Item from stored flag data or by the item ID on the Actor
-      const storedData = message.getFlag("dnd5e", "itemData");
+      const storedData = message.getFlag("anatrpg", "itemData");
       const item = storedData ? new this(storedData, {parent: actor}) : actor.items.get(card.dataset.itemId);
       if ( !item ) {
         ui.notifications.error(game.i18n.format("DND5E.ActionWarningNoItem", {

@@ -145,7 +145,7 @@ export default class Award extends DialogMixin(FormApplication) {
    */
   _saveDestinations(destinations) {
     const target = this.isPartyAward ? this.object : game.user;
-    target.setFlag("dnd5e", "awardDestinations", destinations);
+    target.setFlag("anatrpg", "awardDestinations", destinations);
   }
 
   /* -------------------------------------------- */
@@ -333,7 +333,7 @@ export default class Award extends DialogMixin(FormApplication) {
 
       // Otherwise show the UI with defaults
       else {
-        const savedDestinations = game.user.getFlag("dnd5e", "awardDestinations");
+        const savedDestinations = game.user.getFlag("anatrpg", "awardDestinations");
         const app = new Award(null, { currency, xp, each, savedDestinations });
         app.render(true);
       }

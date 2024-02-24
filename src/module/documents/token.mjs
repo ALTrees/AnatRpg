@@ -16,7 +16,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
    * @type {boolean}
    */
   get hasDynamicRing() {
-    return !!this.getFlag("dnd5e", "tokenRing.enabled");
+    return !!this.getFlag("anatrpg", "tokenRing.enabled");
   }
 
   /* -------------------------------------------- */
@@ -28,7 +28,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
    * @type {string}
    */
   get subjectPath() {
-    const subject = this.getFlag("dnd5e", "tokenRing")?.textures?.subject;
+    const subject = this.getFlag("anatrpg", "tokenRing")?.textures?.subject;
     if ( subject ) return subject;
     this.#subjectPath ??= this.constructor.inferSubjectPath(this.texture.src);
     return this.#subjectPath;
@@ -132,7 +132,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
   /** @override */
   prepareData() {
     super.prepareData();
-    if ( !this.getFlag("dnd5e", "tokenRing.enabled") ) return;
+    if ( !this.getFlag("anatrpg", "tokenRing.enabled") ) return;
     let size = this.baseActor?.system.traits?.size;
     if ( !this.actorLink ) {
       const deltaSize = this.delta.system.traits?.size;

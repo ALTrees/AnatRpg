@@ -11,7 +11,7 @@ import ActorSheet5eCharacter from "./character-sheet.mjs";
 export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
   constructor(object, options={}) {
     const key = `character${object.limited ? ":limited" : ""}`;
-    const { width, height } = game.user.getFlag("dnd5e", `sheetPrefs.${key}`) ?? {};
+    const { width, height } = game.user.getFlag("anatrpg", `sheetPrefs.${key}`) ?? {};
     if ( width && !("width" in options) ) options.width = width;
     if ( height && !("height" in options) ) options.height = height;
     super(object, options);
@@ -185,7 +185,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     context.cssClass = context.editable ? "editable" : this.isEditable ? "interactable" : "locked";
     const activeTab = (game.user.isGM || !this.actor.limited) ? this._tabs?.[0]?.active ?? "details" : "biography";
     context.cssClass += ` tab-${activeTab}`;
-    const sidebarCollapsed = game.user.getFlag("dnd5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`);
+    const sidebarCollapsed = game.user.getFlag("anatrpg", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`);
     if ( sidebarCollapsed ) {
       context.cssClass += " collapsed";
       context.sidebarCollapsed = true;
@@ -198,7 +198,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     }).map(c => `${c.name} ${c.system.levels}`).join(" / ");
 
     // Portrait
-    const showTokenPortrait = this.actor.getFlag("dnd5e", "showTokenPortrait") === true;
+    const showTokenPortrait = this.actor.getFlag("anatrpg", "showTokenPortrait") === true;
     const token = this.actor.isToken ? this.actor.token : this.actor.prototypeToken;
     context.portrait = {
       token: showTokenPortrait,
@@ -670,7 +670,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     super._onChangeTab(event, tabs, active);
     this.form.className = this.form.className.replace(/tab-\w+/g, "");
     this.form.classList.add(`tab-${active}`);
-    const sidebarCollapsed = game.user.getFlag("dnd5e", `sheetPrefs.character.tabs.${active}.collapseSidebar`);
+    const sidebarCollapsed = game.user.getFlag("anatrpg", `sheetPrefs.character.tabs.${active}.collapseSidebar`);
     if ( sidebarCollapsed !== undefined ) this._toggleSidebar(sidebarCollapsed);
     const createChild = this.form.querySelector(".create-child");
     createChild.setAttribute("aria-label", game.i18n.format("SIDEBAR.Create", {
@@ -793,7 +793,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
   _onToggleSidebar() {
     const collapsed = this._toggleSidebar();
     const activeTab = this._tabs?.[0]?.active ?? "details";
-    game.user.setFlag("dnd5e", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`, collapsed);
+    game.user.setFlag("anatrpg", `sheetPrefs.character.tabs.${activeTab}.collapseSidebar`, collapsed);
   }
 
   /* -------------------------------------------- */
@@ -823,7 +823,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
    * @protected
    */
   _onShowPortrait() {
-    const showTokenPortrait = this.actor.getFlag("dnd5e", "showTokenPortrait") === true;
+    const showTokenPortrait = this.actor.getFlag("anatrpg", "showTokenPortrait") === true;
     const token = this.actor.isToken ? this.actor.token : this.actor.prototypeToken;
     const img = showTokenPortrait ? token.texture.src : this.actor.img;
     new ImagePopout(img, { title: this.actor.name, uuid: this.actor.uuid }).render(true);
@@ -1011,7 +1011,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     super._onResize(event);
     const { width, height } = this.position;
     const key = `character${this.actor.limited ? ":limited": ""}`;
-    game.user.setFlag("dnd5e", `sheetPrefs.${key}`, { width, height });
+    game.user.setFlag("anatrpg", `sheetPrefs.${key}`, { width, height });
   }
 
   /* -------------------------------------------- */

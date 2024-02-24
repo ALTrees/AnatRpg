@@ -26,7 +26,7 @@ export default class Token5e extends Token {
   static onApplyTokenStatusEffect(token, statusId, active) {
     const applicableEffects = [CONFIG.specialStatusEffects.DEFEATED, CONFIG.specialStatusEffects.INVISIBLE];
     if ( !applicableEffects.includes(statusId) || !token.ring.enabled ) return;
-    const tokenRingFlag = token.document.getFlag("dnd5e", "tokenRing") || {};
+    const tokenRingFlag = token.document.getFlag("anatrpg", "tokenRing") || {};
     token.ring.configureVisuals(foundry.utils.deepClone(tokenRingFlag));
   }
 
@@ -153,7 +153,7 @@ export default class Token5e extends Token {
     if ( ("scaleCorrection" in dataFlag) && !shapeChange ) this.ring.configureUVs(dataFlag.scaleCorrection);
 
     // If we don't need a full redraw, we're just updating the visuals properties
-    const tokenRingFlag = this.document.getFlag("dnd5e", "tokenRing") || {};
+    const tokenRingFlag = this.document.getFlag("anatrpg", "tokenRing") || {};
     this.ring.configureVisuals({...tokenRingFlag});
   }
 

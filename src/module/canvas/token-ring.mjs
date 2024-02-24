@@ -79,7 +79,7 @@ export default class TokenRing {
 
     // Configure token ring textures and visuals
     if ( this.enabled ) {
-      const tokenRingFlag = this.token.document.getFlag("dnd5e", "tokenRing");
+      const tokenRingFlag = this.token.document.getFlag("anatrpg", "tokenRing");
       this._configureTexture({mesh, ...tokenRingFlag});
       this.configureVisuals({...tokenRingFlag});
     }
@@ -198,7 +198,7 @@ export default class TokenRing {
     if ( !this.enabled || Number.isNaN(color) ) return;
 
     const originalColor = new Color(foundry.utils.mergeObject(
-      this.token.document.getFlag("dnd5e", "tokenRing.color") ?? { ring: 0xFFFFFF },
+      this.token.document.getFlag("anatrpg", "tokenRing.color") ?? { ring: 0xFFFFFF },
       this.token.document.getRingColors(),
       { inplace: false }
     ).ring).littleEndian;
