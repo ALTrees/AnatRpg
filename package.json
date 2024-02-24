@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && npm run build:css",
     "build:clean": "node ./utils/packs.mjs package clean",
     "build:code": "rollup src/anatrpg.mjs -f es -o dnd5e-compiled.mjs -p node-resolve -m --sourcemapFile dnd5e.mjs",
-    "build:css": "lessc src/less/anatrpg.less dnd5e.css",
+    "build:css": "lessc src/less/anatrpg.less dist/styles/anatrpg.css",
     "build:db": "node ./utils/packs.mjs package pack",
     "build:json": "node ./utils/packs.mjs package unpack",
     "lint": "eslint --ext .mjs --ignore-path .gitignore ./",

@@ -1,27 +1,30 @@
 {
-  "id": "dnd5e",
-  "title": "Dungeons & Dragons Fifth Edition",
-  "description": "A system for playing the fifth edition of the world's most popular role-playing game in the Foundry Virtual Tabletop environment.",
+  "id": "anatrpg2",
+  "title": "Te'Anat RPG",
+  "description": "A system for playing Te'Anat RPG",
   "version": "3.0.3",
   "compatibility": {
     "minimum": "11.315",
     "verified": "12"
   },
-  "url": "https://github.com/foundryvtt/dnd5e/",
-  "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
-  "download": "https://github.com/foundryvtt/dnd5e/releases/download/release-3.0.3/dnd5e-release-3.0.3.zip",
+  "url": "https://github.com/ALTrees/AnatRpg",
+  "manifest": "https://raw.githubusercontent.com/ALTrees/AnatRpg/master/system.json",
+  "download": "https://github.com/ALTrees/AnatRpg/releases/download/release-3.0.3/dnd5e-release-3.0.3.zip",
   "authors": [
     {
       "name": "Atropos",
       "url": "https://foundryvtt.com",
       "flags": {}
+    },
+    {
+      "name": "ALTrees"
     }
   ],
   "esmodules": [
-    "dnd5e.mjs"
+    "anatrpg.mjs"
   ],
   "styles": [
-    "dnd5e.css"
+    "styles/anatrpg.css"
   ],
   "packs": [
     {

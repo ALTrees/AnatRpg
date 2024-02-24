@@ -1,6 +1,4 @@
 import copy from "rollup-plugin-copy";
-import scss from "rollup-plugin-scss";
-import less from "rollup-plugin-less";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -21,11 +19,6 @@ export default defineConfig({
         { src: "static/*", dest: "dist" },
       ],
       hook: "writeBundle",
-    }),
-    less({
-      fileName: "styles/anatrpg.css",
-      sourceMap: false,
-      watch: ["src/styles/*.less"],
     })
   ],
 });
