@@ -141,7 +141,7 @@ async function enrichAward(config, label, options) {
 
   const entries = [];
   for ( let [key, amount] of Object.entries(parsed.currency) ) {
-    const label = CONFIG.DND5E.currencies[key].label;
+    const label = CONFIG.ANAT.currencies[key].label;
     amount = Number.isNumeric(amount) ? formatNumber(amount) : amount;
     entries.push(`
       <span class="award-entry">
@@ -227,16 +227,16 @@ async function enrichAward(config, label, options) {
 async function enrichCheck(config, label, options) {
   for ( let value of config.values ) {
     value = foundry.utils.getType(value) === "string" ? slugify(value) : value;
-    if ( value in CONFIG.DND5E.enrichmentLookup.abilities ) config.ability = value;
-    else if ( value in CONFIG.DND5E.enrichmentLookup.skills ) config.skill = value;
-    else if ( value in CONFIG.DND5E.enrichmentLookup.tools ) config.tool = value;
+    if ( value in CONFIG.ANAT.enrichmentLookup.abilities ) config.ability = value;
+    else if ( value in CONFIG.ANAT.enrichmentLookup.skills ) config.skill = value;
+    else if ( value in CONFIG.ANAT.enrichmentLookup.tools ) config.tool = value;
     else if ( Number.isNumeric(value) ) config.dc = Number(value);
     else config[value] = true;
   }
 
   let invalid = false;
 
-  const skillConfig = CONFIG.DND5E.enrichmentLookup.skills[slugify(config.skill)];
+  const skillConfig = CONFIG.ANAT.enrichmentLookup.skills[slugify(config.skill)];
   if ( config.skill && !skillConfig ) {
     console.warn(`Skill ${config.skill} not found while enriching ${config._input}.`);
     invalid = true;
@@ -245,14 +245,14 @@ async function enrichCheck(config, label, options) {
   }
   if ( skillConfig?.key ) config.skill = skillConfig.key;
 
-  const toolUUID = CONFIG.DND5E.enrichmentLookup.tools[slugify(config.tool)];
+  const toolUUID = CONFIG.ANAT.enrichmentLookup.tools[slugify(config.tool)];
   const toolIndex = toolUUID ? Trait.getBaseItem(toolUUID, { indexOnly: true }) : null;
   if ( config.tool && !toolIndex ) {
     console.warn(`Tool ${config.tool} not found while enriching ${config._input}.`);
     invalid = true;
   }
 
-  let abilityConfig = CONFIG.DND5E.enrichmentLookup.abilities[slugify(config.ability)];
+  let abilityConfig = CONFIG.ANAT.enrichmentLookup.abilities[slugify(config.ability)];
   if ( config.ability && !abilityConfig ) {
     console.warn(`Ability ${config.ability} not found while enriching ${config._input}.`);
     invalid = true;
@@ -312,7 +312,7 @@ async function enrichDamage(config, label, options) {
   const formulaParts = [];
   if ( config.formula ) formulaParts.push(config.formula);
   for ( const value of config.values ) {
-    if ( value in CONFIG.DND5E.damageTypes ) config.type = value;
+    if ( value in CONFIG.ANAT.damageTypes ) config.type = value;
     else if ( value === "average" ) config.average = true;
     else formulaParts.push(value);
   }
@@ -325,7 +325,7 @@ async function enrichDamage(config, label, options) {
 
   const localizationData = {
     formula: createRollLink(config.formula, config).outerHTML,
-    type: game.i18n.localize(CONFIG.DND5E.damageTypes[config.damageType]?.label ?? "").toLowerCase()
+    type: game.i18n.localize(CONFIG.ANAT.damageTypes[config.damageType]?.label ?? "").toLowerCase()
   };
 
   let localizationType = "Short";
@@ -565,14 +565,14 @@ async function embedRollTable(config, label, options) {
  */
 async function enrichReference(config, label, options) {
   let source;
-  const type = Object.keys(config).find(k => k in CONFIG.DND5E.ruleTypes);
+  const type = Object.keys(config).find(k => k in CONFIG.ANAT.ruleTypes);
   if ( type ) {
     const key = slugify(config[type]);
-    source = foundry.utils.getProperty(CONFIG.DND5E, CONFIG.DND5E.ruleTypes[type].references)?.[key];
+    source = foundry.utils.getProperty(CONFIG.ANAT, CONFIG.ANAT.ruleTypes[type].references)?.[key];
   } else if ( config.values.length ) {
     const key = slugify(config.values.join(""));
-    for ( const { references } of Object.values(CONFIG.DND5E.ruleTypes) ) {
-      source = foundry.utils.getProperty(CONFIG.DND5E, references)[key];
+    for ( const { references } of Object.values(CONFIG.ANAT.ruleTypes) ) {
+      source = foundry.utils.getProperty(CONFIG.ANAT, references)[key];
       if ( source ) break;
     }
   }
@@ -615,12 +615,12 @@ async function enrichReference(config, label, options) {
  */
 async function enrichSave(config, label, options) {
   for ( const value of config.values ) {
-    if ( value in CONFIG.DND5E.enrichmentLookup.abilities ) config.ability = value;
+    if ( value in CONFIG.ANAT.enrichmentLookup.abilities ) config.ability = value;
     else if ( Number.isNumeric(value) ) config.dc = Number(value);
     else config[value] = true;
   }
 
-  const abilityConfig = CONFIG.DND5E.enrichmentLookup.abilities[config.ability];
+  const abilityConfig = CONFIG.ANAT.enrichmentLookup.abilities[config.ability];
   if ( !abilityConfig ) {
     console.warn(`Ability ${config.ability} not found while enriching ${config._input}.`);
     return null;
@@ -677,9 +677,9 @@ function createPassiveTag(label, dataset) {
  * @returns {string}
  */
 function createRollLabel(config) {
-  const ability = CONFIG.DND5E.abilities[config.ability]?.label;
-  const skill = CONFIG.DND5E.skills[config.skill]?.label;
-  const toolUUID = CONFIG.DND5E.enrichmentLookup.tools[config.tool];
+  const ability = CONFIG.ANAT.abilities[config.ability]?.label;
+  const skill = CONFIG.ANAT.skills[config.skill]?.label;
+  const toolUUID = CONFIG.ANAT.enrichmentLookup.tools[config.tool];
   const tool = toolUUID ? Trait.getBaseItem(toolUUID, { indexOnly: true })?.name : null;
   const longSuffix = config.format === "long" ? "Long" : "Short";
   const showDC = config.dc && !config.hideDC;
@@ -868,7 +868,7 @@ async function rollDamage(event, speaker) {
       parts: [formula],
       type: damageType
     }],
-    flavor: `${title} (${game.i18n.localize(CONFIG.DND5E.damageTypes[damageType]?.label ?? damageType)})`,
+    flavor: `${title} (${game.i18n.localize(CONFIG.ANAT.damageTypes[damageType]?.label ?? damageType)})`,
     event,
     title,
     messageData

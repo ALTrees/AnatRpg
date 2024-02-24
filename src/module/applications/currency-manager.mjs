@@ -50,7 +50,7 @@ export default class CurrencyManager extends DialogMixin(FormApplication) {
   getData(options={}) {
     const context = super.getData(options);
 
-    context.CONFIG = CONFIG.DND5E;
+    context.CONFIG = CONFIG.ANAT;
     context.currency = this.object.system.currency;
     context.destinations = Award.prepareDestinations(this.transferDestinations);
 
@@ -132,14 +132,14 @@ export default class CurrencyManager extends DialogMixin(FormApplication) {
 
   /**
    * Convert all carried currency to the highest possible denomination using configured conversion rates.
-   * See CONFIG.DND5E.currencies for configuration.
+   * See CONFIG.ANAT.currencies for configuration.
    * @param {Actor5e|Item5e} doc  Actor or container item to convert.
    * @returns {Promise<Actor5e|Item5e>}
    */
   static convertCurrency(doc) {
     const currency = foundry.utils.deepClone(doc.system.currency);
 
-    const currencies = Object.entries(CONFIG.DND5E.currencies);
+    const currencies = Object.entries(CONFIG.ANAT.currencies);
     currencies.sort((a, b) => a[1].conversion - b[1].conversion);
 
     // Count total converted units of the base currency

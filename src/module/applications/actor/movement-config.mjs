@@ -53,9 +53,9 @@ export default class ActorMovementConfig extends BaseConfigSheet {
       }, {}),
       selectUnits: Object.hasOwn(movement, "units"),
       canHover: Object.hasOwn(movement, "hover"),
-      units: CONFIG.DND5E.movementUnits,
+      units: CONFIG.ANAT.movementUnits,
       unitsPlaceholder: game.i18n.format("DND5E.AutomaticValue", {
-        value: CONFIG.DND5E.movementUnits[raceData.units ?? Object.keys(CONFIG.DND5E.movementUnits)[0]]?.toLowerCase()
+        value: CONFIG.ANAT.movementUnits[raceData.units ?? Object.keys(CONFIG.ANAT.movementUnits)[0]]?.toLowerCase()
       }),
       keyPath: this.options.keyPath
     };

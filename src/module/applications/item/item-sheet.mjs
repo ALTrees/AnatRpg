@@ -99,7 +99,7 @@ export default class ItemSheet5e extends ItemSheet {
     const source = item.toObject();
 
     // Game system configuration
-    context.config = CONFIG.DND5E;
+    context.config = CONFIG.ANAT;
 
     // Item rendering data
     foundry.utils.mergeObject(context, {
@@ -122,8 +122,8 @@ export default class ItemSheet5e extends ItemSheet {
       isHealing: item.system.actionType === "heal",
       isFlatDC: item.system.save?.scaling === "flat",
       isLine: ["line", "wall"].includes(item.system.target?.type),
-      isFormulaRecharge: item.system.uses?.per in CONFIG.DND5E.limitedUseFormulaPeriods,
-      isCostlessAction: item.system.activation?.type in CONFIG.DND5E.staticAbilityActivationTypes,
+      isFormulaRecharge: item.system.uses?.per in CONFIG.ANAT.limitedUseFormulaPeriods,
+      isCostlessAction: item.system.activation?.type in CONFIG.ANAT.staticAbilityActivationTypes,
 
       // Identified state
       isIdentifiable: "identified" in item.system,
@@ -146,9 +146,9 @@ export default class ItemSheet5e extends ItemSheet {
     });
     context.abilityConsumptionTargets = this._getItemConsumptionTargets();
 
-    if ( ("properties" in item.system) && (item.type in CONFIG.DND5E.validProperties) ) {
+    if ( ("properties" in item.system) && (item.type in CONFIG.ANAT.validProperties) ) {
       context.properties = item.system.validProperties.reduce((obj, k) => {
-        const v = CONFIG.DND5E.itemProperties[k];
+        const v = CONFIG.ANAT.itemProperties[k];
         obj[k] = { label: v.label, selected: item.system.properties.has(k) };
         return obj;
       }, {});
@@ -158,7 +158,7 @@ export default class ItemSheet5e extends ItemSheet {
     // Handle item subtypes.
     if ( ["feat", "loot", "consumable"].includes(item.type) ) {
       const name = item.type === "feat" ? "feature" : item.type;
-      const itemTypes = CONFIG.DND5E[`${name}Types`][item.system.type.value];
+      const itemTypes = CONFIG.ANAT[`${name}Types`][item.system.type.value];
       if ( itemTypes ) {
         context.itemType = itemTypes.label;
         context.itemSubtypes = itemTypes.subtypes;
@@ -242,9 +242,9 @@ export default class ItemSheet5e extends ItemSheet {
    */
   async _getItemBaseTypes() {
     const baseIds = this.item.type === "equipment" ? {
-      ...CONFIG.DND5E.armorIds,
-      ...CONFIG.DND5E.shieldIds
-    } : CONFIG.DND5E[`${this.item.type}Ids`];
+      ...CONFIG.ANAT.armorIds,
+      ...CONFIG.ANAT.shieldIds
+    } : CONFIG.ANAT[`${this.item.type}Ids`];
     if ( baseIds === undefined ) return {};
 
     const baseType = this.item.system.type.value;
@@ -292,7 +292,7 @@ export default class ItemSheet5e extends ItemSheet {
     else if ( consume.type === "hitDice" ) {
       return {
         smallest: game.i18n.localize("DND5E.ConsumeHitDiceSmallest"),
-        ...CONFIG.DND5E.hitDieTypes.reduce((obj, hd) => { obj[hd] = hd; return obj; }, {}),
+        ...CONFIG.ANAT.hitDieTypes.reduce((obj, hd) => { obj[hd] = hd; return obj; }, {}),
         largest: game.i18n.localize("DND5E.ConsumeHitDiceLargest")
       };
     }
@@ -314,7 +314,7 @@ export default class ItemSheet5e extends ItemSheet {
         // Limited-use items
         const uses = i.system.uses || {};
         if ( uses.per && uses.max ) {
-          const label = (uses.per in CONFIG.DND5E.limitedUseFormulaPeriods)
+          const label = (uses.per in CONFIG.ANAT.limitedUseFormulaPeriods)
             ? ` (${game.i18n.format("DND5E.AbilityUseChargesLabel", {value: uses.value})})`
             : ` (${game.i18n.format("DND5E.AbilityUseConsumableLabel", {max: uses.max, per: uses.per})})`;
           obj[i.id] = i.name + label;
@@ -347,9 +347,9 @@ export default class ItemSheet5e extends ItemSheet {
       case "consumable":
         return this.item.system.type.label;
       case "spell":
-        return CONFIG.DND5E.spellPreparationModes[this.item.system.preparation.mode]?.label;
+        return CONFIG.ANAT.spellPreparationModes[this.item.system.preparation.mode]?.label;
       case "tool":
-        return CONFIG.DND5E.proficiencyLevels[this.item.system.prof?.multiplier || 0];
+        return CONFIG.ANAT.proficiencyLevels[this.item.system.prof?.multiplier || 0];
     }
     return null;
   }
@@ -368,14 +368,14 @@ export default class ItemSheet5e extends ItemSheet {
       case "consumable":
       case "weapon":
         if ( this.item.isMountable ) props.push(labels.armor);
-        const ip = CONFIG.DND5E.itemProperties;
-        const vp = CONFIG.DND5E.validProperties[this.item.type];
+        const ip = CONFIG.ANAT.itemProperties;
+        const vp = CONFIG.ANAT.validProperties[this.item.type];
         this.item.system.properties.forEach(k => {
           if ( vp.has(k) ) props.push(ip[k].label);
         });
         break;
       case "equipment":
-        props.push(CONFIG.DND5E.equipmentTypes[this.item.system.type.value]);
+        props.push(CONFIG.ANAT.equipmentTypes[this.item.system.type.value]);
         if ( this.item.isArmor || this.item.isMountable ) props.push(labels.armor);
         break;
       case "feat":
@@ -388,7 +388,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     // Action type
     if ( this.item.system.actionType ) {
-      props.push(CONFIG.DND5E.itemActionTypes[this.item.system.actionType]);
+      props.push(CONFIG.ANAT.itemActionTypes[this.item.system.actionType]);
     }
 
     // Action usage
@@ -718,7 +718,7 @@ export default class ItemSheet5e extends ItemSheet {
       return false;
     }
     advancements = advancements.filter(a => {
-      const validItemTypes = CONFIG.DND5E.advancementTypes[a.constructor.typeName]?.validItemTypes
+      const validItemTypes = CONFIG.ANAT.advancementTypes[a.constructor.typeName]?.validItemTypes
         ?? a.metadata.validItemTypes;
       return !this.item.advancement.byId[a.id]
         && validItemTypes.has(this.item.type)

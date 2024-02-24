@@ -76,8 +76,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
       width: 720,
       height: Math.max(680, Math.max(
-        237 + (Object.keys(CONFIG.DND5E.abilities).length * 70),
-        240 + (Object.keys(CONFIG.DND5E.skills).length * 24)
+        237 + (Object.keys(CONFIG.ANAT.abilities).length * 70),
+        240 + (Object.keys(CONFIG.ANAT.skills).length * 24)
       )),
       elements: {
         effects: "dnd5e-effects",
@@ -136,7 +136,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       isCharacter: this.actor.type === "character",
       isNPC: this.actor.type === "npc",
       isVehicle: this.actor.type === "vehicle",
-      config: CONFIG.DND5E,
+      config: CONFIG.ANAT,
       rollableClass: this.isEditable ? "rollable" : "",
       rollData: this.actor.getRollData(),
       overrides: {
@@ -159,18 +159,18 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     // Ability Scores
     for ( const [a, abl] of Object.entries(context.abilities) ) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.DND5E.proficiencyLevels[abl.proficient];
-      abl.label = CONFIG.DND5E.abilities[a]?.label;
+      abl.hover = CONFIG.ANAT.proficiencyLevels[abl.proficient];
+      abl.label = CONFIG.ANAT.abilities[a]?.label;
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
 
     // Skills & tools.
     ["skills", "tools"].forEach(prop => {
       for ( const [key, entry] of Object.entries(context[prop]) ) {
-        entry.abbreviation = CONFIG.DND5E.abilities[entry.ability]?.abbreviation;
+        entry.abbreviation = CONFIG.ANAT.abilities[entry.ability]?.abbreviation;
         entry.icon = this._getProficiencyIcon(entry.value);
-        entry.hover = CONFIG.DND5E.proficiencyLevels[entry.value];
-        entry.label = prop === "skills" ? CONFIG.DND5E.skills[key]?.label : Trait.keyLabel(key, {trait: "tool"});
+        entry.hover = CONFIG.ANAT.proficiencyLevels[entry.value];
+        entry.label = prop === "skills" ? CONFIG.ANAT.skills[key]?.label : Trait.keyLabel(key, {trait: "tool"});
         entry.baseValue = source.system[prop]?.[key]?.value ?? 0;
         entry.baseAbility = source.system[prop]?.[key]?.ability ?? "int";
       }
@@ -212,7 +212,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const labels = {...this.actor.labels};
 
     // Currency Labels
-    labels.currencies = Object.entries(CONFIG.DND5E.currencies).reduce((obj, [k, c]) => {
+    labels.currencies = Object.entries(CONFIG.ANAT.currencies).reduce((obj, [k, c]) => {
       obj[k] = c.label;
       return obj;
     }, {});
@@ -255,7 +255,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     if ( largestPrimary ) {
       let primary = speeds.shift();
       return {
-        primary: `${primary ? primary[1] : "0"} ${movement.units || Object.keys(CONFIG.DND5E.movementUnits)[0]}`,
+        primary: `${primary ? primary[1] : "0"} ${movement.units || Object.keys(CONFIG.ANAT.movementUnits)[0]}`,
         special: speeds.map(s => s[1]).join(", ")
       };
     }
@@ -263,7 +263,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     // Case 2: Walk as primary
     else {
       return {
-        primary: `${movement.walk || 0} ${movement.units || Object.keys(CONFIG.DND5E.movementUnits)[0]}`,
+        primary: `${movement.walk || 0} ${movement.units || Object.keys(CONFIG.ANAT.movementUnits)[0]}`,
         special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
       };
     }
@@ -280,10 +280,10 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
   _getSenses(systemData) {
     const senses = systemData.attributes.senses ?? {};
     const tags = {};
-    for ( let [k, label] of Object.entries(CONFIG.DND5E.senses) ) {
+    for ( let [k, label] of Object.entries(CONFIG.ANAT.senses) ) {
       const v = senses[k] ?? 0;
       if ( v === 0 ) continue;
-      tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units ?? Object.keys(CONFIG.DND5E.movementUnits)[0]}`;
+      tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units ?? Object.keys(CONFIG.ANAT.movementUnits)[0]}`;
     }
     if ( senses.special ) senses.special.split(";").forEach((c, i) => tags[`custom${i+1}`] = c.trim());
     return tags;
@@ -307,7 +307,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
    */
   _prepareTraits(systemData) {
     const traits = {};
-    for ( const [trait, traitConfig] of Object.entries(CONFIG.DND5E.traits) ) {
+    for ( const [trait, traitConfig] of Object.entries(CONFIG.ANAT.traits) ) {
       const key = traitConfig.actorKeyPath?.replace("system.", "") ?? `traits.${trait}`;
       const data = foundry.utils.deepClone(foundry.utils.getProperty(systemData, key));
       if ( !data ) continue;
@@ -322,7 +322,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       const physical = [];
       if ( data.bypasses?.size ) {
         values = values.filter(t => {
-          if ( !CONFIG.DND5E.damageTypes[t]?.isPhysical ) return true;
+          if ( !CONFIG.ANAT.damageTypes[t]?.isPhysical ) return true;
           physical.push(t);
           return false;
         });
@@ -340,7 +340,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
         data.selected.physical = game.i18n.format("DND5E.DamagePhysicalBypasses", {
           damageTypes: damageTypesFormatter.format(physical.map(t => Trait.keyLabel(t, { trait }))),
           bypassTypes: bypassFormatter.format(data.bypasses.reduce((acc, t) => {
-            const v = CONFIG.DND5E.itemProperties[t];
+            const v = CONFIG.ANAT.itemProperties[t];
             if ( v && v.isPhysical ) acc.push(v.label);
             return acc;
           }, []))
@@ -378,7 +378,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const spellbook = {};
 
     // Define section and label mappings
-    const sections = Object.entries(CONFIG.DND5E.spellPreparationModes).reduce((acc, [k, {order}]) => {
+    const sections = Object.entries(CONFIG.ANAT.spellPreparationModes).reduce((acc, [k, {order}]) => {
       if ( Number.isNumeric(order) ) acc[k] = Number(order);
       return acc;
     }, {});
@@ -404,7 +404,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     };
 
     // Determine the maximum spell level which has a slot
-    const maxLevel = Array.fromRange(Object.keys(CONFIG.DND5E.spellLevels).length - 1, 1).reduce((max, i) => {
+    const maxLevel = Array.fromRange(Object.keys(CONFIG.ANAT.spellLevels).length - 1, 1).reduce((max, i) => {
       const level = levels[`spell${i}`];
       if ( level && (level.max || level.override ) && ( i > max ) ) max = i;
       return max;
@@ -412,20 +412,20 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
     // Level-based spellcasters have cantrips and leveled slots
     if ( maxLevel > 0 ) {
-      registerSection("spell0", 0, CONFIG.DND5E.spellLevels[0]);
+      registerSection("spell0", 0, CONFIG.ANAT.spellLevels[0]);
       for (let lvl = 1; lvl <= maxLevel; lvl++) {
         const sl = `spell${lvl}`;
-        registerSection(sl, lvl, CONFIG.DND5E.spellLevels[lvl], levels[sl]);
+        registerSection(sl, lvl, CONFIG.ANAT.spellLevels[lvl], levels[sl]);
       }
     }
 
     // Pact magic users have cantrips and a pact magic section
-    for ( const [k, v] of Object.entries(CONFIG.DND5E.spellPreparationModes) ) {
+    for ( const [k, v] of Object.entries(CONFIG.ANAT.spellPreparationModes) ) {
       if ( !(k in levels) || !v.upcast || !levels[k].max ) continue;
 
-      if ( !spellbook["0"] && v.cantrips ) registerSection("spell0", 0, CONFIG.DND5E.spellLevels[0]);
+      if ( !spellbook["0"] && v.cantrips ) registerSection("spell0", 0, CONFIG.ANAT.spellLevels[0]);
       const l = levels[k];
-      const config = CONFIG.DND5E.spellPreparationModes[k];
+      const config = CONFIG.ANAT.spellPreparationModes[k];
       const level = game.i18n.localize(`DND5E.SpellLevel${l.level}`);
       const label = `${config.label} — ${level}`;
       registerSection(k, sections[k], label, {
@@ -447,7 +447,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
         s = sections[mode];
         if ( !spellbook[s] ) {
           const l = levels[mode] || {};
-          const config = CONFIG.DND5E.spellPreparationModes[mode];
+          const config = CONFIG.ANAT.spellPreparationModes[mode];
           registerSection(mode, s, config.label, {
             prepMode: mode,
             value: l.value,
@@ -459,7 +459,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
       // Sections for higher-level spells which the caster "should not" have, but spell items exist for
       else if ( !spellbook[s] ) {
-        registerSection(sl, s, CONFIG.DND5E.spellLevels[s], {levels: levels[sl]});
+        registerSection(sl, s, CONFIG.ANAT.spellLevels[s], {levels: levels[sl]});
       }
 
       // Add the spell to the relevant heading
@@ -512,7 +512,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
    * @protected
    */
   _filterItems(items, filters) {
-    const spellSchools = new Set(Object.keys(CONFIG.DND5E.spellSchools));
+    const spellSchools = new Set(Object.keys(CONFIG.ANAT.spellSchools));
     return items.filter(item => {
 
       // Subclass-specific logic.
@@ -561,7 +561,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
   /**
    * Get the font-awesome icon used to display a certain level of skill proficiency.
-   * @param {number} level  A proficiency mode defined in `CONFIG.DND5E.proficiencyLevels`.
+   * @param {number} level  A proficiency mode defined in `CONFIG.ANAT.proficiencyLevels`.
    * @returns {string}      HTML string for the chosen icon.
    * @private
    */
@@ -799,8 +799,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       title: game.i18n.localize("DND5E.PolymorphPromptTitle"),
       content: {
         options: game.settings.get("dnd5e", "polymorphSettings"),
-        settings: CONFIG.DND5E.polymorphSettings,
-        effectSettings: CONFIG.DND5E.polymorphEffectSettings,
+        settings: CONFIG.ANAT.polymorphSettings,
+        effectSettings: CONFIG.ANAT.polymorphEffectSettings,
         isToken: this.actor.isToken
       },
       default: "accept",
@@ -811,26 +811,26 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
           callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
         },
         wildshape: {
-          icon: CONFIG.DND5E.transformationPresets.wildshape.icon,
-          label: CONFIG.DND5E.transformationPresets.wildshape.label,
+          icon: CONFIG.ANAT.transformationPresets.wildshape.icon,
+          label: CONFIG.ANAT.transformationPresets.wildshape.label,
           callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.DND5E.transformationPresets.wildshape.options,
+            CONFIG.ANAT.transformationPresets.wildshape.options,
             { transformTokens: rememberOptions(html).transformTokens }
           ))
         },
         polymorph: {
-          icon: CONFIG.DND5E.transformationPresets.polymorph.icon,
-          label: CONFIG.DND5E.transformationPresets.polymorph.label,
+          icon: CONFIG.ANAT.transformationPresets.polymorph.icon,
+          label: CONFIG.ANAT.transformationPresets.polymorph.label,
           callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.DND5E.transformationPresets.polymorph.options,
+            CONFIG.ANAT.transformationPresets.polymorph.options,
             { transformTokens: rememberOptions(html).transformTokens }
           ))
         },
         self: {
-          icon: CONFIG.DND5E.transformationPresets.polymorphSelf.icon,
-          label: CONFIG.DND5E.transformationPresets.polymorphSelf.label,
+          icon: CONFIG.ANAT.transformationPresets.polymorphSelf.icon,
+          label: CONFIG.ANAT.transformationPresets.polymorphSelf.label,
           callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.DND5E.transformationPresets.polymorphSelf.options,
+            CONFIG.ANAT.transformationPresets.polymorphSelf.options,
             { transformTokens: rememberOptions(html).transformTokens }
           ))
         },
@@ -991,7 +991,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     if ( !itemData.system ) return;
     ["equipped", "proficient", "prepared"].forEach(k => delete itemData.system[k]);
     if ( "attunement" in itemData.system ) {
-      itemData.system.attunement = Math.min(itemData.system.attunement, CONFIG.DND5E.attunementTypes.REQUIRED);
+      itemData.system.attunement = Math.min(itemData.system.attunement, CONFIG.ANAT.attunementTypes.REQUIRED);
     }
   }
 

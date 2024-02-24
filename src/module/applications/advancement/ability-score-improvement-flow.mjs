@@ -44,7 +44,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
   /** @inheritdoc */
   async getData() {
     const points = {
-      assigned: Object.keys(CONFIG.DND5E.abilities).reduce((assigned, key) => {
+      assigned: Object.keys(CONFIG.ANAT.abilities).reduce((assigned, key) => {
         if ( !this.advancement.canImprove(key) || this.advancement.configuration.fixed[key] ) return assigned;
         return assigned + (this.assignments[key] ?? 0);
       }, 0),
@@ -55,7 +55,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
 
     const formatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
 
-    const abilities = Object.entries(CONFIG.DND5E.abilities).reduce((obj, [key, data]) => {
+    const abilities = Object.entries(CONFIG.ANAT.abilities).reduce((obj, [key, data]) => {
       if ( !this.advancement.canImprove(key) ) return obj;
       const ability = this.advancement.actor.system.abilities[key];
       const assignment = this.assignments[key] ?? 0;

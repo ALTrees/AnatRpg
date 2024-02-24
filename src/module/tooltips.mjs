@@ -122,8 +122,8 @@ export default class Tooltips5e {
    * @protected
    */
   async _onHoverPassive(skill, ability, dc) {
-    const skillConfig = CONFIG.DND5E.skills[skill];
-    const abilityConfig = CONFIG.DND5E.abilities[ability ?? skillConfig.ability];
+    const skillConfig = CONFIG.ANAT.skills[skill];
+    const abilityConfig = CONFIG.ANAT.abilities[ability ?? skillConfig.ability];
 
     let label;
     if ( skillConfig ) {

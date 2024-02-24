@@ -38,7 +38,7 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
           save: new FormulaField({required: true, label: "DND5E.SaveBonus"})
         }, {label: "DND5E.AbilityBonuses"})
       }), {
-        initialKeys: CONFIG.DND5E.abilities, initialValue: this._initialAbilityValue.bind(this),
+        initialKeys: CONFIG.ANAT.abilities, initialValue: this._initialAbilityValue.bind(this),
         initialKeysOnly: true, label: "DND5E.Abilities"
       })
     });
@@ -55,7 +55,7 @@ export default class CommonTemplate extends ActorDataModel.mixin(CurrencyTemplat
    * @private
    */
   static _initialAbilityValue(key, initial, existing) {
-    const config = CONFIG.DND5E.abilities[key];
+    const config = CONFIG.ANAT.abilities[key];
     if ( config ) {
       let defaultValue = config.defaults?.[this._systemType] ?? initial.value;
       if ( typeof defaultValue === "string" ) defaultValue = existing?.[defaultValue]?.value ?? initial.value;

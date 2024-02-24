@@ -94,11 +94,11 @@ export default class IdentifiableTemplate extends SystemDataModel {
     if ( !fetchName && !fetchDesc ) return;
 
     let baseItemIdentifier;
-    if ( this.parent.type === "weapon" ) baseItemIdentifier = CONFIG.DND5E.weaponIds[this.type.baseItem];
-    else if ( this.parent.type === "tool" ) baseItemIdentifier = CONFIG.DND5E.toolIds[this.type.baseItem];
+    if ( this.parent.type === "weapon" ) baseItemIdentifier = CONFIG.ANAT.weaponIds[this.type.baseItem];
+    else if ( this.parent.type === "tool" ) baseItemIdentifier = CONFIG.ANAT.toolIds[this.type.baseItem];
     else if ( this.parent.type === "equipment" ) {
-      if ( this.type.value === "shield" ) baseItemIdentifier = CONFIG.DND5E.shieldIds[this.type.baseItem];
-      else baseItemIdentifier = CONFIG.DND5E.armorIds[this.type.baseItem];
+      if ( this.type.value === "shield" ) baseItemIdentifier = CONFIG.ANAT.shieldIds[this.type.baseItem];
+      else baseItemIdentifier = CONFIG.ANAT.armorIds[this.type.baseItem];
     }
     const baseItem = await Trait.getBaseItem(baseItemIdentifier ?? "", { fullItem: fetchDesc });
 

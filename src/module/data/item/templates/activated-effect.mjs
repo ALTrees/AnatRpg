@@ -230,7 +230,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasAreaTarget() {
-    return this.isActive && (this.target.type in CONFIG.DND5E.areaTargetTypes);
+    return this.isActive && (this.target.type in CONFIG.ANAT.areaTargetTypes);
   }
 
   /* -------------------------------------------- */
@@ -240,7 +240,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasIndividualTarget() {
-    return this.isActive && (this.target.type in CONFIG.DND5E.individualTargetTypes);
+    return this.isActive && (this.target.type in CONFIG.ANAT.individualTargetTypes);
   }
 
   /* -------------------------------------------- */
@@ -250,7 +250,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasLimitedUses() {
-    return this.isActive && (this.uses.per in CONFIG.DND5E.limitedUsePeriods) && (this.uses.max > 0);
+    return this.isActive && (this.uses.per in CONFIG.ANAT.limitedUsePeriods) && (this.uses.max > 0);
   }
 
   /* -------------------------------------------- */
@@ -282,7 +282,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasScalarDuration() {
-    return this.duration.units in CONFIG.DND5E.scalarTimePeriods;
+    return this.duration.units in CONFIG.ANAT.scalarTimePeriods;
   }
 
   /* -------------------------------------------- */
@@ -292,7 +292,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasScalarRange() {
-    return this.range.units in CONFIG.DND5E.movementUnits;
+    return this.range.units in CONFIG.ANAT.movementUnits;
   }
 
   /* -------------------------------------------- */

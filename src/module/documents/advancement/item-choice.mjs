@@ -96,7 +96,7 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
 
     // If additional type restrictions applied, make sure they are valid
     if ( (type === "feat") && restriction.type ) {
-      const typeConfig = CONFIG.DND5E.featureTypes[restriction.type];
+      const typeConfig = CONFIG.ANAT.featureTypes[restriction.type];
       const subtype = typeConfig.subtypes?.[restriction.subtype];
       let errorLabel;
       if ( restriction.type !== item.system.type.value ) errorLabel = typeConfig.label;
@@ -110,7 +110,7 @@ export default class ItemChoiceAdvancement extends ItemGrantAdvancement {
     // If spell level is restricted, ensure the spell is of the appropriate level
     const l = parseInt(restriction.level);
     if ( (type === "spell") && !Number.isNaN(l) && (item.system.level !== l) ) {
-      const level = CONFIG.DND5E.spellLevels[l];
+      const level = CONFIG.ANAT.spellLevels[l];
       if ( strict ) throw new Error(game.i18n.format("DND5E.AdvancementItemChoiceSpellLevelSpecificWarning", {level}));
       return false;
     }

@@ -414,7 +414,7 @@ export class ItemDataModel extends SystemDataModel {
     const subtitle = [this.type?.label ?? game.i18n.localize(CONFIG.Item.typeLabels[this.parent.type])];
     const context = {
       name, type, img, price, weight, uses, school, materials, activation,
-      config: CONFIG.DND5E,
+      config: CONFIG.ANAT,
       labels: foundry.utils.deepClone(this.parent.labels),
       tags: this.parent.labels?.components?.tags,
       subtitle: subtitle.filterJoin(" &bull; "),

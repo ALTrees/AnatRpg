@@ -55,6 +55,6 @@ export default class ItemDescriptionTemplate extends SystemDataModel {
    * @returns {Set<string>}
    */
   get validProperties() {
-    return new Set(CONFIG.DND5E.validProperties[this.parent.type] ?? []);
+    return new Set(CONFIG.ANAT.validProperties[this.parent.type] ?? []);
   }
 }

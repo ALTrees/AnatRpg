@@ -31,10 +31,10 @@ export default class ItemChoiceConfig extends AdvancementConfig {
       }, {})
     };
     if ( this.advancement.configuration.type === "feat" ) {
-      const selectedType = CONFIG.DND5E.featureTypes[this.advancement.configuration.restriction.type];
+      const selectedType = CONFIG.ANAT.featureTypes[this.advancement.configuration.restriction.type];
       context.typeRestriction = {
         typeLabel: game.i18n.localize("DND5E.ItemFeatureType"),
-        typeOptions: CONFIG.DND5E.featureTypes,
+        typeOptions: CONFIG.ANAT.featureTypes,
         subtypeLabel: game.i18n.format("DND5E.ItemFeatureSubtype", {category: selectedType?.label}),
         subtypeOptions: selectedType?.subtypes
       };

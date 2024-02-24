@@ -28,17 +28,17 @@ export default class ActorSpellSlotsConfig extends DialogMixin(DocumentSheet) {
   getData(options={}) {
     const source = this.document._source.system.spells;
     const { spells } = this.document.system;
-    const overrides = Array.fromRange(Object.keys(CONFIG.DND5E.spellLevels).length - 1, 1).map(level => ({
+    const overrides = Array.fromRange(Object.keys(CONFIG.ANAT.spellLevels).length - 1, 1).map(level => ({
       value: source[`spell${level}`]?.override,
-      label: CONFIG.DND5E.spellLevels[level],
+      label: CONFIG.ANAT.spellLevels[level],
       name: `system.spells.spell${level}.override`,
       placeholder: spells[`spell${level}`]?.max ?? 0
     }));
 
-    for ( const k of Object.keys(CONFIG.DND5E.spellcastingTypes) ) {
+    for ( const k of Object.keys(CONFIG.ANAT.spellcastingTypes) ) {
       const hasSpell = this.document.items.some(i => i.type === "spell" && i.system.preparation.mode === k);
       if ( parseInt(spells[k]?.level) || hasSpell ) overrides.push({
-        label: CONFIG.DND5E.spellPreparationModes[k].label,
+        label: CONFIG.ANAT.spellPreparationModes[k].label,
         value: source[k]?.override,
         name: `system.spells.${k}.override`,
         placeholder: spells[k]?.max ?? 0

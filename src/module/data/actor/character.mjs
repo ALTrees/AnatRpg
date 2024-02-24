@@ -173,13 +173,13 @@ export default class CharacterData extends CreatureTemplate {
       return;
     }
 
-    for ( const key of Object.keys(CONFIG.DND5E.movementTypes) ) {
+    for ( const key of Object.keys(CONFIG.ANAT.movementTypes) ) {
       if ( raceData.movement[key] ) this.attributes.movement[key] ??= raceData.movement[key];
     }
     if ( raceData.movement.hover ) this.attributes.movement.hover = true;
     this.attributes.movement.units ??= raceData.movement.units;
 
-    for ( const key of Object.keys(CONFIG.DND5E.senses) ) {
+    for ( const key of Object.keys(CONFIG.ANAT.senses) ) {
       if ( raceData.senses[key] ) this.attributes.senses[key] ??= raceData.senses[key];
     }
     this.attributes.senses.special = [this.attributes.senses.special, raceData.senses.special].filterJoin(";");

@@ -16,7 +16,7 @@ export default class AbilityScoreImprovementConfig extends AdvancementConfig {
 
   /** @inheritdoc */
   getData() {
-    const abilities = Object.entries(CONFIG.DND5E.abilities).reduce((obj, [key, data]) => {
+    const abilities = Object.entries(CONFIG.ANAT.abilities).reduce((obj, [key, data]) => {
       if ( !this.advancement.canImprove(key) ) return obj;
       const fixed = this.advancement.configuration.fixed[key] ?? 0;
       obj[key] = {

@@ -67,12 +67,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       const ctx = context.itemContext[item.id] ??= {};
       ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
       ctx.attunement = {
-        [CONFIG.DND5E.attunementTypes.REQUIRED]: {
+        [CONFIG.ANAT.attunementTypes.REQUIRED]: {
           icon: "fa-sun",
           cls: "not-attuned",
           title: "DND5E.AttunementRequired"
         },
-        [CONFIG.DND5E.attunementTypes.ATTUNED]: {
+        [CONFIG.ANAT.attunementTypes.ATTUNED]: {
           icon: "fa-sun",
           cls: "attuned",
           title: "DND5E.AttunementAttuned"
@@ -129,10 +129,10 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Sort classes and interleave matching subclasses, put unmatched subclasses into features so they don't disappear
     classes.sort((a, b) => b.system.levels - a.system.levels);
-    const maxLevelDelta = CONFIG.DND5E.maxLevel - this.actor.system.details.level;
+    const maxLevelDelta = CONFIG.ANAT.maxLevel - this.actor.system.details.level;
     classes = classes.reduce((arr, cls) => {
       const ctx = context.itemContext[cls.id] ??= {};
-      ctx.availableLevels = Array.fromRange(CONFIG.DND5E.maxLevel + 1).slice(1).map(level => {
+      ctx.availableLevels = Array.fromRange(CONFIG.ANAT.maxLevel + 1).slice(1).map(level => {
         const delta = level - cls.system.levels;
         return { level, delta, disabled: delta > maxLevelDelta };
       });
@@ -197,8 +197,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       const isPrepared = !!prep.prepared;
       context.toggleClass = isPrepared ? "active" : "";
       if ( isAlways ) context.toggleClass = "fixed";
-      if ( isAlways ) context.toggleTitle = CONFIG.DND5E.spellPreparationModes.always.label;
-      else if ( isPrepared ) context.toggleTitle = CONFIG.DND5E.spellPreparationModes.prepared.label;
+      if ( isAlways ) context.toggleTitle = CONFIG.ANAT.spellPreparationModes.always.label;
+      else if ( isPrepared ) context.toggleTitle = CONFIG.ANAT.spellPreparationModes.prepared.label;
       else context.toggleTitle = game.i18n.localize("DND5E.SpellUnprepared");
     }
     else {
@@ -327,9 +327,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Increment the number of class levels a character instead of creating a new item
     if ( itemData.type === "class" ) {
       const charLevel = this.actor.system.details.level;
-      itemData.system.levels = Math.min(itemData.system.levels, CONFIG.DND5E.maxLevel - charLevel);
+      itemData.system.levels = Math.min(itemData.system.levels, CONFIG.ANAT.maxLevel - charLevel);
       if ( itemData.system.levels <= 0 ) {
-        const err = game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", { max: CONFIG.DND5E.maxLevel });
+        const err = game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", { max: CONFIG.ANAT.maxLevel });
         ui.notifications.error(err);
         return false;
       }

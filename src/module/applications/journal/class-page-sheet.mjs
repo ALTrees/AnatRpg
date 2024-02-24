@@ -161,7 +161,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     const makeLink = async uuid => (await fromUuid(uuid))?.toAnchor({classes: ["content-link"]}).outerHTML;
 
     const rows = [];
-    for ( const level of Array.fromRange((CONFIG.DND5E.maxLevel - (initialLevel - 1)), initialLevel) ) {
+    for ( const level of Array.fromRange((CONFIG.ANAT.maxLevel - (initialLevel - 1)), initialLevel) ) {
       const features = [];
       for ( const advancement of item.advancement.byLevel[level] ) {
         switch ( advancement.constructor.typeName ) {
@@ -207,11 +207,11 @@ export default class JournalClassPageSheet extends JournalPageSheet {
 
     if ( spellcasting.type === "leveled" ) {
       const spells = {};
-      const maxSpellLevel = CONFIG.DND5E.SPELL_SLOT_TABLE[CONFIG.DND5E.SPELL_SLOT_TABLE.length - 1].length;
+      const maxSpellLevel = CONFIG.ANAT.SPELL_SLOT_TABLE[CONFIG.ANAT.SPELL_SLOT_TABLE.length - 1].length;
       Array.fromRange(maxSpellLevel, 1).forEach(l => spells[`spell${l}`] = {});
 
       let largestSlot;
-      for ( const level of Array.fromRange(CONFIG.DND5E.maxLevel, 1).reverse() ) {
+      for ( const level of Array.fromRange(CONFIG.ANAT.maxLevel, 1).reverse() ) {
         const progression = { slot: 0 };
         spellcasting.levels = level;
         Actor5e.computeClassProgression(progression, item, { spellcasting });
@@ -248,7 +248,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
       table.cols = [{class: "spellcasting", span: 2}];
 
       // Loop through each level, gathering "Spell Slots" & "Slot Level" for each one
-      for ( const level of Array.fromRange(CONFIG.DND5E.maxLevel, 1) ) {
+      for ( const level of Array.fromRange(CONFIG.ANAT.maxLevel, 1) ) {
         const progression = { pact: 0 };
         spellcasting.levels = level;
         Actor5e.computeClassProgression(progression, item, { spellcasting });
@@ -299,7 +299,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     const makeLink = async uuid => (await fromUuid(uuid))?.toAnchor({classes: ["content-link"]}).outerHTML;
 
     const rows = [];
-    for ( const level of Array.fromRange(CONFIG.DND5E.maxLevel, 1) ) {
+    for ( const level of Array.fromRange(CONFIG.ANAT.maxLevel, 1) ) {
       const features = [];
       for ( const advancement of item.advancement.byLevel[level] ) {
         switch ( advancement.constructor.typeName ) {

@@ -42,8 +42,8 @@ export default class RaceData extends ItemDataModel.mixin(ItemDescriptionTemplat
    * @returns {Object<string>}
    */
   get movementLabels() {
-    const units = CONFIG.DND5E.movementUnits[this.movement.units || Object.keys(CONFIG.DND5E.movementUnits)[0]];
-    return Object.entries(CONFIG.DND5E.movementTypes).reduce((obj, [k, label]) => {
+    const units = CONFIG.ANAT.movementUnits[this.movement.units || Object.keys(CONFIG.ANAT.movementUnits)[0]];
+    return Object.entries(CONFIG.ANAT.movementTypes).reduce((obj, [k, label]) => {
       const value = this.movement[k];
       if ( value ) obj[k] = `${label} ${value} ${units}`;
       return obj;
@@ -57,8 +57,8 @@ export default class RaceData extends ItemDataModel.mixin(ItemDescriptionTemplat
    * @returns {Object<string>}
    */
   get sensesLabels() {
-    const units = CONFIG.DND5E.movementUnits[this.senses.units || Object.keys(CONFIG.DND5E.movementUnits)[0]];
-    return Object.entries(CONFIG.DND5E.senses).reduce((arr, [k, label]) => {
+    const units = CONFIG.ANAT.movementUnits[this.senses.units || Object.keys(CONFIG.ANAT.movementUnits)[0]];
+    return Object.entries(CONFIG.ANAT.senses).reduce((arr, [k, label]) => {
       const value = this.senses[k];
       if ( value ) arr.push(`${label} ${value} ${units}`);
       return arr;
@@ -95,7 +95,7 @@ export default class RaceData extends ItemDataModel.mixin(ItemDescriptionTemplat
       { type: "Trait", configuration: { grants: ["languages:standard:common"] } }
     ];
     this.parent.updateSource({"system.advancement": toCreate.map(c => {
-      const config = CONFIG.DND5E.advancementTypes[c.type];
+      const config = CONFIG.ANAT.advancementTypes[c.type];
       const cls = config.documentClass ?? config;
       return new cls(c, { parent: this.parent }).toObject();
     })});

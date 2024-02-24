@@ -208,7 +208,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     };
 
     // Exhaustion
-    const max = CONFIG.DND5E.conditionTypes.exhaustion.levels;
+    const max = CONFIG.ANAT.conditionTypes.exhaustion.levels;
     context.exhaustion = Array.fromRange(max, 1).reduce((acc, n) => {
       const label = game.i18n.format("DND5E.ExhaustionLevel", { n });
       const classes = ["pip"];
@@ -223,11 +223,11 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     }, { left: [], right: [] });
 
     // Speed
-    context.speed = Object.entries(CONFIG.DND5E.movementTypes).reduce((obj, [k, label]) => {
+    context.speed = Object.entries(CONFIG.ANAT.movementTypes).reduce((obj, [k, label]) => {
       const value = attributes.movement[k];
       if ( value > obj.value ) Object.assign(obj, { value, label });
       return obj;
-    }, { value: 0, label: CONFIG.DND5E.movementTypes.walk });
+    }, { value: 0, label: CONFIG.ANAT.movementTypes.walk });
 
     // Hit Dice
     context.hd = { value: attributes.hd, max: this.actor.system.details.level };
@@ -257,7 +257,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     // Ability Scores
     context.abilityRows = Object.entries(context.abilities).reduce((obj, [k, ability]) => {
       ability.key = k;
-      ability.abbr = CONFIG.DND5E.abilities[k]?.abbreviation ?? "";
+      ability.abbr = CONFIG.ANAT.abilities[k]?.abbreviation ?? "";
       ability.sign = Math.sign(ability.mod) < 0 ? "-" : "+";
       ability.mod = Math.abs(ability.mod);
       ability.baseValue = context.source.abilities[k]?.value ?? 0;
@@ -265,22 +265,22 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       else obj.bottom.push(ability);
       return obj;
     }, { top: [], bottom: [] });
-    context.abilityRows.optional = Object.keys(CONFIG.DND5E.abilities).length - 6;
+    context.abilityRows.optional = Object.keys(CONFIG.ANAT.abilities).length - 6;
 
     // Saving Throws
     context.saves = {};
     for ( let ability of Object.values(context.abilities) ) {
       ability = context.saves[ability.key] = { ...ability };
       ability.class = this.constructor.PROFICIENCY_CLASSES[context.editable ? ability.baseProf : ability.proficient];
-      ability.hover = CONFIG.DND5E.proficiencyLevels[ability.proficient];
+      ability.hover = CONFIG.ANAT.proficiencyLevels[ability.proficient];
       ability.sign = Math.sign(ability.save) < 0 ? "-" : "+";
       ability.mod = Math.abs(ability.save);
     }
 
     // Size
     context.size = {
-      label: CONFIG.DND5E.actorSizes[traits.size].label,
-      abbr: CONFIG.DND5E.actorSizes[traits.size].abbreviation,
+      label: CONFIG.ANAT.actorSizes[traits.size].label,
+      abbr: CONFIG.ANAT.actorSizes[traits.size].abbreviation,
       mod: attributes.encumbrance.mod
     };
 
@@ -289,18 +289,18 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       entry.class = this.constructor.PROFICIENCY_CLASSES[context.editable ? entry.baseValue : entry.value];
       entry.sign = Math.sign(entry.total) < 0 ? "-" : "+";
       entry.mod = Math.abs(entry.total);
-      if ( key in CONFIG.DND5E.skills ) entry.reference = CONFIG.DND5E.skills[key].reference;
-      else if ( key in CONFIG.DND5E.toolIds ) entry.reference = Trait.getBaseItemUUID(CONFIG.DND5E.toolIds[key]);
+      if ( key in CONFIG.ANAT.skills ) entry.reference = CONFIG.ANAT.skills[key].reference;
+      else if ( key in CONFIG.ANAT.toolIds ) entry.reference = Trait.getBaseItemUUID(CONFIG.ANAT.toolIds[key]);
     }
 
     // Character Background
     context.creatureType = {
       class: details.type.value === "custom" ? "none" : "",
-      icon: CONFIG.DND5E.creatureTypes[details.type.value]?.icon ?? "/icons/svg/mystery-man.svg",
+      icon: CONFIG.ANAT.creatureTypes[details.type.value]?.icon ?? "/icons/svg/mystery-man.svg",
       title: details.type.value === "custom"
         ? details.type.custom
-        : CONFIG.DND5E.creatureTypes[details.type.value]?.label,
-      reference: CONFIG.DND5E.creatureTypes[details.type.value]?.reference,
+        : CONFIG.ANAT.creatureTypes[details.type.value]?.label,
+      reference: CONFIG.ANAT.creatureTypes[details.type.value]?.reference,
       subtitle: details.type.subtype
     };
 
@@ -308,7 +308,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     if ( details.background instanceof dnd5e.documents.Item5e ) context.background = details.background;
 
     // Senses
-    context.senses = Object.entries(CONFIG.DND5E.senses).reduce((obj, [k, label]) => {
+    context.senses = Object.entries(CONFIG.ANAT.senses).reduce((obj, [k, label]) => {
       const value = attributes.senses[k];
       if ( value ) obj[k] = { label, value };
       return obj;
@@ -352,7 +352,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
 
     // Effects & Conditions
     const conditionIds = new Set();
-    context.conditions = Object.entries(CONFIG.DND5E.conditionTypes).reduce((arr, [k, c]) => {
+    context.conditions = Object.entries(CONFIG.ANAT.conditionTypes).reduce((arr, [k, c]) => {
       if ( k === "diseased" ) return arr; // Filter out diseased as it's not a real condition.
       const { label: name, icon, reference } = c;
       const id = staticID(`dnd5e${k}`);
@@ -413,7 +413,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
   /** @inheritDoc */
   _getLabels() {
     const labels = super._getLabels();
-    labels.damageAndHealing = { ...CONFIG.DND5E.damageTypes, ...CONFIG.DND5E.healingTypes };
+    labels.damageAndHealing = { ...CONFIG.ANAT.damageTypes, ...CONFIG.ANAT.healingTypes };
     return labels;
   }
 
@@ -422,7 +422,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
   /** @override */
   _prepareTraits() {
     const traits = {};
-    for ( const [trait, config] of Object.entries(CONFIG.DND5E.traits) ) {
+    for ( const [trait, config] of Object.entries(CONFIG.ANAT.traits) ) {
       const key = config.actorKeyPath ?? `system.traits.${trait}`;
       const data = foundry.utils.deepClone(foundry.utils.getProperty(this.actor, key));
       if ( !data ) continue;
@@ -433,7 +433,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       values = values.map(key => {
         const value = { label: Trait.keyLabel(key, { trait }) ?? key };
         const icons = value.icons = [];
-        if ( data.bypasses?.size && CONFIG.DND5E.damageTypes[key]?.isPhysical ) icons.push(...data.bypasses);
+        if ( data.bypasses?.size && CONFIG.ANAT.damageTypes[key]?.isPhysical ) icons.push(...data.bypasses);
         return value;
       });
       if ( data.custom ) data.custom.split(";").forEach(v => values.push({ label: v.trim() }));
@@ -528,7 +528,7 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       // Range
       const units = system.range?.units;
       if ( units && (units !== "none") ) {
-        if ( units in CONFIG.DND5E.movementUnits ) {
+        if ( units in CONFIG.ANAT.movementUnits ) {
           ctx.range = {
             distance: true,
             value: system.range.value,
@@ -558,9 +558,9 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
           cls: prepared ? "active" : "",
           icon: `<i class="fa-${prepared ? "solid" : "regular"} fa-${isAlways ? "certificate" : "sun"}"></i>`,
           title: isAlways
-            ? CONFIG.DND5E.spellPreparationModes.always
+            ? CONFIG.ANAT.spellPreparationModes.always
             : prepared
-              ? CONFIG.DND5E.spellPreparationModes.prepared
+              ? CONFIG.ANAT.spellPreparationModes.prepared
               : game.i18n.localize("DND5E.SpellUnprepared")
         };
       }
@@ -705,8 +705,8 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
     const { level, preparationMode } = event.target.closest("[data-level]")?.dataset ?? {};
     const isSlots = event.target.closest("[data-favorite-id]") || event.target.classList.contains("spell-header");
     let type;
-    if ( key in CONFIG.DND5E.skills ) type = "skill";
-    else if ( key in CONFIG.DND5E.toolIds ) type = "tool";
+    if ( key in CONFIG.ANAT.skills ) type = "skill";
+    else if ( key in CONFIG.ANAT.toolIds ) type = "tool";
     else if ( preparationMode && (level !== "0") && isSlots ) type = "slots";
     if ( !type ) return super._onDragStart(event);
     const dragData = { dnd5e: { action: "favorite", type } };
@@ -1254,16 +1254,16 @@ export default class ActorSheet5eCharacter2 extends ActorSheet5eCharacter {
       if ( !data ) return;
       const { total, ability, passive } = data ?? {};
       const subtitle = game.i18n.format("DND5E.AbilityPromptTitle", {
-        ability: CONFIG.DND5E.abilities[ability].label
+        ability: CONFIG.ANAT.abilities[ability].label
       });
       let img;
       let title;
       let reference;
       if ( type === "tool" ) {
-        reference = Trait.getBaseItemUUID(CONFIG.DND5E.toolIds[id]);
+        reference = Trait.getBaseItemUUID(CONFIG.ANAT.toolIds[id]);
         ({ img, name: title } = Trait.getBaseItem(reference, { indexOnly: true }));
       }
-      else if ( type === "skill" ) ({ icon: img, label: title, reference } = CONFIG.DND5E.skills[id]);
+      else if ( type === "skill" ) ({ icon: img, label: title, reference } = CONFIG.ANAT.skills[id]);
       return { img, title, subtitle, modifier: total, passive, reference };
     }
   }

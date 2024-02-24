@@ -12,7 +12,7 @@ export default class EquippableItemTemplate extends SystemDataModel {
   static defineSchema() {
     return {
       attunement: new foundry.data.fields.NumberField({
-        required: true, integer: true, initial: CONFIG.DND5E.attunementTypes.NONE, label: "DND5E.Attunement"
+        required: true, integer: true, initial: CONFIG.ANAT.attunementTypes.NONE, label: "DND5E.Attunement"
       }),
       equipped: new foundry.data.fields.BooleanField({required: true, label: "DND5E.Equipped"})
     };
@@ -37,7 +37,7 @@ export default class EquippableItemTemplate extends SystemDataModel {
    */
   static #migrateAttunement(source) {
     if ( (source.attuned === undefined) || (source.attunement !== undefined) ) return;
-    source.attunement = source.attuned ? CONFIG.DND5E.attunementTypes.ATTUNED : CONFIG.DND5E.attunementTypes.NONE;
+    source.attunement = source.attuned ? CONFIG.ANAT.attunementTypes.ATTUNED : CONFIG.ANAT.attunementTypes.NONE;
   }
 
   /* -------------------------------------------- */
@@ -60,11 +60,11 @@ export default class EquippableItemTemplate extends SystemDataModel {
    * @type {string[]}
    */
   get equippableItemCardProperties() {
-    const req = CONFIG.DND5E.attunementTypes.REQUIRED;
+    const req = CONFIG.ANAT.attunementTypes.REQUIRED;
     return [
-      this.attunement === req ? CONFIG.DND5E.attunements[req] : null,
+      this.attunement === req ? CONFIG.ANAT.attunements[req] : null,
       game.i18n.localize(this.equipped ? "DND5E.Equipped" : "DND5E.Unequipped"),
-      ("proficient" in this) ? CONFIG.DND5E.proficiencyLevels[this.prof?.multiplier || 0] : null
+      ("proficient" in this) ? CONFIG.ANAT.proficiencyLevels[this.prof?.multiplier || 0] : null
     ];
   }
 

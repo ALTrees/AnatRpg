@@ -226,7 +226,7 @@ export default class ProficiencyCycleElement extends HTMLElement {
     const input = this.#shadowRoot.querySelector("input");
     input.setAttribute("value", this.#value);
     this.#internals.ariaValueNow = this.#value;
-    this.#internals.ariaValueText = CONFIG.DND5E.proficiencyLevels[this.#value];
+    this.#internals.ariaValueText = CONFIG.ANAT.proficiencyLevels[this.#value];
     this.#internals.setFormValue(this.#value);
   }
 

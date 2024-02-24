@@ -176,7 +176,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {number}      The XP required.
    */
   getLevelExp(level) {
-    const levels = CONFIG.DND5E.CHARACTER_EXP_LEVELS;
+    const levels = CONFIG.ANAT.CHARACTER_EXP_LEVELS;
     return levels[Math.min(level, levels.length - 1)];
   }
 
@@ -189,7 +189,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   getCRExp(cr) {
     if ( cr < 1.0 ) return Math.max(200 * cr, 10);
-    return CONFIG.DND5E.CR_EXP_LEVELS[cr];
+    return CONFIG.ANAT.CR_EXP_LEVELS[cr];
   }
 
   /* -------------------------------------------- */
@@ -216,7 +216,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {boolean}       Whether the actor is affected.
    */
   hasConditionEffect(key) {
-    const props = CONFIG.DND5E.conditionEffects[key] ?? new Set();
+    const props = CONFIG.ANAT.conditionEffects[key] ?? new Set();
     const level = this.system.attributes?.exhaustion ?? null;
     const imms = this.system.traits?.ci?.value ?? new Set();
     const statuses = this.statuses;
@@ -252,7 +252,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _prepareScaleValues() {
     this.system.scale = this.items.reduce((scale, item) => {
-      if ( CONFIG.DND5E.advancementTypes.ScaleValue.validItemTypes.has(item.type) ) {
+      if ( CONFIG.ANAT.advancementTypes.ScaleValue.validItemTypes.has(item.type) ) {
         scale[item.identifier] = item.scaleValues;
       }
       return scale;
@@ -280,7 +280,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       }
 
       // Attuned items
-      else if ( item.system.attunement === CONFIG.DND5E.attunementTypes.ATTUNED ) {
+      else if ( item.system.attunement === CONFIG.ANAT.attunementTypes.ATTUNED ) {
         this.system.attributes.attunement.value += 1;
       }
     }
@@ -292,7 +292,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const { xp, level } = this.system.details;
     xp.max = this.getLevelExp(level || 1);
     xp.min = level ? this.getLevelExp(level - 1) : 0;
-    if ( level >= CONFIG.DND5E.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
+    if ( level >= CONFIG.ANAT.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
     else {
       const required = xp.max - xp.min;
       const pct = Math.round((xp.value - xp.min) * 100 / required);
@@ -312,7 +312,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Attuned items
     this.system.attributes.attunement.value = this.items.filter(i => {
-      return i.system.attunement === CONFIG.DND5E.attunementTypes.ATTUNED;
+      return i.system.attunement === CONFIG.ANAT.attunementTypes.ATTUNED;
     }).length;
 
     // Kill Experience
@@ -372,7 +372,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       if ( Number.isNumeric(abl.saveProf.term) ) abl.save += abl.saveProf.flat;
       abl.dc = 8 + abl.mod + this.system.attributes.prof + dcBonus;
 
-      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.DND5E.maxAbilityScore;
+      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.ANAT.maxAbilityScore;
 
       // If we merged saves when transforming, take the highest bonus here.
       if ( originalSaves && abl.proficient ) abl.save = Math.max(abl.save, originalSaves[id].save);
@@ -438,7 +438,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const abilityData = this.system.abilities[ability];
     skillData.ability = ability;
 
-    const feats = CONFIG.DND5E.characterFlags;
+    const feats = CONFIG.ANAT.characterFlags;
 
     const baseBonus = simplifyBonus(skillData.bonuses?.check, rollData);
     let roundDown = true;
@@ -521,15 +521,15 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const ac = this.system.attributes.ac;
 
     // Apply automatic migrations for older data structures
-    let cfg = CONFIG.DND5E.armorClasses[ac.calc];
+    let cfg = CONFIG.ANAT.armorClasses[ac.calc];
     if ( !cfg ) {
       ac.calc = "flat";
       if ( Number.isNumeric(ac.value) ) ac.flat = Number(ac.value);
-      cfg = CONFIG.DND5E.armorClasses.flat;
+      cfg = CONFIG.ANAT.armorClasses.flat;
     }
 
     // Identify Equipped Items
-    const armorTypes = new Set(Object.keys(CONFIG.DND5E.armorTypes));
+    const armorTypes = new Set(Object.keys(CONFIG.ANAT.armorTypes));
     const {armors, shields} = this.itemTypes.equipment.reduce((obj, equip) => {
       if ( !equip.system.equipped || !armorTypes.has(equip.system.type.value) ) return obj;
       if ( equip.system.type.value === "shield" ) obj.shields.push(equip);
@@ -573,7 +573,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
           this._preparationWarnings.push({
             message: game.i18n.localize("DND5E.WarnBadACFormula"), link: "armor", type: "error"
           });
-          const replaced = Roll.replaceFormulaData(CONFIG.DND5E.armorClasses.default.formula, rollData);
+          const replaced = Roll.replaceFormulaData(CONFIG.ANAT.armorClasses.default.formula, rollData);
           ac.base = Roll.safeEval(replaced);
         }
         break;
@@ -602,7 +602,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _prepareEncumbrance() {
-    const config = CONFIG.DND5E.encumbrance;
+    const config = CONFIG.ANAT.encumbrance;
     const encumbrance = this.system.attributes.encumbrance ??= {};
     const units = game.settings.get("dnd5e", "metricWeightUnits") ? "metric" : "imperial";
 
@@ -620,9 +620,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Determine the Encumbrance size class
-    const keys = Object.keys(CONFIG.DND5E.actorSizes);
+    const keys = Object.keys(CONFIG.ANAT.actorSizes);
     const index = keys.findIndex(k => k === this.system.traits.size);
-    const sizeConfig = CONFIG.DND5E.actorSizes[
+    const sizeConfig = CONFIG.ANAT.actorSizes[
       keys[this.flags.dnd5e?.powerfulBuild ? Math.min(index + 1, keys.length - 1) : index]
     ];
     const mod = sizeConfig?.capacityMultiplier ?? sizeConfig?.token ?? 1;
@@ -659,7 +659,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const hp = this.system.attributes.hp;
 
     if ( this.type === "character" && (this.system.attributes.hp.max === null) ) {
-      const abilityId = CONFIG.DND5E.defaultAbilities.hitPoints || "con";
+      const abilityId = CONFIG.ANAT.defaultAbilities.hitPoints || "con";
       const abilityMod = (this.system.abilities[abilityId]?.mod ?? 0);
       const base = Object.values(this.classes).reduce((total, item) => {
         const advancement = item.advancement.byType.HitPoints?.[0];
@@ -693,7 +693,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const flags = this.flags.dnd5e || {};
 
     // Compute initiative modifier
-    const abilityId = init.ability || CONFIG.DND5E.defaultAbilities.initiative;
+    const abilityId = init.ability || CONFIG.ANAT.defaultAbilities.initiative;
     const ability = this.system.abilities?.[abilityId] || {};
     init.mod = ability.mod ?? 0;
 
@@ -753,7 +753,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       );
     }
 
-    for ( const type of Object.keys(CONFIG.DND5E.spellcastingTypes) ) {
+    for ( const type of Object.keys(CONFIG.ANAT.spellcastingTypes) ) {
       this.constructor.prepareSpellcastingSlots(this.system.spells, type, progression, { actor: this });
     }
   }
@@ -807,7 +807,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @param {number} count                          Number of classes with this type of spellcasting.
    */
   static computeLeveledProgression(progression, actor, cls, spellcasting, count) {
-    const prog = CONFIG.DND5E.spellcastingTypes.leveled.progression[spellcasting.progression];
+    const prog = CONFIG.ANAT.spellcastingTypes.leveled.progression[spellcasting.progression];
     if ( !prog ) return;
     const rounding = prog.roundUp ? Math.ceil : Math.floor;
     progression.slot += rounding(spellcasting.levels / prog.divisor ?? 1);
@@ -867,9 +867,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @param {object} progression   Spellcasting progression data.
    */
   static prepareLeveledSlots(spells, actor, progression) {
-    const levels = Math.clamped(progression.slot, 0, CONFIG.DND5E.maxLevel);
-    const slots = CONFIG.DND5E.SPELL_SLOT_TABLE[Math.min(levels, CONFIG.DND5E.SPELL_SLOT_TABLE.length) - 1] ?? [];
-    for ( const level of Array.fromRange(Object.keys(CONFIG.DND5E.spellLevels).length - 1, 1) ) {
+    const levels = Math.clamped(progression.slot, 0, CONFIG.ANAT.maxLevel);
+    const slots = CONFIG.ANAT.SPELL_SLOT_TABLE[Math.min(levels, CONFIG.ANAT.SPELL_SLOT_TABLE.length) - 1] ?? [];
+    for ( const level of Array.fromRange(Object.keys(CONFIG.ANAT.spellLevels).length - 1, 1) ) {
       const slot = spells[`spell${level}`] ??= { value: 0 };
       slot.level = level;
       slot.max = Number.isNumeric(slot.override) ? Math.max(parseInt(slot.override), 0) : slots[level - 1] ?? 0;
@@ -891,7 +891,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // - pact.value: Currently available pact slots
     // - pact.override: Override number of available spell slots
 
-    let pactLevel = Math.clamped(progression.pact, 0, CONFIG.DND5E.maxLevel);
+    let pactLevel = Math.clamped(progression.pact, 0, CONFIG.ANAT.maxLevel);
     spells.pact ??= {};
     const override = Number.isNumeric(spells.pact.override) ? parseInt(spells.pact.override) : null;
 
@@ -900,7 +900,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       pactLevel = actor.system.details.spellLevel;
     }
 
-    const [, pactConfig] = Object.entries(CONFIG.DND5E.pactCastingProgression)
+    const [, pactConfig] = Object.entries(CONFIG.ANAT.pactCastingProgression)
       .reverse().find(([l]) => Number(l) <= pactLevel) ?? [];
     if ( pactConfig ) {
       spells.pact.level = pactConfig.level;
@@ -929,7 +929,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Configure prototype token settings
     const prototypeToken = {};
     if ( "size" in (this.system.traits || {}) ) {
-      const size = CONFIG.DND5E.actorSizes[this.system.traits.size || "med"].token ?? 1;
+      const size = CONFIG.ANAT.actorSizes[this.system.traits.size || "med"].token ?? 1;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.width") ) prototypeToken.width = size;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.height") ) prototypeToken.height = size;
     }
@@ -949,7 +949,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( "size" in (this.system.traits || {}) ) {
       const newSize = foundry.utils.getProperty(changed, "system.traits.size");
       if ( newSize && (newSize !== this.system.traits?.size) ) {
-        let size = CONFIG.DND5E.actorSizes[newSize].token ?? 1;
+        let size = CONFIG.ANAT.actorSizes[newSize].token ?? 1;
         if ( !foundry.utils.hasProperty(changed, "prototypeToken.width") ) {
           changed.prototypeToken ||= {};
           changed.prototypeToken.height = size;
@@ -1078,7 +1078,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const hasEffect = (category, type, properties) => {
       const config = traits?.[category];
       if ( !config?.value.has(type) ) return false;
-      if ( !CONFIG.DND5E.damageTypes[type]?.isPhysical || !properties?.size ) return true;
+      if ( !CONFIG.ANAT.damageTypes[type]?.isPhysical || !properties?.size ) return true;
       return !config.bypasses?.intersection(properties)?.size;
     };
 
@@ -1206,7 +1206,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _isRemarkableAthlete(ability) {
     return this.getFlag("dnd5e", "remarkableAthlete")
-      && CONFIG.DND5E.characterFlags.remarkableAthlete.abilities.includes(ability);
+      && CONFIG.ANAT.characterFlags.remarkableAthlete.abilities.includes(ability);
   }
 
   /* -------------------------------------------- */
@@ -1264,7 +1264,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const reliableTalent = (skl.value >= 1 && this.getFlag("dnd5e", "reliableTalent"));
 
     // Roll and return
-    const flavor = game.i18n.format("DND5E.SkillPromptTitle", {skill: CONFIG.DND5E.skills[skillId]?.label ?? ""});
+    const flavor = game.i18n.format("DND5E.SkillPromptTitle", {skill: CONFIG.ANAT.skills[skillId]?.label ?? ""});
     const rollData = foundry.utils.mergeObject({
       data: data,
       title: `${flavor}: ${this.name}`,
@@ -1404,7 +1404,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @param {object} options      Options which configure how ability tests or saving throws are rolled
    */
   rollAbility(abilityId, options={}) {
-    const label = CONFIG.DND5E.abilities[abilityId]?.label ?? "";
+    const label = CONFIG.ANAT.abilities[abilityId]?.label ?? "";
     new Dialog({
       title: `${game.i18n.format("DND5E.AbilityPromptTitle", {ability: label})}: ${this.name}`,
       content: `<p>${game.i18n.format("DND5E.AbilityPromptText", {ability: label})}</p>`,
@@ -1431,7 +1431,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilityTest(abilityId, options={}) {
-    const label = CONFIG.DND5E.abilities[abilityId]?.label ?? "";
+    const label = CONFIG.ANAT.abilities[abilityId]?.label ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = [];
@@ -1510,7 +1510,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilitySave(abilityId, options={}) {
-    const label = CONFIG.DND5E.abilities[abilityId]?.label ?? "";
+    const label = CONFIG.ANAT.abilities[abilityId]?.label ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = [];
@@ -1725,7 +1725,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Obtain required data
     const init = this.system.attributes?.init;
-    const abilityId = init?.ability || CONFIG.DND5E.defaultAbilities.initiative;
+    const abilityId = init?.ability || CONFIG.ANAT.defaultAbilities.initiative;
     const data = this.getRollData();
     const flags = this.flags.dnd5e || {};
     if ( flags.initiativeAdv ) options.advantageMode ??= dnd5e.dice.D20Roll.ADV_MODE.ADVANTAGE;
@@ -2423,7 +2423,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       }
 
       // Items that roll to gain charges on a new day
-      if ( recoverDailyUses && uses?.recovery && (uses?.per in CONFIG.DND5E.limitedUseFormulaPeriods) ) {
+      if ( recoverDailyUses && uses?.recovery && (uses?.per in CONFIG.ANAT.limitedUseFormulaPeriods) ) {
         const roll = new Roll(uses.recovery, item.getRollData());
         if ( recoverLongRestUses && (game.settings.get("dnd5e", "restVariant") === "gritty") ) {
           roll.alter(7, 0, {multiplyNumeric: true});
@@ -2485,8 +2485,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _prepareMovementAttribution() {
     const { movement } = this.system.attributes;
-    const units = movement.units || Object.keys(CONFIG.DND5E.movementUnits)[0];
-    return Object.entries(CONFIG.DND5E.movementTypes).reduce((html, [k, label]) => {
+    const units = movement.units || Object.keys(CONFIG.ANAT.movementUnits)[0];
+    return Object.entries(CONFIG.ANAT.movementTypes).reduce((html, [k, label]) => {
       const value = movement[k];
       if ( value ) html += `
         <div class="row">
@@ -2511,7 +2511,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   async _prepareArmorClassAttribution({ title }={}) {
     const rollData = this.getRollData({ deterministic: true });
     const ac = rollData.attributes.ac;
-    const cfg = CONFIG.DND5E.armorClasses[ac.calc];
+    const cfg = CONFIG.ANAT.armorClasses[ac.calc];
     const attribution = [];
 
     if ( ac.calc === "flat" ) {
@@ -2615,7 +2615,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
   /**
    * Convert all carried currency to the highest possible denomination using configured conversion rates.
-   * See CONFIG.DND5E.currencies for configuration.
+   * See CONFIG.ANAT.currencies for configuration.
    * @returns {Promise<Actor5e>}
    * @deprecated since DnD5e 3.0, targeted for removal in DnD5e 3.2.
    */
@@ -2740,7 +2740,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       for ( let k of Object.keys(abilities) ) {
         const oa = o.system.abilities[k];
         const prof = abilities[k].proficient;
-        const type = CONFIG.DND5E.abilities[k]?.type;
+        const type = CONFIG.ANAT.abilities[k]?.type;
         if ( keepPhysical && (type === "physical") ) abilities[k] = oa;
         else if ( keepMental && (type === "mental") ) abilities[k] = oa;
 
@@ -3056,14 +3056,14 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let localizedType;
     if ( typeData.value === "custom" ) {
       localizedType = typeData.custom;
-    } else if ( typeData.value in CONFIG.DND5E.creatureTypes ) {
-      const code = CONFIG.DND5E.creatureTypes[typeData.value];
+    } else if ( typeData.value in CONFIG.ANAT.creatureTypes ) {
+      const code = CONFIG.ANAT.creatureTypes[typeData.value];
       localizedType = game.i18n.localize(typeData.swarm ? code.plural : code.label);
     }
     let type = localizedType;
     if ( typeData.swarm ) {
       type = game.i18n.format("DND5E.CreatureSwarmPhrase", {
-        size: game.i18n.localize(CONFIG.DND5E.actorSizes[typeData.swarm].label),
+        size: game.i18n.localize(CONFIG.ANAT.actorSizes[typeData.swarm].label),
         type: localizedType
       });
     }
@@ -3132,7 +3132,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
           anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
           // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
           fontSize: 16 + (32 * pct), // Range between [16, 48]
-          fill: CONFIG.DND5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
+          fill: CONFIG.ANAT.tokenHPColors[dhp < 0 ? "damage" : "healing"],
           stroke: 0x000000,
           strokeThickness: 4,
           jitter: 0.25
@@ -3185,7 +3185,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const effect = this.effects.get(ActiveEffect5e.ID.ENCUMBERED);
     if ( !statuses.length ) return effect?.delete();
 
-    const effectData = { ...CONFIG.DND5E.encumbrance.effects[statuses[0]], statuses };
+    const effectData = { ...CONFIG.ANAT.encumbrance.effects[statuses[0]], statuses };
     if ( effect ) {
       const originalEncumbrance = effect.statuses.first();
       return effect.update(effectData, { dnd5e: { originalEncumbrance } });

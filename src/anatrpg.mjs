@@ -9,7 +9,7 @@
  */
 
 // Import Configuration
-import DND5E from "./module/config.mjs";
+import ANAT from "./module/config.mjs";
 import registerSystemSettings from "./module/settings.mjs";
 
 // Import Submodules
@@ -31,7 +31,7 @@ import Tooltips5e from "./module/tooltips.mjs";
 globalThis.dnd5e = {
   applications,
   canvas,
-  config: DND5E,
+  config: ANAT,
   dataModels,
   dice,
   documents,
@@ -46,13 +46,13 @@ globalThis.dnd5e = {
 
 Hooks.once("init", function() {
   globalThis.dnd5e = game.dnd5e = Object.assign(game.system, globalThis.dnd5e);
-  console.log(`D&D 5e | Initializing the D&D Fifth Game System - Version ${dnd5e.version}\n${DND5E.ASCII}`);
+  console.log(`D&D 5e | Initializing the D&D Fifth Game System - Version ${dnd5e.version}\n${ANAT.ASCII}`);
 
   // TODO: Remove when v11 support is dropped.
   CONFIG.compatibility.excludePatterns.push(/Math\.clamped/);
 
   // Record Configuration Values
-  CONFIG.DND5E = DND5E;
+  CONFIG.ANAT = ANAT;
   CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
   CONFIG.ActiveEffect.legacyTransferral = false;
   CONFIG.Actor.documentClass = documents.Actor5e;
@@ -86,8 +86,8 @@ Hooks.once("init", function() {
   _configureStatusEffects();
 
   // Remove honor & sanity from configuration if they aren't enabled
-  if ( !game.settings.get("dnd5e", "honorScore") ) delete DND5E.abilities.hon;
-  if ( !game.settings.get("dnd5e", "sanityScore") ) delete DND5E.abilities.san;
+  if ( !game.settings.get("dnd5e", "honorScore") ) delete ANAT.abilities.hon;
+  if ( !game.settings.get("dnd5e", "sanityScore") ) delete ANAT.abilities.san;
 
   // Configure trackable & consumable attributes.
   _configureTrackableAttributes();
@@ -191,8 +191,8 @@ function _configureTrackableAttributes() {
   const common = {
     bar: [],
     value: [
-      ...Object.keys(DND5E.abilities).map(ability => `abilities.${ability}.value`),
-      ...Object.keys(DND5E.movementTypes).map(movement => `attributes.movement.${movement}`),
+      ...Object.keys(ANAT.abilities).map(ability => `abilities.${ability}.value`),
+      ...Object.keys(ANAT.movementTypes).map(movement => `attributes.movement.${movement}`),
       "attributes.ac.value", "attributes.init.total"
     ]
   };
@@ -202,12 +202,12 @@ function _configureTrackableAttributes() {
       ...common.bar,
       "attributes.hp",
       "spells.pact",
-      ...Array.fromRange(Object.keys(DND5E.spellLevels).length - 1, 1).map(l => `spells.spell${l}`)
+      ...Array.fromRange(Object.keys(ANAT.spellLevels).length - 1, 1).map(l => `spells.spell${l}`)
     ],
     value: [
       ...common.value,
-      ...Object.keys(DND5E.skills).map(skill => `skills.${skill}.passive`),
-      ...Object.keys(DND5E.senses).map(sense => `attributes.senses.${sense}`),
+      ...Object.keys(ANAT.skills).map(skill => `skills.${skill}.passive`),
+      ...Object.keys(ANAT.senses).map(sense => `attributes.senses.${sense}`),
       "attributes.spelldc"
     ]
   };
@@ -239,18 +239,18 @@ function _configureTrackableAttributes() {
  * @internal
  */
 function _configureConsumableAttributes() {
-  CONFIG.DND5E.consumableResources = [
-    ...Object.keys(DND5E.abilities).map(ability => `abilities.${ability}.value`),
+  CONFIG.ANAT.consumableResources = [
+    ...Object.keys(ANAT.abilities).map(ability => `abilities.${ability}.value`),
     "attributes.ac.flat",
     "attributes.hp.value",
-    ...Object.keys(DND5E.senses).map(sense => `attributes.senses.${sense}`),
-    ...Object.keys(DND5E.movementTypes).map(type => `attributes.movement.${type}`),
-    ...Object.keys(DND5E.currencies).map(denom => `currency.${denom}`),
+    ...Object.keys(ANAT.senses).map(sense => `attributes.senses.${sense}`),
+    ...Object.keys(ANAT.movementTypes).map(type => `attributes.movement.${type}`),
+    ...Object.keys(ANAT.currencies).map(denom => `currency.${denom}`),
     "details.xp.value",
     "resources.primary.value", "resources.secondary.value", "resources.tertiary.value",
     "resources.legact.value", "resources.legres.value",
     "spells.pact.value",
-    ...Array.fromRange(Object.keys(DND5E.spellLevels).length - 1, 1).map(level => `spells.spell${level}.value`)
+    ...Array.fromRange(Object.keys(ANAT.spellLevels).length - 1, 1).map(level => `spells.spell${level}.value`)
   ];
 }
 
@@ -302,12 +302,12 @@ function _configureStatusEffects() {
     effects.push(data);
     if ( "special" in data ) CONFIG.specialStatusEffects[data.special] = data.id;
   };
-  CONFIG.statusEffects = Object.entries(CONFIG.DND5E.statusEffects).reduce((arr, [id, data]) => {
+  CONFIG.statusEffects = Object.entries(CONFIG.ANAT.statusEffects).reduce((arr, [id, data]) => {
     const original = CONFIG.statusEffects.find(s => s.id === id);
     addEffect(arr, foundry.utils.mergeObject(original ?? {}, { id, ...data }, { inplace: false }));
     return arr;
   }, []);
-  for ( const [id, {label: name, ...data}] of Object.entries(CONFIG.DND5E.conditionTypes) ) {
+  for ( const [id, {label: name, ...data}] of Object.entries(CONFIG.ANAT.conditionTypes) ) {
     addEffect(CONFIG.statusEffects, { id, name, ...data });
   }
 }
@@ -320,7 +320,7 @@ function _configureStatusEffects() {
  * Prepare attribute lists.
  */
 Hooks.once("setup", function() {
-  CONFIG.DND5E.trackableAttributes = expandAttributeList(CONFIG.DND5E.trackableAttributes);
+  CONFIG.ANAT.trackableAttributes = expandAttributeList(CONFIG.ANAT.trackableAttributes);
   game.dnd5e.moduleArt.registerModuleArt();
   Tooltips5e.activateListeners();
   game.dnd5e.tooltips.observe();
@@ -335,7 +335,7 @@ Hooks.once("setup", function() {
     .forEach(p => p.applicationClass = applications.item.ItemCompendium5e);
 
   // Configure token rings
-  CONFIG.DND5E.tokenRings.shaderClass ??= game.release.generation < 12
+  CONFIG.ANAT.tokenRings.shaderClass ??= game.release.generation < 12
     ? canvas.TokenRingSamplerShaderV11 : canvas.TokenRingSamplerShader;
   CONFIG.Token.ringClass.initialize();
 });
@@ -359,7 +359,7 @@ function expandAttributeList(attributes) {
 /**
  * Perform one-time pre-localization and sorting of some configuration objects
  */
-Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.DND5E));
+Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.ANAT));
 
 /* -------------------------------------------- */
 /*  Foundry VTT Ready                           */
@@ -500,5 +500,5 @@ export {
   enrichers,
   migrations,
   utils,
-  DND5E
+  ANAT
 };

@@ -31,14 +31,14 @@ export default class ActorSensesConfig extends BaseConfigSheet {
     const senses = foundry.utils.getProperty(source, this.options.keyPath) ?? {};
     const raceData = this.document.system.details?.race?.system?.senses ?? {};
     return foundry.utils.mergeObject(super.getData(options), {
-      senses: Object.entries(CONFIG.DND5E.senses).reduce((obj, [k, label]) => {
+      senses: Object.entries(CONFIG.ANAT.senses).reduce((obj, [k, label]) => {
         obj[k] = { label, value: senses[k], placeholder: raceData[k] ?? 0 };
         return obj;
       }, {}),
       special: senses.special ?? "",
-      units: senses.units, movementUnits: CONFIG.DND5E.movementUnits,
+      units: senses.units, movementUnits: CONFIG.ANAT.movementUnits,
       unitsPlaceholder: game.i18n.format("DND5E.AutomaticValue", {
-        value: CONFIG.DND5E.movementUnits[raceData.units ?? Object.keys(CONFIG.DND5E.movementUnits)[0]]?.toLowerCase()
+        value: CONFIG.ANAT.movementUnits[raceData.units ?? Object.keys(CONFIG.ANAT.movementUnits)[0]]?.toLowerCase()
       }),
       keyPath: this.options.keyPath
     });

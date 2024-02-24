@@ -306,7 +306,7 @@ export class ScaleValueTypeDistance extends ScaleValueTypeNumber {
 
   /** @inheritdoc */
   get display() {
-    return `${this.value} ${CONFIG.DND5E.movementUnits[this.parent.configuration.distance?.units ?? "ft"]}`;
+    return `${this.value} ${CONFIG.ANAT.movementUnits[this.parent.configuration.distance?.units ?? "ft"]}`;
   }
 }
 

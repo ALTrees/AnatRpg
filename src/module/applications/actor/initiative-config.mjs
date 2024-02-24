@@ -31,7 +31,7 @@ export default class ActorInitiativeConfig extends BaseConfigSheet {
     const flags = source.flags.dnd5e || {};
     return {
       ability: init.ability,
-      abilities: CONFIG.DND5E.abilities,
+      abilities: CONFIG.ANAT.abilities,
       bonus: init.bonus,
       initiativeAlert: flags.initiativeAlert,
       initiativeAdv: flags.initiativeAdv

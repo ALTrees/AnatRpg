@@ -69,7 +69,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
   prepareDerivedData() {
     super.prepareDerivedData();
     if ( !this.type.value ) return;
-    const config = CONFIG.DND5E.consumableTypes[this.type.value];
+    const config = CONFIG.ANAT.consumableTypes[this.type.value];
     if ( config ) {
       this.type.label = this.type.subtype ? config.subtypes[this.type.subtype] : config.label;
     } else {
@@ -128,10 +128,10 @@ export default class ConsumableData extends ItemDataModel.mixin(
   /** @inheritdoc */
   get validProperties() {
     const valid = super.validProperties;
-    if ( this.type.value === "ammo" ) Object.entries(CONFIG.DND5E.itemProperties).forEach(([k, v]) => {
+    if ( this.type.value === "ammo" ) Object.entries(CONFIG.ANAT.itemProperties).forEach(([k, v]) => {
       if ( v.isPhysical ) valid.add(k);
     });
-    else if ( this.type.value === "scroll" ) CONFIG.DND5E.validProperties.spell
+    else if ( this.type.value === "scroll" ) CONFIG.ANAT.validProperties.spell
       .filter(p => p !== "material").forEach(p => valid.add(p));
     return valid;
   }

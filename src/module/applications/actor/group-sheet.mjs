@@ -52,7 +52,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
     const context = super.getData(options);
     context.system = this.actor.system;
     context.items = Array.from(this.actor.items);
-    context.config = CONFIG.DND5E;
+    context.config = CONFIG.ANAT;
 
     // Membership
     const {sections, stats} = this.#prepareMembers();
@@ -90,7 +90,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
 
     // Text labels
     context.labels = {
-      currencies: Object.entries(CONFIG.DND5E.currencies).reduce((obj, [k, c]) => {
+      currencies: Object.entries(CONFIG.ANAT.currencies).reduce((obj, [k, c]) => {
         obj[k] = c.label;
         return obj;
       }, {})

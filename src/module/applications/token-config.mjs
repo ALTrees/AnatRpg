@@ -64,7 +64,7 @@ export default class TokenConfig5e extends TokenConfig {
     const flags = this.document.getFlag("dnd5e", "tokenRing") ?? {};
     ringTab.innerHTML = await renderTemplate(this.constructor.dynamicRingTemplate, {
       flags: foundry.utils.mergeObject({ scaleCorrection: 1 }, flags, { inplace: false }),
-      effects: Object.entries(CONFIG.DND5E.tokenRings.effects).reduce((obj, [key, label]) => {
+      effects: Object.entries(CONFIG.ANAT.tokenRings.effects).reduce((obj, [key, label]) => {
         const mask = CONFIG.Token.ringClass.effects[key];
         obj[key] = { label, checked: (flags.effects & mask) > 0 };
         return obj;
@@ -158,7 +158,7 @@ export default class TokenConfig5e extends TokenConfig {
   _getSubmitData(updateData={}) {
     const formData = super._getSubmitData(updateData);
 
-    formData["flags.dnd5e.tokenRing.effects"] = Object.keys(CONFIG.DND5E.tokenRings.effects).reduce((number, key) => {
+    formData["flags.dnd5e.tokenRing.effects"] = Object.keys(CONFIG.ANAT.tokenRings.effects).reduce((number, key) => {
       const checked = formData[`flags.dnd5e.tokenRing.effects.${key}`];
       delete formData[`flags.dnd5e.tokenRing.effects.${key}`];
       if ( checked ) number |= CONFIG.Token.ringClass.effects[key];

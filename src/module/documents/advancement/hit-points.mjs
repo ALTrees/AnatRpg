@@ -31,7 +31,7 @@ export default class HitPointsAdvancement extends Advancement {
 
   /** @inheritdoc */
   get levels() {
-    return Array.fromRange(CONFIG.DND5E.maxLevel + 1).slice(1);
+    return Array.fromRange(CONFIG.ANAT.maxLevel + 1).slice(1);
   }
 
   /* -------------------------------------------- */
@@ -143,7 +143,7 @@ export default class HitPointsAdvancement extends Advancement {
    * @returns {number}      Hit points adjusted with ability modifier and per-level bonuses.
    */
   #getApplicableValue(value) {
-    const abilityId = CONFIG.DND5E.defaultAbilities.hitPoints || "con";
+    const abilityId = CONFIG.ANAT.defaultAbilities.hitPoints || "con";
     value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
     value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
     return value;

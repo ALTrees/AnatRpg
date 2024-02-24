@@ -42,16 +42,16 @@ export default class ActorArmorConfig extends BaseConfigSheet {
     const isFlat = ["flat", "natural"].includes(ac.calc);
 
     // Get configuration data for the calculation mode, reset to flat if configuration is unavailable
-    let cfg = CONFIG.DND5E.armorClasses[ac.calc];
+    let cfg = CONFIG.ANAT.armorClasses[ac.calc];
     if ( !cfg ) {
       ac.calc = "flat";
-      cfg = CONFIG.DND5E.armorClasses.flat;
+      cfg = CONFIG.ANAT.armorClasses.flat;
       this.clone.updateSource({ "system.attributes.ac.calc": "flat" });
     }
 
     return {
       ac, isFlat,
-      calculations: CONFIG.DND5E.armorClasses,
+      calculations: CONFIG.ANAT.armorClasses,
       valueDisabled: !isFlat,
       formula: ac.calc === "custom" ? ac.formula : cfg.formula,
       formulaDisabled: ac.calc !== "custom"

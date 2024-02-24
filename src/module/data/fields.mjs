@@ -12,7 +12,7 @@ export class AdvancementField extends foundry.data.fields.ObjectField {
    * @returns {typeof BaseAdvancement|null}  The BaseAdvancement class, or null.
    */
   getModelForType(type) {
-    let config = CONFIG.DND5E.advancementTypes[type];
+    let config = CONFIG.ANAT.advancementTypes[type];
     if ( config.prototype instanceof Advancement ) {
       foundry.utils.logCompatibilityWarning(
         "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",

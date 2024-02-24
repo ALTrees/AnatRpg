@@ -321,7 +321,7 @@ export default class ChatMessage5e extends ChatMessage {
     roll.classList.add("dice-roll");
 
     const tooltipContents = Object.entries(breakdown).reduce((str, [type, { total, constant, dice }]) => {
-      const config = CONFIG.DND5E.damageTypes[type] ?? CONFIG.DND5E.healingTypes[type];
+      const config = CONFIG.ANAT.damageTypes[type] ?? CONFIG.ANAT.healingTypes[type];
       return `${str}
               <section class="tooltip-part">
                 <div class="dice">
@@ -364,7 +364,7 @@ export default class ChatMessage5e extends ChatMessage {
    * @protected
    */
   _aggregateDamageRoll(roll, breakdown) {
-    const isDamageType = t => (t in CONFIG.DND5E.damageTypes) || (t in CONFIG.DND5E.healingTypes);
+    const isDamageType = t => (t in CONFIG.ANAT.damageTypes) || (t in CONFIG.ANAT.healingTypes);
     for ( let i = roll.terms.length - 1; i >= 0; ) {
       const term = roll.terms[i--];
       if ( !(term instanceof NumericTerm) && !(term instanceof DiceTerm) ) continue;

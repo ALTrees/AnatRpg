@@ -54,7 +54,7 @@ export default class CreatureTemplate extends CommonTemplate {
           passive: new FormulaField({required: true, label: "DND5E.SkillBonusPassive"})
         }, {label: "DND5E.SkillBonuses"})
       }), {
-        initialKeys: CONFIG.DND5E.skills, initialValue: this._initialSkillValue,
+        initialKeys: CONFIG.ANAT.skills, initialValue: this._initialSkillValue,
         initialKeysOnly: true, label: "DND5E.Skills"
       }),
       tools: new MappingField(new foundry.data.fields.SchemaField({
@@ -87,7 +87,7 @@ export default class CreatureTemplate extends CommonTemplate {
    * @private
    */
   static _initialSkillValue(key, initial) {
-    if ( CONFIG.DND5E.skills[key]?.ability ) initial.ability = CONFIG.DND5E.skills[key].ability;
+    if ( CONFIG.ANAT.skills[key]?.ability ) initial.ability = CONFIG.ANAT.skills[key].ability;
     return initial;
   }
 
@@ -99,7 +99,7 @@ export default class CreatureTemplate extends CommonTemplate {
    * @private
    */
   static get _spellLevels() {
-    const levels = Object.keys(CONFIG.DND5E.spellLevels).filter(a => a !== "0").map(l => `spell${l}`);
+    const levels = Object.keys(CONFIG.ANAT.spellLevels).filter(a => a !== "0").map(l => `spell${l}`);
     return [...levels, "pact"];
   }
 
@@ -136,7 +136,7 @@ export default class CreatureTemplate extends CommonTemplate {
       const match = s.match(pattern);
       if ( !match ) continue;
       const type = match[1].toLowerCase();
-      if ( (type in CONFIG.DND5E.senses) && !(type in source.attributes.senses) ) {
+      if ( (type in CONFIG.ANAT.senses) && !(type in source.attributes.senses) ) {
         source.attributes.senses[type] = Number(match[2]).toNearest(0.5);
         wasMatched = true;
       }
@@ -157,7 +157,7 @@ export default class CreatureTemplate extends CommonTemplate {
     if ( !original || foundry.utils.isEmpty(original.value) ) return;
     source.tools ??= {};
     for ( const prof of original.value ) {
-      const validProf = (prof in CONFIG.DND5E.toolProficiencies) || (prof in CONFIG.DND5E.toolIds);
+      const validProf = (prof in CONFIG.ANAT.toolProficiencies) || (prof in CONFIG.ANAT.toolIds);
       if ( !validProf || (prof in source.tools) ) continue;
       source.tools[prof] = {
         value: 1,

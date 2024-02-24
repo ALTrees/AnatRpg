@@ -53,7 +53,7 @@ export default class ActorTypeConfig extends DocumentSheet {
     // Get current value or new default
     let attr = foundry.utils.getProperty(this.object, this.options.keyPath);
     if ( foundry.utils.getType(attr) !== "Object" ) attr = {
-      value: (attr in CONFIG.DND5E.creatureTypes) ? attr : "humanoid",
+      value: (attr in CONFIG.ANAT.creatureTypes) ? attr : "humanoid",
       subtype: "",
       swarm: "",
       custom: ""
@@ -61,7 +61,7 @@ export default class ActorTypeConfig extends DocumentSheet {
 
     // Populate choices
     const types = {};
-    for ( let [k, v] of Object.entries(CONFIG.DND5E.creatureTypes) ) {
+    for ( let [k, v] of Object.entries(CONFIG.ANAT.creatureTypes) ) {
       types[k] = {
         label: game.i18n.localize(v.label),
         chosen: attr.value === k
@@ -80,7 +80,7 @@ export default class ActorTypeConfig extends DocumentSheet {
       showSwarm: Object.hasOwn(attr, "swarm"),
       subtype: attr.subtype,
       swarm: attr.swarm,
-      sizes: Array.from(Object.entries(CONFIG.DND5E.actorSizes)).reverse().reduce((obj, [key, { label }]) => {
+      sizes: Array.from(Object.entries(CONFIG.ANAT.actorSizes)).reverse().reduce((obj, [key, { label }]) => {
         obj[key] = label;
         return obj;
       }, {}),

@@ -56,8 +56,8 @@ export default class Award extends DialogMixin(FormApplication) {
   getData(options={}) {
     const context = super.getData(options);
 
-    context.CONFIG = CONFIG.DND5E;
-    context.currency = Object.entries(CONFIG.DND5E.currencies).reduce((obj, [k, { label }]) => {
+    context.CONFIG = CONFIG.ANAT;
+    context.currency = Object.entries(CONFIG.ANAT.currencies).reduce((obj, [k, { label }]) => {
       obj[k] = { label, value: this.options.currency ? this.options.currency[k] : this.object?.system.currency[k] };
       return obj;
     }, {});
@@ -240,7 +240,7 @@ export default class Award extends DialogMixin(FormApplication) {
     for ( const [destination, result] of results ) {
       const entries = [];
       for ( const [key, amount] of Object.entries(result.currency ?? {}) ) {
-        const label = CONFIG.DND5E.currencies[key].label;
+        const label = CONFIG.ANAT.currencies[key].label;
         entries.push(`
           <span class="award-entry">
             ${formatNumber(amount)} <i class="currency ${key}" data-tooltip="${label}" aria-label="${label}"></i>
@@ -363,7 +363,7 @@ export default class Award extends DialogMixin(FormApplication) {
       label = label?.toLowerCase();
       try {
         new Roll(amount);
-        if ( label in CONFIG.DND5E.currencies ) currency[label] = amount;
+        if ( label in CONFIG.ANAT.currencies ) currency[label] = amount;
         else if ( label === "xp" ) xp = amount;
         else if ( part === "each" ) each = true;
         else if ( part === "party" ) party = true;

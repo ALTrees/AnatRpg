@@ -224,7 +224,7 @@ export default class D20Roll extends Roll {
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,
       defaultAbility,
-      abilities: CONFIG.DND5E.abilities
+      abilities: CONFIG.ANAT.abilities
     });
 
     let defaultButton = "normal";
@@ -289,7 +289,7 @@ export default class D20Roll extends Roll {
         }
         return t;
       });
-      this.options.flavor += ` (${CONFIG.DND5E.abilities[form.ability.value]?.label ?? ""})`;
+      this.options.flavor += ` (${CONFIG.ANAT.abilities[form.ability.value]?.label ?? ""})`;
     }
 
     // Apply advantage or disadvantage

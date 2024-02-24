@@ -99,9 +99,9 @@ export default class AbilityUseDialog extends Dialog {
   static _createSpellSlotOptions(actor, level) {
     // Determine the levels which are feasible
     let lmax = 0;
-    const options = Array.fromRange(Object.keys(CONFIG.DND5E.spellLevels).length).reduce((arr, i) => {
+    const options = Array.fromRange(Object.keys(CONFIG.ANAT.spellLevels).length).reduce((arr, i) => {
       if ( i < level ) return arr;
-      const label = CONFIG.DND5E.spellLevels[i];
+      const label = CONFIG.ANAT.spellLevels[i];
       const l = actor.system.spells[`spell${i}`] || {max: 0, override: null};
       let max = parseInt(l.override || l.max || 0);
       let slots = Math.clamped(parseInt(l.value || 0), 0, max);
@@ -117,7 +117,7 @@ export default class AbilityUseDialog extends Dialog {
     }, []).filter(sl => sl.level <= lmax);
 
     // If this character has other kinds of slots, present them as well.
-    for ( const k of Object.keys(CONFIG.DND5E.spellcastingTypes) ) {
+    for ( const k of Object.keys(CONFIG.ANAT.spellcastingTypes) ) {
       const spellData = actor.system.spells[k];
       if ( !spellData ) continue;
       if ( spellData.level >= level ) {
@@ -145,7 +145,7 @@ export default class AbilityUseDialog extends Dialog {
   static _createResourceOptions(item) {
     const consume = item.system.consume || {};
     if ( (item.type !== "spell") || !consume.scale ) return null;
-    const spellLevels = Object.keys(CONFIG.DND5E.spellLevels).length - 1;
+    const spellLevels = Object.keys(CONFIG.ANAT.spellLevels).length - 1;
 
     const min = consume.amount || 1;
     const cap = spellLevels + min - item.system.level;
@@ -233,7 +233,7 @@ export default class AbilityUseDialog extends Dialog {
         value: uses.value,
         quantity: quantity,
         max: uses.max,
-        per: CONFIG.DND5E.limitedUsePeriods[uses.per]
+        per: CONFIG.ANAT.limitedUsePeriods[uses.per]
       });
     }
 
@@ -243,7 +243,7 @@ export default class AbilityUseDialog extends Dialog {
         type: game.i18n.localize(CONFIG.Item.typeLabels[item.type]),
         value: uses.value,
         max: uses.max,
-        per: CONFIG.DND5E.limitedUsePeriods[uses.per]
+        per: CONFIG.ANAT.limitedUsePeriods[uses.per]
       });
     }
   }
@@ -275,14 +275,14 @@ export default class AbilityUseDialog extends Dialog {
     } else if ( (scale === "slot") && !data.slotOptions.some(o => levels.includes(o.level) && o.hasSlots) ) {
       // Warn that the actor has no spell slots of this particular level with which to use this item.
       warnings.push(game.i18n.format("DND5E.SpellCastNoSlots", {
-        level: CONFIG.DND5E.spellLevels[level],
+        level: CONFIG.ANAT.spellLevels[level],
         name: item.name
       }));
     } else if ( (scale === "resource") && foundry.utils.isEmpty(data.resourceOptions) ) {
       // Warn that the resource does not have enough left.
       warnings.push(game.i18n.format("DND5E.ConsumeWarningNoQuantity", {
         name: item.name,
-        type: CONFIG.DND5E.abilityConsumptionTypes[consume.type]
+        type: CONFIG.ANAT.abilityConsumptionTypes[consume.type]
       }));
     }
 
@@ -291,7 +291,7 @@ export default class AbilityUseDialog extends Dialog {
       const isItem = ["ammo", "material", "charges"].includes(consume.type);
       if ( isItem && !item.actor.items.get(consume.target) ) {
         warnings.push(game.i18n.format("DND5E.ConsumeWarningNoSource", {
-          name: item.name, type: CONFIG.DND5E.abilityConsumptionTypes[consume.type]
+          name: item.name, type: CONFIG.ANAT.abilityConsumptionTypes[consume.type]
         }));
       }
     }

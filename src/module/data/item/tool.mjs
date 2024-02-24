@@ -68,7 +68,7 @@ export default class ToolData extends ItemDataModel.mixin(
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.type.label = CONFIG.DND5E.toolTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.tool);
+    this.type.label = CONFIG.ANAT.toolTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.tool);
   }
 
   /* -------------------------------------------- */
@@ -90,7 +90,7 @@ export default class ToolData extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
-    return [CONFIG.DND5E.abilities[this.ability]?.label];
+    return [CONFIG.ANAT.abilities[this.ability]?.label];
   }
 
   /* -------------------------------------------- */
@@ -100,7 +100,7 @@ export default class ToolData extends ItemDataModel.mixin(
    * @type {string[]}
    */
   get cardProperties() {
-    return [CONFIG.DND5E.abilities[this.ability]?.label];
+    return [CONFIG.ANAT.abilities[this.ability]?.label];
   }
 
   /* -------------------------------------------- */

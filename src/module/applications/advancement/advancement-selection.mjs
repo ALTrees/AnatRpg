@@ -44,7 +44,7 @@ export default class AdvancementSelection extends Dialog {
   /** @inheritDoc */
   getData() {
     const context = { types: {} };
-    for ( let [name, config] of Object.entries(CONFIG.DND5E.advancementTypes) ) {
+    for ( let [name, config] of Object.entries(CONFIG.ANAT.advancementTypes) ) {
       if ( config.prototype instanceof Advancement ) {
         foundry.utils.logCompatibilityWarning(
           "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",

@@ -49,7 +49,7 @@ export default class ProficiencyConfig extends BaseConfigSheet {
 
   /** @inheritdoc */
   get title() {
-    const label = this.isSkill ? CONFIG.DND5E.skills[this.options.key].label
+    const label = this.isSkill ? CONFIG.ANAT.skills[this.options.key].label
       : Trait.keyLabel(this.options.key, { trait: "tool" });
     return `${game.i18n.format("DND5E.ProficiencyConfigureTitle", {label})}: ${this.document.name}`;
   }
@@ -66,8 +66,8 @@ export default class ProficiencyConfig extends BaseConfigSheet {
   /** @inheritdoc */
   getData(options={}) {
     return {
-      abilities: CONFIG.DND5E.abilities,
-      proficiencyLevels: CONFIG.DND5E.proficiencyLevels,
+      abilities: CONFIG.ANAT.abilities,
+      proficiencyLevels: CONFIG.ANAT.proficiencyLevels,
       entry: this.document.system[this.options.property]?.[this.options.key],
       isTool: this.isTool,
       isSkill: this.isSkill,

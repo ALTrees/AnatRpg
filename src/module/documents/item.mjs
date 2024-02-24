@@ -336,7 +336,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   get usageScaling() {
     const { level, preparation, consume } = this.system;
     const isLeveled = (this.type === "spell") && (level > 0);
-    if ( isLeveled && CONFIG.DND5E.spellPreparationModes[preparation.mode]?.upcast ) return "slot";
+    if ( isLeveled && CONFIG.ANAT.spellPreparationModes[preparation.mode]?.upcast ) return "slot";
     else if ( isLeveled && this.hasResource && consume.scale ) return "resource";
     return null;
   }
@@ -347,7 +347,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * Spellcasting details for a class or subclass.
    *
    * @typedef {object} SpellcastingDescription
-   * @property {string} type              Spellcasting type as defined in ``CONFIG.DND5E.spellcastingTypes`.
+   * @property {string} type              Spellcasting type as defined in ``CONFIG.ANAT.spellcastingTypes`.
    * @property {string|null} progression  Progression within the specified spellcasting type if supported.
    * @property {string} ability           Ability used when casting spells from this class or subclass.
    * @property {number|null} levels       Number of levels of this class or subclass's class if embedded.
@@ -372,8 +372,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     finalSC.levels = this.isEmbedded ? (this.system.levels ?? this.class?.system.levels) : null;
 
     // Temp method for determining spellcasting type until this data is available directly using advancement
-    if ( CONFIG.DND5E.spellcastingTypes[finalSC.progression] ) finalSC.type = finalSC.progression;
-    else finalSC.type = Object.entries(CONFIG.DND5E.spellcastingTypes).find(([type, data]) => {
+    if ( CONFIG.ANAT.spellcastingTypes[finalSC.progression] ) finalSC.type = finalSC.progression;
+    else finalSC.type = Object.entries(CONFIG.ANAT.spellcastingTypes).find(([type, data]) => {
       return !!data.progression?.[finalSC.progression];
     })?.[0];
 
@@ -390,7 +390,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const requireEquipped = (this.type !== "consumable")
       || ["rod", "trinket", "wand"].includes(this.system.type.value);
     if ( requireEquipped && (this.system.equipped === false) ) return true;
-    return this.system.attunement === CONFIG.DND5E.attunementTypes.REQUIRED;
+    return this.system.attunement === CONFIG.ANAT.attunementTypes.REQUIRED;
   }
 
   /* -------------------------------------------- */
@@ -412,8 +412,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     if ( this.system.properties ) {
       this.labels.properties = Array.from(this.system.properties).map(prop => ({
         abbr: prop,
-        label: CONFIG.DND5E.itemProperties[prop]?.label,
-        icon: CONFIG.DND5E.itemProperties[prop]?.icon
+        label: CONFIG.ANAT.itemProperties[prop]?.label,
+        icon: CONFIG.ANAT.itemProperties[prop]?.icon
       }));
     }
 
@@ -473,12 +473,12 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    */
   _prepareSpell() {
     const attributes = this.system?.validProperties.reduce((obj, k) => {
-      obj[k] = CONFIG.DND5E.itemProperties[k];
+      obj[k] = CONFIG.ANAT.itemProperties[k];
       return obj;
     }, {});
     this.system.preparation.mode ||= "prepared";
-    this.labels.level = CONFIG.DND5E.spellLevels[this.system.level];
-    this.labels.school = CONFIG.DND5E.spellSchools[this.system.school]?.label;
+    this.labels.level = CONFIG.ANAT.spellLevels[this.system.level];
+    this.labels.school = CONFIG.ANAT.spellSchools[this.system.school]?.label;
     this.labels.components = this.system.properties.reduce((obj, c) => {
       const config = attributes[c];
       if ( !config ) return obj;
@@ -511,7 +511,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    */
   _prepareActivation() {
     if ( !("activation" in this.system) ) return;
-    const C = CONFIG.DND5E;
+    const C = CONFIG.ANAT;
 
     // Ability Activation Label
     const act = this.system.activation ?? {};
@@ -566,7 +566,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     if ( !("actionType" in this.system) ) return;
     let dmg = this.system.damage || {};
     if ( dmg.parts ) {
-      const types = CONFIG.DND5E.damageTypes;
+      const types = CONFIG.ANAT.damageTypes;
       this.labels.damage = dmg.parts.map(d => d[0]).join(" + ").replace(/\+ -/g, "- ");
       this.labels.damageTypes = dmg.parts.map(d => types[d[1]]?.label).join(", ");
     }
@@ -580,7 +580,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    */
   _prepareRecovery() {
     const { per } = this.system.uses ?? {};
-    this.labels.recovery = CONFIG.DND5E.limitedUsePeriods[per];
+    this.labels.recovery = CONFIG.ANAT.limitedUsePeriods[per];
     if ( per === "lr" ) this.labels.recovery = game.i18n.localize("DND5E.AbbreviationLR");
     else if ( per === "sr" ) this.labels.recovery = game.i18n.localize("DND5E.AbbreviationSR");
   }
@@ -596,7 +596,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     this.advancement = {
       byId: {},
       byLevel: Object.fromEntries(
-        Array.fromRange(CONFIG.DND5E.maxLevel + 1, minAdvancementLevel).map(l => [l, []])
+        Array.fromRange(CONFIG.ANAT.maxLevel + 1, minAdvancementLevel).map(l => [l, []])
       ),
       byType: {},
       needingConfiguration: []
@@ -648,7 +648,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     // Action usage
     if ( "actionType" in this.system ) {
       this.labels.abilityCheck = game.i18n.format("DND5E.AbilityPromptTitle", {
-        ability: CONFIG.DND5E.abilities[this.system.ability]?.label ?? ""
+        ability: CONFIG.ANAT.abilities[this.system.ability]?.label ?? ""
       });
 
       // Saving throws
@@ -678,7 +678,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   getDerivedDamageLabel() {
     if ( !this.hasDamage || !this.isOwned ) return [];
     const rollData = this.getRollData();
-    const damageLabels = { ...CONFIG.DND5E.damageTypes, ...CONFIG.DND5E.healingTypes };
+    const damageLabels = { ...CONFIG.ANAT.damageTypes, ...CONFIG.ANAT.healingTypes };
     const derivedDamage = this.system.damage?.parts?.map(damagePart => {
       let formula;
       try {
@@ -716,7 +716,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     }
 
     // Update labels
-    const abl = CONFIG.DND5E.abilities[save.ability]?.label ?? "";
+    const abl = CONFIG.ANAT.abilities[save.ability]?.label ?? "";
     this.labels.save = game.i18n.format("DND5E.SaveDC", {dc: save.dc || "", ability: abl});
     return save.dc;
   }
@@ -816,7 +816,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     let value = duration?.value;
 
     if ( !value ) {
-      if ( duration?.units ) this.labels.duration = CONFIG.DND5E.timePeriods[duration.units];
+      if ( duration?.units ) this.labels.duration = CONFIG.ANAT.timePeriods[duration.units];
       return;
     }
 
@@ -837,7 +837,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Now that duration value is a number, set the label
     if ( ["inst", "perm"].includes(duration.units) ) duration.value = null;
-    this.labels.duration = [duration.value, CONFIG.DND5E.timePeriods[duration.units]].filterJoin(" ");
+    this.labels.duration = [duration.value, CONFIG.ANAT.timePeriods[duration.units]].filterJoin(" ");
   }
 
   /* -------------------------------------------- */
@@ -1183,7 +1183,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     if ( !consume.type ) return;
 
     // No consumed target
-    const typeLabel = CONFIG.DND5E.abilityConsumptionTypes[consume.type];
+    const typeLabel = CONFIG.ANAT.abilityConsumptionTypes[consume.type];
     if ( !consume.target ) {
       ui.notifications.warn(game.i18n.format("DND5E.ConsumeWarningNoResource", {name: this.name, type: typeLabel}));
       return false;
@@ -1297,7 +1297,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const templateData = {
       hasButtons,
       actor: this.actor,
-      config: CONFIG.DND5E,
+      config: CONFIG.ANAT,
       tokenId: token?.uuid || null,
       item: this,
       effects: this.effects,
@@ -1430,7 +1430,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Flags
     const elvenAccuracy = (flags.elvenAccuracy
-      && CONFIG.DND5E.characterFlags.elvenAccuracy.abilities.includes(this.abilityMod)) || undefined;
+      && CONFIG.ANAT.characterFlags.elvenAccuracy.abilities.includes(this.abilityMod)) || undefined;
 
     // Compose roll options
     const rollConfig = foundry.utils.mergeObject({
@@ -1531,7 +1531,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Get roll data
     const dmg = this.system.damage;
-    const properties = Array.from(this.system.properties).filter(p => CONFIG.DND5E.itemProperties[p]?.isPhysical);
+    const properties = Array.from(this.system.properties).filter(p => CONFIG.ANAT.itemProperties[p]?.isPhysical);
     const rollConfigs = dmg.parts.map(([formula, type]) => ({ parts: [formula], type, properties }));
     const rollData = this.getRollData();
     if ( spellLevel ) rollData.item.level = spellLevel;
@@ -2083,8 +2083,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   createAdvancement(type, data={}, { showConfig=true, source=false }={}) {
     if ( !this.system.advancement ) return this;
 
-    let config = CONFIG.DND5E.advancementTypes[type];
-    if ( !config ) throw new Error(`${type} not found in CONFIG.DND5E.advancementTypes`);
+    let config = CONFIG.ANAT.advancementTypes[type];
+    if ( !config ) throw new Error(`${type} not found in CONFIG.ANAT.advancementTypes`);
     if ( config.prototype instanceof Advancement ) {
       foundry.utils.logCompatibilityWarning(
         "Advancement type configuration changed into an object with `documentClass` defining the advancement class.",
@@ -2264,17 +2264,17 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     }
 
     // Check to make sure the updated class level doesn't exceed level cap
-    if ( changed.system.levels > CONFIG.DND5E.maxLevel ) {
-      ui.notifications.warn(game.i18n.format("DND5E.MaxClassLevelExceededWarn", {max: CONFIG.DND5E.maxLevel}));
-      changed.system.levels = CONFIG.DND5E.maxLevel;
+    if ( changed.system.levels > CONFIG.ANAT.maxLevel ) {
+      ui.notifications.warn(game.i18n.format("DND5E.MaxClassLevelExceededWarn", {max: CONFIG.ANAT.maxLevel}));
+      changed.system.levels = CONFIG.ANAT.maxLevel;
     }
     if ( !this.isEmbedded || (this.parent.type !== "character") ) return;
 
     // Check to ensure the updated character doesn't exceed level cap
     const newCharacterLevel = this.actor.system.details.level + (changed.system.levels - this.system.levels);
-    if ( newCharacterLevel > CONFIG.DND5E.maxLevel ) {
-      ui.notifications.warn(game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", {max: CONFIG.DND5E.maxLevel}));
-      changed.system.levels -= newCharacterLevel - CONFIG.DND5E.maxLevel;
+    if ( newCharacterLevel > CONFIG.ANAT.maxLevel ) {
+      ui.notifications.warn(game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", {max: CONFIG.ANAT.maxLevel}));
+      changed.system.levels -= newCharacterLevel - CONFIG.ANAT.maxLevel;
     }
   }
 
@@ -2481,9 +2481,9 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Get scroll data
     let scrollUuid;
-    const id = CONFIG.DND5E.spellScrollIds[level];
+    const id = CONFIG.ANAT.spellScrollIds[level];
     if ( foundry.data.validators.isValidId(id) ) {
-      scrollUuid = game.packs.get(CONFIG.DND5E.sourcePacks.ITEMS).index.get(id).uuid;
+      scrollUuid = game.packs.get(CONFIG.ANAT.sourcePacks.ITEMS).index.get(id).uuid;
     } else {
       scrollUuid = id;
     }
@@ -2622,7 +2622,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   static getDefaultArtwork(itemData={}) {
     const { type } = itemData;
     const { img } = super.getDefaultArtwork(itemData);
-    return { img: CONFIG.DND5E.defaultArtwork.Item[type] ?? img };
+    return { img: CONFIG.ANAT.defaultArtwork.Item[type] ?? img };
   }
 
   /* -------------------------------------------- */

@@ -83,13 +83,13 @@ export default class TraitConfig extends AdvancementConfig {
     context.count = context.choices[this.selected]?.data.count;
     context.selectedIndex = this.selected;
 
-    context.validTraitTypes = Object.entries(CONFIG.DND5E.traits).reduce((obj, [key, config]) => {
+    context.validTraitTypes = Object.entries(CONFIG.ANAT.traits).reduce((obj, [key, config]) => {
       if ( (this.config.mode === "default") || config.expertise ) obj[key] = config.labels.title;
       return obj;
     }, {});
 
     const rep = this.advancement.representedTraits();
-    const traitConfig = rep.size === 1 ? CONFIG.DND5E.traits[rep.first()] : null;
+    const traitConfig = rep.size === 1 ? CONFIG.ANAT.traits[rep.first()] : null;
     if ( traitConfig ) {
       context.default.title = traitConfig.labels.title;
       context.default.icon = traitConfig.icon;
@@ -100,7 +100,7 @@ export default class TraitConfig extends AdvancementConfig {
     context.default.hint = Trait.localizedList({ grants: this.config.grants, choices: this.config.choices });
 
     context.choiceOptions = await Trait.choices(this.trait, { chosen, prefixed: true, any: this.selected !== -1 });
-    context.selectedTraitHeader = `${CONFIG.DND5E.traits[this.trait].labels.localization}.other`;
+    context.selectedTraitHeader = `${CONFIG.ANAT.traits[this.trait].labels.localization}.other`;
     context.selectedTrait = this.trait;
 
     return context;
@@ -175,7 +175,7 @@ export default class TraitConfig extends AdvancementConfig {
     if ( (event.target.name === "configuration.mode")
       && (event.target.value !== "default")
       && (this.config.mode === "default") ) {
-      const validTraitTypes = filteredKeys(CONFIG.DND5E.traits, c => c.expertise);
+      const validTraitTypes = filteredKeys(CONFIG.ANAT.traits, c => c.expertise);
       if ( !validTraitTypes.includes(this.trait) ) this.trait = validTraitTypes[0];
     }
 
@@ -222,7 +222,7 @@ export default class TraitConfig extends AdvancementConfig {
 
     // If one of the expertise modes is selected, filter out any traits that are not of a valid type
     if ( (configuration.mode ?? this.config.mode) !== "default" ) {
-      const validTraitTypes = filteredKeys(CONFIG.DND5E.traits, c => c.expertise);
+      const validTraitTypes = filteredKeys(CONFIG.ANAT.traits, c => c.expertise);
       configuration.grants = configuration.grants.filter(k => validTraitTypes.some(t => k.startsWith(t)));
       configuration.choices.forEach(c => c.pool = c.pool?.filter(k => validTraitTypes.some(t => k.startsWith(t))));
     }

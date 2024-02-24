@@ -2,17 +2,20 @@ import * as advancement from "./documents/advancement/_module.mjs";
 import { preLocalize } from "./utils.mjs";
 
 // Namespace Configuration Values
-const DND5E = {};
+const ANAT = {};
 
 // ASCII Artwork
-DND5E.ASCII = `_______________________________
-______      ______ _____ _____
-|  _  \\___  |  _  \\  ___|  ___|
-| | | ( _ ) | | | |___ \\| |__
-| | | / _ \\/\\ | | |   \\ \\  __|
-| |/ / (_>  < |/ //\\__/ / |___
-|___/ \\___/\\/___/ \\____/\\____/
-_______________________________`;
+ANAT.ASCII = ` ▄▄▄       ███▄    █  ▄▄▄     ▄▄▄█████▓ ██▀███   ██▓███    ▄████ 
+▒████▄     ██ ▀█   █ ▒████▄   ▓  ██▒ ▓▒▓██ ▒ ██▒▓██░  ██▒ ██▒ ▀█▒
+▒██  ▀█▄  ▓██  ▀█ ██▒▒██  ▀█▄ ▒ ▓██░ ▒░▓██ ░▄█ ▒▓██░ ██▓▒▒██░▄▄▄░
+░██▄▄▄▄██ ▓██▒  ▐▌██▒░██▄▄▄▄██░ ▓██▓ ░ ▒██▀▀█▄  ▒██▄█▓▒ ▒░▓█  ██▓
+ ▓█   ▓██▒▒██░   ▓██░ ▓█   ▓██▒ ▒██▒ ░ ░██▓ ▒██▒▒██▒ ░  ░░▒▓███▀▒
+ ▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒   ▓▒█░ ▒ ░░   ░ ▒▓ ░▒▓░▒▓▒░ ░  ░ ░▒   ▒ 
+  ▒   ▒▒ ░░ ░░   ░ ▒░  ▒   ▒▒ ░   ░      ░▒ ░ ▒░░▒ ░       ░   ░ 
+  ░   ▒      ░   ░ ░   ░   ▒    ░        ░░   ░ ░░       ░ ░   ░ 
+      ░  ░         ░       ░  ░           ░                    ░ 
+                                                                 
+`;
 
 /**
  * Configuration data for abilities.
@@ -32,7 +35,7 @@ _______________________________`;
  * The set of Ability Scores used within the system.
  * @enum {AbilityConfiguration}
  */
-DND5E.abilities = {
+ANAT.abilities = {
   str: {
     label: "DND5E.AbilityStr",
     abbreviation: "DND5E.AbilityStrAbbr",
@@ -103,27 +106,27 @@ preLocalize("abilities", { keys: ["label", "abbreviation"] });
  * saving throws to maintain concentration.
  * @enum {string}
  */
-DND5E.defaultAbilities = {
+ANAT.defaultAbilities = {
   initiative: "dex",
   hitPoints: "con",
   concentration: "con"
 };
 
-Object.defineProperties(DND5E, {
+Object.defineProperties(ANAT, {
   hitPointsAbility: {
     get: function() {
       foundry.utils.logCompatibilityWarning(
         "DND5E.hitPointsAbility has been deprecated and is now accessible through DND5E.defaultAbilities.hitPoints.",
         { since: "DnD5e 3.1", until: "DnD5e 3.3" }
       );
-      return DND5E.defaultAbilities.hitPoints;
+      return ANAT.defaultAbilities.hitPoints;
     },
     set: function(value) {
       foundry.utils.logCompatibilityWarning(
         "DND5E.hitPointsAbility has been deprecated and is now accessible through DND5E.defaultAbilities.hitPoints.",
         { since: "DnD5e 3.1", until: "DnD5e 3.3" }
       );
-      DND5E.defaultAbilities.hitPoints = value;
+      ANAT.defaultAbilities.hitPoints = value;
     }
   },
   initiativeAbility: {
@@ -132,14 +135,14 @@ Object.defineProperties(DND5E, {
         "DND5E.initiativeAbility has been deprecated and is now accessible through DND5E.defaultAbilities.initiative.",
         { since: "DnD5e 3.1", until: "DnD5e 3.3" }
       );
-      return DND5E.defaultAbilities.initiative;
+      return ANAT.defaultAbilities.initiative;
     },
     set: function(value) {
       foundry.utils.logCompatibilityWarning(
         "DND5E.initiativeAbility has been deprecated and is now accessible through DND5E.defaultAbilities.initiative.",
         { since: "DnD5e 3.1", until: "DnD5e 3.3" }
       );
-      DND5E.defaultAbilities.initiative = value;
+      ANAT.defaultAbilities.initiative = value;
     }
   }
 });
@@ -160,7 +163,7 @@ Object.defineProperties(DND5E, {
  * The set of skill which can be trained with their default ability scores.
  * @enum {SkillConfiguration}
  */
-DND5E.skills = {
+ANAT.skills = {
   acr: {
     label: "DND5E.SkillAcr",
     ability: "dex",
@@ -296,7 +299,7 @@ preLocalize("skills", { key: "label", sort: true });
  * Character alignment options.
  * @enum {string}
  */
-DND5E.alignments = {
+ANAT.alignments = {
   lg: "DND5E.AlignmentLG",
   ng: "DND5E.AlignmentNG",
   cg: "DND5E.AlignmentCG",
@@ -315,7 +318,7 @@ preLocalize("alignments");
  * An enumeration of item attunement types.
  * @enum {number}
  */
-DND5E.attunementTypes = {
+ANAT.attunementTypes = {
   NONE: 0,
   REQUIRED: 1,
   ATTUNED: 2
@@ -325,7 +328,7 @@ DND5E.attunementTypes = {
  * An enumeration of item attunement states.
  * @type {{"0": string, "1": string, "2": string}}
  */
-DND5E.attunements = {
+ANAT.attunements = {
   0: "DND5E.AttunementNone",
   1: "DND5E.AttunementRequired",
   2: "DND5E.AttunementAttuned"
@@ -338,7 +341,7 @@ preLocalize("attunements");
  * General weapon categories.
  * @enum {string}
  */
-DND5E.weaponProficiencies = {
+ANAT.weaponProficiencies = {
   sim: "DND5E.WeaponSimpleProficiency",
   mar: "DND5E.WeaponMartialProficiency"
 };
@@ -349,7 +352,7 @@ preLocalize("weaponProficiencies");
  * is used to determine if character has proficiency when adding an item.
  * @enum {(boolean|string)}
  */
-DND5E.weaponProficienciesMap = {
+ANAT.weaponProficienciesMap = {
   simpleM: "sim",
   simpleR: "sim",
   martialM: "mar",
@@ -361,7 +364,7 @@ DND5E.weaponProficienciesMap = {
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
  */
-DND5E.weaponIds = {
+ANAT.weaponIds = {
   battleaxe: "I0WocDSuNpGJayPb",
   blowgun: "wNWK6yJMHG9ANqQV",
   club: "nfIRTECQIG81CvM4",
@@ -407,7 +410,7 @@ DND5E.weaponIds = {
  * The basic ammunition types.
  * @enum {string}
  */
-DND5E.ammoIds = {
+ANAT.ammoIds = {
   arrow: "3c7JXOzsv55gqJS5",
   blowgunNeedle: "gBQ8xqTA5f8wP5iu",
   crossbowBolt: "SItCnYBqhzqBoaWG",
@@ -421,7 +424,7 @@ DND5E.ammoIds = {
  *
  * @enum {string}
  */
-DND5E.toolTypes = {
+ANAT.toolTypes = {
   art: "DND5E.ToolArtisans",
   game: "DND5E.ToolGamingSet",
   music: "DND5E.ToolMusicalInstrument"
@@ -433,8 +436,8 @@ preLocalize("toolTypes", { sort: true });
  *
  * @enum {string}
  */
-DND5E.toolProficiencies = {
-  ...DND5E.toolTypes,
+ANAT.toolProficiencies = {
+  ...ANAT.toolTypes,
   vehicle: "DND5E.ToolVehicle"
 };
 preLocalize("toolProficiencies", { sort: true });
@@ -444,7 +447,7 @@ preLocalize("toolProficiencies", { sort: true });
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
  */
-DND5E.toolIds = {
+ANAT.toolIds = {
   alchemist: "SztwZhbhZeCqyAes",
   bagpipes: "yxHi57T5mmVt0oDr",
   brewer: "Y9S75go1hLMXUD48",
@@ -489,7 +492,7 @@ DND5E.toolIds = {
  * Time periods that accept a numeric value.
  * @enum {string}
  */
-DND5E.scalarTimePeriods = {
+ANAT.scalarTimePeriods = {
   turn: "DND5E.TimeTurn",
   round: "DND5E.TimeRound",
   minute: "DND5E.TimeMinute",
@@ -506,7 +509,7 @@ preLocalize("scalarTimePeriods");
  * Time periods for spells that don't have a defined ending.
  * @enum {string}
  */
-DND5E.permanentTimePeriods = {
+ANAT.permanentTimePeriods = {
   disp: "DND5E.TimeDisp",
   dstr: "DND5E.TimeDispTrig",
   perm: "DND5E.TimePerm"
@@ -519,7 +522,7 @@ preLocalize("permanentTimePeriods");
  * Time periods that don't accept a numeric value.
  * @enum {string}
  */
-DND5E.specialTimePeriods = {
+ANAT.specialTimePeriods = {
   inst: "DND5E.TimeInst",
   spec: "DND5E.Special"
 };
@@ -531,10 +534,10 @@ preLocalize("specialTimePeriods");
  * The various lengths of time over which effects can occur.
  * @enum {string}
  */
-DND5E.timePeriods = {
-  ...DND5E.specialTimePeriods,
-  ...DND5E.permanentTimePeriods,
-  ...DND5E.scalarTimePeriods
+ANAT.timePeriods = {
+  ...ANAT.specialTimePeriods,
+  ...ANAT.permanentTimePeriods,
+  ...ANAT.scalarTimePeriods
 };
 preLocalize("timePeriods");
 
@@ -544,23 +547,23 @@ preLocalize("timePeriods");
  * Ways in which to activate an item that cannot be labeled with a cost.
  * @enum {string}
  */
-DND5E.staticAbilityActivationTypes = {
+ANAT.staticAbilityActivationTypes = {
   none: "DND5E.NoneActionLabel",
-  special: DND5E.timePeriods.spec
+  special: ANAT.timePeriods.spec
 };
 
 /**
  * Various ways in which an item or ability can be activated.
  * @enum {string}
  */
-DND5E.abilityActivationTypes = {
-  ...DND5E.staticAbilityActivationTypes,
+ANAT.abilityActivationTypes = {
+  ...ANAT.staticAbilityActivationTypes,
   action: "DND5E.Action",
   bonus: "DND5E.BonusAction",
   reaction: "DND5E.Reaction",
-  minute: DND5E.timePeriods.minute,
-  hour: DND5E.timePeriods.hour,
-  day: DND5E.timePeriods.day,
+  minute: ANAT.timePeriods.minute,
+  hour: ANAT.timePeriods.hour,
+  day: ANAT.timePeriods.day,
   legendary: "DND5E.LegendaryActionLabel",
   mythic: "DND5E.MythicActionLabel",
   lair: "DND5E.LairActionLabel",
@@ -574,7 +577,7 @@ preLocalize("abilityActivationTypes");
  * Different things that an ability can consume upon use.
  * @enum {string}
  */
-DND5E.abilityConsumptionTypes = {
+ANAT.abilityConsumptionTypes = {
   ammo: "DND5E.ConsumeAmmunition",
   attribute: "DND5E.ConsumeAttribute",
   hitDice: "DND5E.ConsumeHitDice",
@@ -599,7 +602,7 @@ preLocalize("abilityConsumptionTypes", { sort: true });
  * Creature sizes ordered from smallest to largest.
  * @enum {ActorSizeConfiguration}
  */
-DND5E.actorSizes = {
+ANAT.actorSizes = {
   tiny: {
     label: "DND5E.SizeTiny",
     abbreviation: "DND5E.SizeTinyAbbr",
@@ -642,13 +645,13 @@ patchConfig("actorSizes", "label", { since: "DnD5e 3.0", until: "DnD5e 3.2" });
  * @enum {number}
  * @deprecated since DnD5e 3.0, available until DnD5e 3.2
  */
-Object.defineProperty(DND5E, "tokenSizes", {
+Object.defineProperty(ANAT, "tokenSizes", {
   get() {
     foundry.utils.logCompatibilityWarning(
       "DND5E.tokenSizes has been deprecated and is now accessible through the .token property on DND5E.actorSizes.",
       { since: "DnD5e 3.0", until: "DnD5e 3.2" }
     );
-    return Object.entries(DND5E.actorSizes).reduce((obj, [k, v]) => {
+    return Object.entries(ANAT.actorSizes).reduce((obj, [k, v]) => {
       obj[k] = v.token ?? 1;
       return obj;
     }, {});
@@ -663,7 +666,7 @@ Object.defineProperty(DND5E, "tokenSizes", {
  * Colors used to visualize temporary and temporary maximum HP in token health bars.
  * @enum {number}
  */
-DND5E.tokenHPColors = {
+ANAT.tokenHPColors = {
   damage: 0xFF0000,
   healing: 0x00FF00,
   temp: 0x66CCFF,
@@ -677,7 +680,7 @@ DND5E.tokenHPColors = {
  * Colors used when a dynamic token ring effects.
  * @enum {number}
  */
-DND5E.tokenRingColors = {
+ANAT.tokenRingColors = {
   damage: 0xFF0000,
   defeated: 0x000000,
   healing: 0x00FF00,
@@ -690,7 +693,7 @@ DND5E.tokenRingColors = {
  * Settings used to render map location markers on the canvas.
  * @type {object}
  */
-DND5E.mapLocationMarker = {
+ANAT.mapLocationMarker = {
   default: {
     backgroundColor: 0xFBF8F5,
     borderColor: 0x000000,
@@ -716,7 +719,7 @@ DND5E.mapLocationMarker = {
  * Default types of creatures.
  * @enum {CreatureTypeConfiguration}
  */
-DND5E.creatureTypes = {
+ANAT.creatureTypes = {
   aberration: {
     label: "DND5E.CreatureAberration",
     plural: "DND5E.CreatureAberrationPl",
@@ -817,7 +820,7 @@ patchConfig("creatureTypes", "label", { since: "DnD5e 3.0", until: "DnD5e 3.2" }
  * Classification types for item action types.
  * @enum {string}
  */
-DND5E.itemActionTypes = {
+ANAT.itemActionTypes = {
   mwak: "DND5E.ActionMWAK",
   rwak: "DND5E.ActionRWAK",
   msak: "DND5E.ActionMSAK",
@@ -836,7 +839,7 @@ preLocalize("itemActionTypes");
  * Different ways in which item capacity can be limited.
  * @enum {string}
  */
-DND5E.itemCapacityTypes = {
+ANAT.itemCapacityTypes = {
   items: "DND5E.ItemContainerCapacityItems",
   weight: "DND5E.ItemContainerCapacityWeight"
 };
@@ -848,7 +851,7 @@ preLocalize("itemCapacityTypes", { sort: true });
  * List of various item rarities.
  * @enum {string}
  */
-DND5E.itemRarity = {
+ANAT.itemRarity = {
   common: "DND5E.ItemRarityCommon",
   uncommon: "DND5E.ItemRarityUncommon",
   rare: "DND5E.ItemRarityRare",
@@ -864,7 +867,7 @@ preLocalize("itemRarity");
  * The limited use periods that support a recovery formula.
  * @enum {string}
  */
-DND5E.limitedUseFormulaPeriods = {
+ANAT.limitedUseFormulaPeriods = {
   charges: "DND5E.Charges",
   dawn: "DND5E.Dawn",
   dusk: "DND5E.Dusk"
@@ -876,11 +879,11 @@ DND5E.limitedUseFormulaPeriods = {
  * Enumerate the lengths of time over which an item can have limited use ability.
  * @enum {string}
  */
-DND5E.limitedUsePeriods = {
+ANAT.limitedUsePeriods = {
   sr: "DND5E.ShortRest",
   lr: "DND5E.LongRest",
   day: "DND5E.Day",
-  ...DND5E.limitedUseFormulaPeriods
+  ...ANAT.limitedUseFormulaPeriods
 };
 preLocalize("limitedUsePeriods");
 
@@ -890,7 +893,7 @@ preLocalize("limitedUsePeriods");
  * Specific equipment types that modify base AC.
  * @enum {string}
  */
-DND5E.armorTypes = {
+ANAT.armorTypes = {
   light: "DND5E.EquipmentLight",
   medium: "DND5E.EquipmentMedium",
   heavy: "DND5E.EquipmentHeavy",
@@ -905,7 +908,7 @@ preLocalize("armorTypes");
  * Equipment types that aren't armor.
  * @enum {string}
  */
-DND5E.miscEquipmentTypes = {
+ANAT.miscEquipmentTypes = {
   clothing: "DND5E.EquipmentClothing",
   trinket: "DND5E.EquipmentTrinket",
   vehicle: "DND5E.EquipmentVehicle"
@@ -918,9 +921,9 @@ preLocalize("miscEquipmentTypes", { sort: true });
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character.
  * @enum {string}
  */
-DND5E.equipmentTypes = {
-  ...DND5E.miscEquipmentTypes,
-  ...DND5E.armorTypes
+ANAT.equipmentTypes = {
+  ...ANAT.miscEquipmentTypes,
+  ...ANAT.armorTypes
 };
 preLocalize("equipmentTypes", { sort: true });
 
@@ -930,7 +933,7 @@ preLocalize("equipmentTypes", { sort: true });
  * The various types of vehicles in which characters can be proficient.
  * @enum {string}
  */
-DND5E.vehicleTypes = {
+ANAT.vehicleTypes = {
   air: "DND5E.VehicleTypeAir",
   land: "DND5E.VehicleTypeLand",
   space: "DND5E.VehicleTypeSpace",
@@ -944,7 +947,7 @@ preLocalize("vehicleTypes", { sort: true });
  * The set of Armor Proficiencies which a character may have.
  * @type {object}
  */
-DND5E.armorProficiencies = {
+ANAT.armorProficiencies = {
   lgt: "DND5E.ArmorLightProficiency",
   med: "DND5E.ArmorMediumProficiency",
   hvy: "DND5E.ArmorHeavyProficiency",
@@ -957,7 +960,7 @@ preLocalize("armorProficiencies");
  * is used to determine if character has proficiency when adding an item.
  * @enum {(boolean|string)}
  */
-DND5E.armorProficienciesMap = {
+ANAT.armorProficienciesMap = {
   natural: true,
   clothing: true,
   light: "lgt",
@@ -971,7 +974,7 @@ DND5E.armorProficienciesMap = {
  * automated AC calculation in NPCs, and starting equipment.
  * @enum {string}
  */
-DND5E.armorIds = {
+ANAT.armorIds = {
   breastplate: "SK2HATQ4abKUlV8i",
   chainmail: "rLMflzmxpe8JGTOA",
   chainshirt: "p2zChy24ZJdVqMSH",
@@ -990,7 +993,7 @@ DND5E.armorIds = {
  * The basic shield in 5e.
  * @enum {string}
  */
-DND5E.shieldIds = {
+ANAT.shieldIds = {
   shield: "sSs3hSzkKBMNBgTs"
 };
 
@@ -998,7 +1001,7 @@ DND5E.shieldIds = {
  * Common armor class calculations.
  * @enum {{ label: string, [formula]: string }}
  */
-DND5E.armorClasses = {
+ANAT.armorClasses = {
   flat: {
     label: "DND5E.ArmorClassFlat",
     formula: "@attributes.ac.flat"
@@ -1047,7 +1050,7 @@ preLocalize("armorClasses", { key: "label" });
  * Enumerate the valid consumable types which are recognized by the system.
  * @enum {SubtypeTypeConfiguration}
  */
-DND5E.consumableTypes = {
+ANAT.consumableTypes = {
   ammo: {
     label: "DND5E.ConsumableAmmo",
     subtypes: {
@@ -1096,7 +1099,7 @@ preLocalize("consumableTypes.poison.subtypes", { sort: true });
  * Types of containers.
  * @enum {string}
  */
-DND5E.containerTypes = {
+ANAT.containerTypes = {
   backpack: "H8YCd689ezlD26aT",
   barrel: "7Yqbqg5EtVW16wfT",
   basket: "Wv7HzD6dv1P0q78N",
@@ -1131,7 +1134,7 @@ DND5E.containerTypes = {
  * Type of spellcasting foci.
  * @enum {SpellcastingFocusConfiguration}
  */
-DND5E.focusTypes = {
+ANAT.focusTypes = {
   arcane: {
     label: "DND5E.Focus.Arcane",
     itemIds: {
@@ -1167,7 +1170,7 @@ DND5E.focusTypes = {
  * Types of "features" items.
  * @enum {SubtypeTypeConfiguration}
  */
-DND5E.featureTypes = {
+ANAT.featureTypes = {
   background: {
     label: "DND5E.Feature.Background"
   },
@@ -1232,7 +1235,7 @@ preLocalize("featureTypes.supernaturalGift.subtypes", { sort: true });
  * The various properties of all item types.
  * @enum {ItemPropertyConfiguration}
  */
-DND5E.itemProperties = {
+ANAT.itemProperties = {
   ada: {
     label: "DND5E.Item.Property.Adamantine",
     isPhysical: true
@@ -1332,7 +1335,7 @@ preLocalize("itemProperties", { keys: ["label", "abbreviation"], sort: true });
  * The various properties of an item per item type.
  * @enum {object}
  */
-DND5E.validProperties = {
+ANAT.validProperties = {
   consumable: new Set([
     "mgc"
   ]),
@@ -1396,7 +1399,7 @@ DND5E.validProperties = {
  * Types of "loot" items.
  * @enum {LootTypeConfiguration}
  */
-DND5E.lootTypes = {
+ANAT.lootTypes = {
   art: {
     label: "DND5E.Loot.Art"
   },
@@ -1435,7 +1438,7 @@ preLocalize("lootTypes", { key: "label" });
  * The conversion number defines how many of that currency are equal to one GP.
  * @enum {CurrencyConfiguration}
  */
-DND5E.currencies = {
+ANAT.currencies = {
   pp: {
     label: "DND5E.CurrencyPP",
     abbreviation: "DND5E.CurrencyAbbrPP",
@@ -1473,7 +1476,7 @@ preLocalize("currencies", { keys: ["label", "abbreviation"] });
  * @deprecated since DnD5e 3.0, available until DnD5e 3.2
  * @enum {string}
  */
-DND5E.physicalDamageTypes = {
+ANAT.physicalDamageTypes = {
   bludgeoning: "DND5E.DamageBludgeoning",
   piercing: "DND5E.DamagePiercing",
   slashing: "DND5E.DamageSlashing"
@@ -1496,7 +1499,7 @@ preLocalize("physicalDamageTypes", { sort: true });
  * Types of damage the can be caused by abilities.
  * @enum {DamageTypeConfiguration}
  */
-DND5E.damageTypes = {
+ANAT.damageTypes = {
   acid: {
     label: "DND5E.DamageAcid",
     icon: "systems/dnd5e/icons/svg/damage/acid.svg",
@@ -1577,7 +1580,7 @@ preLocalize("damageTypes", { keys: ["label"], sort: true });
  * Different types of healing that can be applied using abilities.
  * @enum {string}
  */
-DND5E.healingTypes = {
+ANAT.healingTypes = {
   healing: {
     label: "DND5E.Healing",
     icon: "systems/dnd5e/icons/svg/damage/healing.svg"
@@ -1597,7 +1600,7 @@ preLocalize("healingTypes", { keys: ["label"] });
  * By default this uses the imperial units of feet and miles.
  * @enum {string}
  */
-DND5E.movementTypes = {
+ANAT.movementTypes = {
   burrow: "DND5E.MovementBurrow",
   climb: "DND5E.MovementClimb",
   fly: "DND5E.MovementFly",
@@ -1615,7 +1618,7 @@ preLocalize("movementTypes", { sort: true });
  * By default this uses the imperial units of feet and miles.
  * @enum {string}
  */
-DND5E.movementUnits = {
+ANAT.movementUnits = {
   ft: "DND5E.DistFt",
   mi: "DND5E.DistMi",
   m: "DND5E.DistM",
@@ -1629,7 +1632,7 @@ preLocalize("movementUnits");
  * The types of range that are used for measuring actions and effects.
  * @enum {string}
  */
-DND5E.rangeTypes = {
+ANAT.rangeTypes = {
   self: "DND5E.DistSelf",
   touch: "DND5E.DistTouch",
   spec: "DND5E.Special",
@@ -1644,9 +1647,9 @@ preLocalize("rangeTypes");
  * `DND5E.rangeUnits`.
  * @enum {string}
  */
-DND5E.distanceUnits = {
-  ...DND5E.movementUnits,
-  ...DND5E.rangeTypes
+ANAT.distanceUnits = {
+  ...ANAT.movementUnits,
+  ...ANAT.rangeTypes
 };
 preLocalize("distanceUnits");
 
@@ -1670,7 +1673,7 @@ preLocalize("distanceUnits");
  * Configure aspects of encumbrance calculation so that it could be configured by modules.
  * @type {EncumbranceConfiguration}
  */
-DND5E.encumbrance = {
+ANAT.encumbrance = {
   currencyPerWeight: {
     imperial: 50,
     metric: 110
@@ -1712,7 +1715,7 @@ DND5E.encumbrance = {
     metric: 1000 // 1000 kg in a metric ton
   }
 };
-Object.defineProperty(DND5E.encumbrance, "strMultiplier", {
+Object.defineProperty(ANAT.encumbrance, "strMultiplier", {
   get() {
     foundry.utils.logCompatibilityWarning(
       "`DND5E.encumbrance.strMultiplier` has been moved to `DND5E.encumbrance.threshold.maximum`.",
@@ -1731,7 +1734,7 @@ preLocalize("encumbrance.effects", { key: "name" });
  * Targeting types that apply to one or more distinct targets.
  * @enum {string}
  */
-DND5E.individualTargetTypes = {
+ANAT.individualTargetTypes = {
   self: "DND5E.TargetSelf",
   ally: "DND5E.TargetAlly",
   enemy: "DND5E.TargetEnemy",
@@ -1759,7 +1762,7 @@ preLocalize("individualTargetTypes");
  * Targeting types that cover an area.
  * @enum {AreaTargetDefinition}
  */
-DND5E.areaTargetTypes = {
+ANAT.areaTargetTypes = {
   radius: {
     label: "DND5E.TargetRadius",
     template: "circle"
@@ -1806,9 +1809,9 @@ preLocalize("areaTargetTypes", { key: "label", sort: true });
  * The types of single or area targets which can be applied to abilities.
  * @enum {string}
  */
-DND5E.targetTypes = {
-  ...DND5E.individualTargetTypes,
-  ...Object.fromEntries(Object.entries(DND5E.areaTargetTypes).map(([k, v]) => [k, v.label]))
+ANAT.targetTypes = {
+  ...ANAT.individualTargetTypes,
+  ...Object.fromEntries(Object.entries(ANAT.areaTargetTypes).map(([k, v]) => [k, v.label]))
 };
 preLocalize("targetTypes", { sort: true });
 
@@ -1818,7 +1821,7 @@ preLocalize("targetTypes", { sort: true });
  * Denominations of hit dice which can apply to classes.
  * @type {string[]}
  */
-DND5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
+ANAT.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
 
 /* -------------------------------------------- */
 
@@ -1826,7 +1829,7 @@ DND5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
  * The set of possible sensory perception types which an Actor may have.
  * @enum {string}
  */
-DND5E.senses = {
+ANAT.senses = {
   blindsight: "DND5E.SenseBlindsight",
   darkvision: "DND5E.SenseDarkvision",
   tremorsense: "DND5E.SenseTremorsense",
@@ -1843,7 +1846,7 @@ preLocalize("senses", { sort: true });
  * The entries of this array represent the spell slot progression for a full spell-caster.
  * @type {number[][]}
  */
-DND5E.SPELL_SLOT_TABLE = [
+ANAT.SPELL_SLOT_TABLE = [
   [2],
   [3],
   [4, 2],
@@ -1880,7 +1883,7 @@ DND5E.SPELL_SLOT_TABLE = [
  * Define the pact slot & level progression by pact caster level.
  * @enum {PactProgressionConfig}
  */
-DND5E.pactCastingProgression = {
+ANAT.pactCastingProgression = {
   1: { slots: 1, level: 1 },
   2: { slots: 2, level: 1 },
   3: { slots: 2, level: 2 },
@@ -1907,7 +1910,7 @@ DND5E.pactCastingProgression = {
  * Various different ways a spell can be prepared.
  * @enum {SpellPreparationModeConfiguration}
  */
-DND5E.spellPreparationModes = {
+ANAT.spellPreparationModes = {
   prepared: {
     label: "DND5E.SpellPrepPrepared",
     upcast: true
@@ -1941,7 +1944,7 @@ patchConfig("spellPreparationModes", "label", { since: "DnD5e 3.1", until: "DnD5
  * @deprecated since DnD5e 3.1, available until DnD5e 3.3
  * @type {string[]}
  */
-DND5E.spellUpcastModes = ["always", "pact", "prepared"];
+ANAT.spellUpcastModes = ["always", "pact", "prepared"];
 
 /* -------------------------------------------- */
 
@@ -1966,7 +1969,7 @@ DND5E.spellUpcastModes = ["always", "pact", "prepared"];
  * Different spellcasting types and their progression.
  * @type {SpellcastingTypeConfiguration}
  */
-DND5E.spellcastingTypes = {
+ANAT.spellcastingTypes = {
   leveled: {
     label: "DND5E.SpellProgLeveled",
     progression: {
@@ -2002,7 +2005,7 @@ preLocalize("spellcastingTypes.leveled.progression", { key: "label" });
  * Ways in which a class can contribute to spellcasting levels.
  * @enum {string}
  */
-DND5E.spellProgression = {
+ANAT.spellProgression = {
   none: "DND5E.SpellNone",
   full: "DND5E.SpellProgFull",
   half: "DND5E.SpellProgHalf",
@@ -2018,7 +2021,7 @@ preLocalize("spellProgression", { key: "label" });
  * Valid spell levels.
  * @enum {string}
  */
-DND5E.spellLevels = {
+ANAT.spellLevels = {
   0: "DND5E.SpellLevel0",
   1: "DND5E.SpellLevel1",
   2: "DND5E.SpellLevel2",
@@ -2038,7 +2041,7 @@ preLocalize("spellLevels");
  * The available choices for how spell damage scaling may be computed.
  * @enum {string}
  */
-DND5E.spellScalingModes = {
+ANAT.spellScalingModes = {
   none: "DND5E.SpellNone",
   cantrip: "DND5E.SpellCantrip",
   level: "DND5E.SpellLevel"
@@ -2060,7 +2063,7 @@ preLocalize("spellScalingModes", { sort: true });
  * Types of components that can be required when casting a spell.
  * @enum {SpellComponentConfiguration}
  */
-DND5E.spellComponents = {
+ANAT.spellComponents = {
   vocal: {
     label: "DND5E.ComponentVerbal",
     abbr: "DND5E.ComponentVerbalAbbr",
@@ -2095,7 +2098,7 @@ preLocalize("spellComponents", { keys: ["label", "abbr"] });
  * Supplementary rules keywords that inform a spell's use.
  * @enum {SpellTagConfiguration}
  */
-DND5E.spellTags = {
+ANAT.spellTags = {
   concentration: {
     label: "DND5E.Concentration",
     abbr: "DND5E.ConcentrationAbbr",
@@ -2127,7 +2130,7 @@ preLocalize("spellTags", { keys: ["label", "abbr"] });
  * Schools to which a spell can belong.
  * @enum {SpellSchoolConfiguration}
  */
-DND5E.spellSchools = {
+ANAT.spellSchools = {
   abj: {
     label: "DND5E.SchoolAbj",
     icon: "systems/dnd5e/icons/svg/schools/abjuration.svg",
@@ -2186,7 +2189,7 @@ patchConfig("spellSchools", "label", { since: "DnD5e 3.0", until: "DnD5e 3.2" })
  * Spell scroll item ID within the `DND5E.sourcePacks` compendium for each level.
  * @enum {string}
  */
-DND5E.spellScrollIds = {
+ANAT.spellScrollIds = {
   0: "rQ6sO7HDWzqMhSI3",
   1: "9GSfMg0VOA2b4uFN",
   2: "XdDp6CKh9qEvPTuS",
@@ -2207,7 +2210,7 @@ DND5E.spellScrollIds = {
  * The set of types which a weapon item can take.
  * @enum {string}
  */
-DND5E.weaponTypes = {
+ANAT.weaponTypes = {
   simpleM: "DND5E.WeaponSimpleM",
   simpleR: "DND5E.WeaponSimpleR",
   martialM: "DND5E.WeaponMartialM",
@@ -2226,7 +2229,7 @@ preLocalize("weaponTypes");
  * @deprecated since DnD5e 3.0, available until DnD5e 3.2
  * @enum {string}
  */
-DND5E.physicalWeaponProperties = {
+ANAT.physicalWeaponProperties = {
   ada: "DND5E.WeaponPropertiesAda",
   mgc: "DND5E.WeaponPropertiesMgc",
   sil: "DND5E.WeaponPropertiesSil"
@@ -2240,8 +2243,8 @@ preLocalize("physicalWeaponProperties", { sort: true });
  * @deprecated since DnD5e 3.0, available until DnD5e 3.2
  * @enum {string}
  */
-DND5E.weaponProperties = {
-  ...DND5E.physicalWeaponProperties,
+ANAT.weaponProperties = {
+  ...ANAT.physicalWeaponProperties,
   amm: "DND5E.WeaponPropertiesAmm",
   fin: "DND5E.WeaponPropertiesFin",
   fir: "DND5E.WeaponPropertiesFir",
@@ -2265,7 +2268,7 @@ preLocalize("weaponProperties", { sort: true });
  * Compendium packs used for localized items.
  * @enum {string}
  */
-DND5E.sourcePacks = {
+ANAT.sourcePacks = {
   ITEMS: "dnd5e.items"
 };
 
@@ -2275,7 +2278,7 @@ DND5E.sourcePacks = {
  * Settings to configure how actors are merged when polymorphing is applied.
  * @enum {string}
  */
-DND5E.polymorphSettings = {
+ANAT.polymorphSettings = {
   keepPhysical: "DND5E.PolymorphKeepPhysical",
   keepMental: "DND5E.PolymorphKeepMental",
   keepSaves: "DND5E.PolymorphKeepSaves",
@@ -2296,7 +2299,7 @@ preLocalize("polymorphSettings", { sort: true });
  * Settings to configure how actors are effects are merged when polymorphing is applied.
  * @enum {string}
  */
-DND5E.polymorphEffectSettings = {
+ANAT.polymorphEffectSettings = {
   keepAE: "DND5E.PolymorphKeepAE",
   keepOtherOriginAE: "DND5E.PolymorphKeepOtherOriginAE",
   keepOriginAE: "DND5E.PolymorphKeepOriginAE",
@@ -2312,7 +2315,7 @@ preLocalize("polymorphEffectSettings", { sort: true });
  * Settings to configure how actors are merged when preset polymorphing is applied.
  * @enum {object}
  */
-DND5E.transformationPresets = {
+ANAT.transformationPresets = {
   wildshape: {
     icon: '<i class="fas fa-paw"></i>',
     label: "DND5E.PolymorphWildShape",
@@ -2352,7 +2355,7 @@ preLocalize("transformationPresets", { sort: true, keys: ["label"] });
  * The key for each level represents its proficiency multiplier.
  * @enum {string}
  */
-DND5E.proficiencyLevels = {
+ANAT.proficiencyLevels = {
   0: "DND5E.NotProficient",
   1: "DND5E.Proficient",
   0.5: "DND5E.HalfProficient",
@@ -2366,7 +2369,7 @@ preLocalize("proficiencyLevels");
  * Weapon and armor item proficiency levels.
  * @enum {string}
  */
-DND5E.weaponAndArmorProficiencyLevels = {
+ANAT.weaponAndArmorProficiencyLevels = {
   0: "DND5E.NotProficient",
   1: "DND5E.Proficient"
 };
@@ -2379,7 +2382,7 @@ preLocalize("weaponAndArmorProficiencyLevels");
  * of cover are in play, we take the highest value.
  * @enum {string}
  */
-DND5E.cover = {
+ANAT.cover = {
   0: "DND5E.None",
   .5: "DND5E.CoverHalf",
   .75: "DND5E.CoverThreeQuarters",
@@ -2394,7 +2397,7 @@ preLocalize("cover");
  * @type {string[]}
  * @deprecated since v10
  */
-DND5E.trackableAttributes = [
+ANAT.trackableAttributes = [
   "attributes.ac.value", "attributes.init.bonus", "attributes.movement", "attributes.senses", "attributes.spelldc",
   "attributes.spellLevel", "details.cr", "details.spellLevel", "details.xp.value", "skills.*.passive",
   "abilities.*.value"
@@ -2406,7 +2409,7 @@ DND5E.trackableAttributes = [
  * A selection of actor and item attributes that are valid targets for item resource consumption.
  * @type {string[]}
  */
-DND5E.consumableResources = [
+ANAT.consumableResources = [
   // Configured during init.
 ];
 
@@ -2427,7 +2430,7 @@ DND5E.consumableResources = [
  * Conditions that can affect an actor.
  * @enum {ConditionConfiguration}
  */
-DND5E.conditionTypes = {
+ANAT.conditionTypes = {
   blinded: {
     label: "DND5E.ConBlinded",
     icon: "systems/dnd5e/icons/svg/statuses/blinded.svg",
@@ -2524,7 +2527,7 @@ patchConfig("conditionTypes", "label", { since: "DnD5e 3.0", until: "DnD5e 3.2" 
  * and with a number appended for a level of exhaustion.
  * @enum {object}
  */
-DND5E.conditionEffects = {
+ANAT.conditionEffects = {
   noMovement: new Set(["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"]),
   halfMovement: new Set(["exhaustion-2", "prone"]),
   crawl: new Set(["prone", "exceedingCarryingCapacity"]),
@@ -2539,7 +2542,7 @@ DND5E.conditionEffects = {
  * data will be merged into the core data.
  * @enum {object}
  */
-DND5E.statusEffects = {
+ANAT.statusEffects = {
   bleeding: {
     icon: "systems/dnd5e/icons/svg/statuses/bleeding.svg"
   },
@@ -2599,7 +2602,7 @@ DND5E.statusEffects = {
  * Languages a character can learn.
  * @enum {string}
  */
-DND5E.languages = {
+ANAT.languages = {
   standard: {
     label: "DND5E.LanguagesStandard",
     children: {
@@ -2652,19 +2655,19 @@ patchConfig("languages", "label", { since: "DnD5e 2.4", until: "DnD5e 3.1" });
  * Maximum allowed character level.
  * @type {number}
  */
-DND5E.maxLevel = 20;
+ANAT.maxLevel = 20;
 
 /**
  * Maximum ability score value allowed by default.
  * @type {number}
  */
-DND5E.maxAbilityScore = 20;
+ANAT.maxAbilityScore = 20;
 
 /**
  * XP required to achieve each character level.
  * @type {number[]}
  */
-DND5E.CHARACTER_EXP_LEVELS = [
+ANAT.CHARACTER_EXP_LEVELS = [
   0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000,
   120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000
 ];
@@ -2673,7 +2676,7 @@ DND5E.CHARACTER_EXP_LEVELS = [
  * XP granted for each challenge rating.
  * @type {number[]}
  */
-DND5E.CR_EXP_LEVELS = [
+ANAT.CR_EXP_LEVELS = [
   10, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000,
   20000, 22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
 ];
@@ -2704,12 +2707,12 @@ DND5E.CR_EXP_LEVELS = [
  * @property {string} [actorKeyPath]       If the trait doesn't directly map to an entry as `traits.[key]`, where is
  *                                         this trait's data stored on the actor?
  * @property {string} [configKey]          If the list of trait options doesn't match the name of the trait, where can
- *                                         the options be found within `CONFIG.DND5E`?
+ *                                         the options be found within `CONFIG.ANAT`?
  * @property {string} [labelKeyPath]       If config is an enum of objects, where can the label be found?
  * @property {object} [subtypes]           Configuration for traits that take some sort of base item.
  * @property {string} [subtypes.keyPath]   Path to subtype value on base items, should match a category key.
  *                                         Deprecated in favor of the standardized `system.type.value`.
- * @property {string[]} [subtypes.ids]     Key for base item ID objects within `CONFIG.DND5E`.
+ * @property {string[]} [subtypes.ids]     Key for base item ID objects within `CONFIG.ANAT`.
  * @property {object} [children]           Mapping of category key to an object defining its children.
  * @property {boolean} [sortCategories]    Whether top-level categories should be sorted.
  * @property {boolean} [expertise]         Can an actor receive expertise in this trait?
@@ -2719,7 +2722,7 @@ DND5E.CR_EXP_LEVELS = [
  * Configurable traits on actors.
  * @enum {TraitConfiguration}
  */
-DND5E.traits = {
+ANAT.traits = {
   saves: {
     labels: {
       title: "DND5E.ClassSaves",
@@ -2821,7 +2824,7 @@ preLocalize("traits", { key: "labels.title" });
  * Modes used within a trait advancement.
  * @enum {object}
  */
-DND5E.traitModes = {
+ANAT.traitModes = {
   default: {
     label: "DND5E.AdvancementTraitModeDefaultLabel",
     hint: "DND5E.AdvancementTraitModeDefaultHint"
@@ -2847,7 +2850,7 @@ preLocalize("traitModes", { keys: ["label", "hint"] });
  * Special character flags.
  * @enum {CharacterFlagConfig}
  */
-DND5E.characterFlags = {
+ANAT.characterFlags = {
   diamondSoul: {
     name: "DND5E.FlagsDiamondSoul",
     hint: "DND5E.FlagsDiamondSoulHint",
@@ -2945,7 +2948,7 @@ preLocalize("characterFlags", { keys: ["name", "hint", "section"] });
  * Flags allowed on actors. Any flags not in the list may be deleted during a migration.
  * @type {string[]}
  */
-DND5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(DND5E.characterFlags));
+ANAT.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(ANAT.characterFlags));
 
 /* -------------------------------------------- */
 
@@ -2953,7 +2956,7 @@ DND5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(
  * Different types of actor structures that groups can represent.
  * @enum {object}
  */
-DND5E.groupTypes = {
+ANAT.groupTypes = {
   party: "DND5E.Group.TypeParty",
   encounter: "DND5E.Group.TypeEncounter"
 };
@@ -2975,7 +2978,7 @@ const _ALL_ITEM_TYPES = ["background", "class", "race", "subclass"];
  * Advancement types that can be added to items.
  * @enum {AdvancementTypeConfiguration}
  */
-DND5E.advancementTypes = {
+ANAT.advancementTypes = {
   AbilityScoreImprovement: {
     documentClass: advancement.AbilityScoreImprovementAdvancement,
     validItemTypes: new Set(["background", "class", "race"])
@@ -3012,7 +3015,7 @@ DND5E.advancementTypes = {
  * Default artwork configuration for each Document type and sub-type.
  * @type {Record<string, Record<string, string>>}
  */
-DND5E.defaultArtwork = {
+ANAT.defaultArtwork = {
   Item: {
     background: "systems/dnd5e/icons/svg/items/background.svg",
     class: "systems/dnd5e/icons/svg/items/class.svg",
@@ -3045,7 +3048,7 @@ DND5E.defaultArtwork = {
  * Types of rules that can be used in rule pages and the &Reference enricher.
  * @enum {RuleTypeConfiguration}
  */
-DND5E.ruleTypes = {
+ANAT.ruleTypes = {
   rule: {
     label: "DND5E.Rule.Type.Rule",
     references: "rules"
@@ -3095,7 +3098,7 @@ preLocalize("ruleTypes", { key: "label" });
  * List of rules that can be referenced from enrichers.
  * @enum {string}
  */
-DND5E.rules = {
+ANAT.rules = {
   inspiration: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.nkEPI89CiQnOaLYh",
   carryingcapacity: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1PnjDBKbQJIVyc2t",
   push: "Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
@@ -3259,7 +3262,7 @@ DND5E.rules = {
 /**
  * @type {TokenRingsConfiguration}
  */
-DND5E.tokenRings = {
+ANAT.tokenRings = {
   effects: {
     RING_PULSE: "DND5E.TokenRings.Effects.RingPulse",
     RING_GRADIENT: "DND5E.TokenRings.Effects.RingGradient",
@@ -3278,7 +3281,7 @@ preLocalize("tokenRings.effects");
  * List of books available as sources.
  * @enum {string}
  */
-DND5E.sourceBooks = {
+ANAT.sourceBooks = {
   "SRD 5.1": "SOURCE.BOOK.SRD"
 };
 preLocalize("sourceBooks", { sort: true });
@@ -3288,17 +3291,17 @@ preLocalize("sourceBooks", { sort: true });
 /* -------------------------------------------- */
 
 let _enrichmentLookup;
-Object.defineProperty(DND5E, "enrichmentLookup", {
+Object.defineProperty(ANAT, "enrichmentLookup", {
   get() {
     const slugify = value => value?.slugify().replaceAll("-", "");
     if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
-        abilities: foundry.utils.deepClone(DND5E.abilities),
-        skills: foundry.utils.deepClone(DND5E.skills),
-        spellSchools: foundry.utils.deepClone(DND5E.spellSchools),
-        tools: foundry.utils.deepClone(DND5E.toolIds)
+        abilities: foundry.utils.deepClone(ANAT.abilities),
+        skills: foundry.utils.deepClone(ANAT.skills),
+        spellSchools: foundry.utils.deepClone(ANAT.spellSchools),
+        tools: foundry.utils.deepClone(ANAT.toolIds)
       };
-      const addFullKeys = key => Object.entries(DND5E[key]).forEach(([k, v]) =>
+      const addFullKeys = key => Object.entries(ANAT[key]).forEach(([k, v]) =>
         _enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k }
       );
       addFullKeys("abilities");
@@ -3322,13 +3325,13 @@ Object.defineProperty(DND5E, "enrichmentLookup", {
 function patchConfig(key, fallbackKey, options) {
   /** @override */
   function toString() {
-    const message = `The value of CONFIG.DND5E.${key} has been changed to an object.`
+    const message = `The value of CONFIG.ANAT.${key} has been changed to an object.`
       +` The former value can be acccessed from .${fallbackKey}.`;
     foundry.utils.logCompatibilityWarning(message, options);
     return this[fallbackKey];
   }
 
-  Object.values(DND5E[key]).forEach(o => {
+  Object.values(ANAT[key]).forEach(o => {
     if ( foundry.utils.getType(o) !== "Object" ) return;
     o.toString = toString;
   });
@@ -3336,4 +3339,4 @@ function patchConfig(key, fallbackKey, options) {
 
 /* -------------------------------------------- */
 
-export default DND5E;
+export default ANAT;

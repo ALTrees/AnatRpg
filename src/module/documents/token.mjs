@@ -86,7 +86,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
    * @returns {string[]}
    */
   static getConsumedAttributes(data) {
-    return CONFIG.DND5E.consumableResources;
+    return CONFIG.ANAT.consumableResources;
   }
 
   /* -------------------------------------------- */
@@ -139,7 +139,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
       if ( deltaSize ) size = deltaSize;
     }
     if ( !size ) return;
-    const dts = CONFIG.DND5E.actorSizes[size].dynamicTokenScale ?? 1;
+    const dts = CONFIG.ANAT.actorSizes[size].dynamicTokenScale ?? 1;
     this.texture.scaleX = this._source.texture.scaleX * dts;
     this.texture.scaleY = this._source.texture.scaleY * dts;
   }
@@ -165,7 +165,7 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
   getRingColors() {
     const colors = {};
     if ( this.hasStatusEffect(CONFIG.specialStatusEffects.DEFEATED) ) {
-      colors.ring = CONFIG.DND5E.tokenRingColors.defeated;
+      colors.ring = CONFIG.ANAT.tokenRingColors.defeated;
     }
     return colors;
   }
@@ -194,10 +194,10 @@ export default class TokenDocument5e extends SystemFlagsMixin(TokenDocument) {
   flashRing({ dhp, dtemp }) {
     let color;
     const options = {};
-    if ( dtemp ) color = CONFIG.DND5E.tokenRingColors.temp;
-    else if ( dhp > 0 ) color = CONFIG.DND5E.tokenRingColors.healing;
+    if ( dtemp ) color = CONFIG.ANAT.tokenRingColors.temp;
+    else if ( dhp > 0 ) color = CONFIG.ANAT.tokenRingColors.healing;
     else if ( dhp < 0 ) {
-      color = CONFIG.DND5E.tokenRingColors.damage;
+      color = CONFIG.ANAT.tokenRingColors.damage;
       options.duration = 500;
       options.easing = CONFIG.Token.ringClass.easeTwoPeaks;
     }

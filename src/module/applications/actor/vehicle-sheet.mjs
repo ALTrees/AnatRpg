@@ -44,14 +44,14 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     const totalCoins = Object.values(actorData.system.currency).reduce((acc, denom) => acc + denom, 0);
 
     const currencyPerWeight = game.settings.get("dnd5e", "metricWeightUnits")
-      ? CONFIG.DND5E.encumbrance.currencyPerWeight.metric
-      : CONFIG.DND5E.encumbrance.currencyPerWeight.imperial;
+      ? CONFIG.ANAT.encumbrance.currencyPerWeight.metric
+      : CONFIG.ANAT.encumbrance.currencyPerWeight.imperial;
     totalWeight += totalCoins / currencyPerWeight;
 
     // Vehicle weights are an order of magnitude greater.
     totalWeight /= game.settings.get("dnd5e", "metricWeightUnits")
-      ? CONFIG.DND5E.encumbrance.vehicleWeightMultiplier.metric
-      : CONFIG.DND5E.encumbrance.vehicleWeightMultiplier.imperial;
+      ? CONFIG.ANAT.encumbrance.vehicleWeightMultiplier.metric
+      : CONFIG.ANAT.encumbrance.vehicleWeightMultiplier.imperial;
 
     // Compute overall encumbrance
     const max = actorData.system.attributes.capacity.cargo;

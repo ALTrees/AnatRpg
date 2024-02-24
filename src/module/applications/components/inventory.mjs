@@ -207,8 +207,8 @@ export default class InventoryElement extends HTMLElement {
     if ( !this.actor || (this.actor.type === "group") ) return options;
 
     // Toggle Attunement State
-    if ( ("attunement" in item.system) && (item.system.attunement !== CONFIG.DND5E.attunementTypes.NONE) ) {
-      const isAttuned = item.system.attunement === CONFIG.DND5E.attunementTypes.ATTUNED;
+    if ( ("attunement" in item.system) && (item.system.attunement !== CONFIG.ANAT.attunementTypes.NONE) ) {
+      const isAttuned = item.system.attunement === CONFIG.ANAT.attunementTypes.ATTUNED;
       options.push({
         name: isAttuned ? "DND5E.ContextMenuActionUnattune" : "DND5E.ContextMenuActionAttune",
         icon: "<i class='fas fa-sun fa-fw'></i>",
@@ -343,9 +343,9 @@ export default class InventoryElement extends HTMLElement {
 
     switch ( action ) {
       case "attune":
-        const isAttuned = item.system.attunement === CONFIG.DND5E.attunementTypes.ATTUNED;
+        const isAttuned = item.system.attunement === CONFIG.ANAT.attunementTypes.ATTUNED;
         return item.update({
-          "system.attunement": CONFIG.DND5E.attunementTypes[isAttuned ? "REQUIRED" : "ATTUNED"]
+          "system.attunement": CONFIG.ANAT.attunementTypes[isAttuned ? "REQUIRED" : "ATTUNED"]
         });
       case "create":
         if ( this.document.type === "container" ) return;
@@ -390,8 +390,8 @@ export default class InventoryElement extends HTMLElement {
     const type = dataset.type;
 
     // Check to make sure the newly created class doesn't take player over level cap
-    if ( type === "class" && (this.actor.system.details.level + 1 > CONFIG.DND5E.maxLevel) ) {
-      const err = game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", {max: CONFIG.DND5E.maxLevel});
+    if ( type === "class" && (this.actor.system.details.level + 1 > CONFIG.ANAT.maxLevel) ) {
+      const err = game.i18n.format("DND5E.MaxCharacterLevelExceededWarn", {max: CONFIG.ANAT.maxLevel});
       ui.notifications.error(err);
       return null;
     }
