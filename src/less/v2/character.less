@@ -63,7 +63,7 @@
   /* ---------------------------------- */
 
   &.minimized {
-    background: url("/ui/denim075.png");
+    background: url("/static/ui/denim075.png");
     border: unset;
 
     > header {
@@ -79,7 +79,7 @@
 
   .sheet-header {
     flex: 0 0 var(--dnd5e-sheet-header-height);
-    background: transparent url("ui/official/banner-character.jpg") no-repeat center / cover;
+    background: transparent url("../../../static/ui/official/banner-character.jpg") no-repeat center / cover;
     border: none;
     border-radius: 5px 5px 0 0;
     display: grid;
@@ -156,7 +156,7 @@
       .level {
         width: var(--level-size);
         height: var(--level-size);
-        background: transparent url("ui/level-badge.webp") no-repeat center / contain;
+        background: transparent url("../../../static/ui/level-badge.webp") no-repeat center / contain;
         font-family: var(--dnd5e-font-roboto);
         font-weight: bold;
         color: var(--color-text-light-0);
@@ -175,7 +175,7 @@
         top: calc(var(--level-size) / 2 - var(--size) / 2);
         width: var(--size);
         height: var(--size);
-        background: transparent url("ui/inspiration.webp") no-repeat center / contain;
+        background: transparent url("../../../static/ui/inspiration.webp") no-repeat center / contain;
         filter: drop-shadow(0 3px 4px var(--dnd5e-shadow-45));
         display: grid;
         place-content: center;
@@ -316,8 +316,8 @@
   .sheet-body {
     border-radius: 5px;
     position: relative;
-    background: url("ui/texture1.webp") no-repeat top center / auto 770px,
-      url("ui/texture2.webp") no-repeat bottom center / auto 704px;
+    background: url("../../../static/ui/texture1.webp") no-repeat top center / auto 770px,
+      url("../../../static/ui/texture2.webp") no-repeat bottom center / auto 704px;
 
     /* Main Content */
     .main-content {
@@ -477,7 +477,7 @@
               height: 68px;
               text-align: center;
               line-height: 62px;
-              background: transparent url("ui/ac-badge.webp") no-repeat center / contain;
+              background: transparent url("../../../static/ui/ac-badge.webp") no-repeat center / contain;
               color: var(--color-text-light-0);
               font-size: var(--font-size-23);
               font-family: var(--dnd5e-font-roboto);
@@ -502,7 +502,7 @@
             .lozenge {
               width: 68px;
               height: 45px;
-              background: transparent url("ui/lozenge.svg") no-repeat top center / contain;
+              background: transparent url("../../../static/ui/lozenge.svg") no-repeat top center / contain;
               display: flex;
               flex-direction: column;
               align-items: center;
@@ -1027,17 +1027,17 @@
         background-blend-mode: color-burn;
 
         &.type {
-          background: url("ui/official/pill-texture-type.webp") no-repeat right,
+          background: url("../../../static/ui/official/pill-texture-type.webp") no-repeat right,
             color-mix(in oklab, var(--dnd5e-color-parchment), white);
         }
 
         &.race {
-          background: url("ui/official/pill-texture-race.webp") no-repeat right,
+          background: url("../../../static/ui/official/pill-texture-race.webp") no-repeat right,
             color-mix(in oklab, var(--dnd5e-color-parchment), white);
         }
 
         &.background {
-          background: url("ui/official/pill-texture-background.webp") no-repeat right,
+          background: url("../../../static/ui/official/pill-texture-background.webp") no-repeat right,
             color-mix(in oklab, var(--dnd5e-color-parchment), white);
         }
 
@@ -1151,11 +1151,11 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: transparent url("ui/ability-score-tab.svg") no-repeat top center / contain;
+        background: transparent url("../../../static/ui/ability-score-tab.svg") no-repeat top center / contain;
         z-index: -1;
 
         @media (prefers-contrast: more) {
-          background: transparent url("ui/ability-score-tab-hc.svg") no-repeat top center / contain;
+          background: transparent url("../../../static/ui/ability-score-tab-hc.svg") no-repeat top center / contain;
         }
       }
 
