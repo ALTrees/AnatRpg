@@ -12,7 +12,7 @@ import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
  * base 5e system folder.
  * @type {string}
  */
-const PACK_DEST = "packs";
+const PACK_DEST = "dist/packs";
 
 /**
  * Folder where source JSON files should be located relative to the 5e system folder.
